@@ -1,0 +1,12 @@
+.idea
+*.iml
+*.class
+.svn
+
+#target/*
+
+#/**/target/
+
+# Package Files #
+*.war
+*.ear
