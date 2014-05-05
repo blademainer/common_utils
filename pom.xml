@@ -7,6 +7,7 @@
         <module>common_code</module>
         <module>common_thread</module>
         <module>common_helper</module>
+        <module>common_http</module>
     </modules>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>

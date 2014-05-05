@@ -47,7 +47,6 @@ public class PropertiesHelper {
                 String value = (String) properties.get(key);
                 propertiesMap.put(key, value);
             }
-            EntityHelper.print(propertiesMap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
