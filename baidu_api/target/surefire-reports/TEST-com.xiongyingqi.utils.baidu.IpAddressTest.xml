@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.797" errors="0" skipped="0" tests="1" name="com.xiongyingqi.utils.baidu.IpAddressTest">
+<testsuite failures="0" time="0.788" errors="0" skipped="0" tests="1" name="com.xiongyingqi.utils.baidu.IpAddressTest">
   <properties>
     <property name="idea.version" value="13.1.2"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -11,7 +11,7 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7548"/>
+    <property name="idea.launcher.port" value="7533"/>
     <property name="user.script" value=""/>
     <property name="user.country" value="CN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -48,7 +48,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="D:\software\Java\jdk1.7.6_64bit\jre"/>
-    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=13.1.2 -s D:\software\apache-maven-3.1.1\conf\settings.xml -Dmaven.repo.local=D:\software\apache-maven-3.1.1\repository install"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=13.1.2 -s D:\software\apache-maven-3.1.1\conf\settings.xml -Dmaven.repo.local=D:\software\apache-maven-3.1.1\repository install deploy"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -65,5 +65,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.797" classname="com.xiongyingqi.utils.baidu.IpAddressTest" name="testGetIp"/>
+  <testcase time="0.788" classname="com.xiongyingqi.utils.baidu.IpAddressTest" name="testGetIp"/>
 </testsuite>

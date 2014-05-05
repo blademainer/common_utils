@@ -18,7 +18,26 @@
             <id>objectledge</id>
             <url>http://nexus.objectledge.org/nexus/content/repositories/m2thirdparty</url>
         </repository>
+        <repository>
+            <id>kingray</id>
+            <url>http://10.188.199.4:8088/nexus/content/repositories/public/</url>
+        </repository>
     </repositories>
+
+    <distributionManagement>
+        <!-- 配置快照版本发布的仓库-->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://10.188.199.4:8088/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <!-- 配置release版本发布的仓库-->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://10.188.199.4:8088/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 
     <scm>
         <url>https://github.com/blademainer/common_utils.git</url>
