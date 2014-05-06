@@ -3,9 +3,9 @@
 *.class
 .svn
 
-#target/*
+target/*
 
-#/**/target/
+/**/target/*
 
 # Package Files #
 *.war
