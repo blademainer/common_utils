@@ -8,6 +8,7 @@
         <module>common_thread</module>
         <module>common_helper</module>
         <module>common_http</module>
+        <module>common_log</module>
     </modules>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>

@@ -821,6 +821,44 @@ public class EntityHelper {
         return false;
     }
 
+    public static Method findGetMethod(Field field) {
+        Class inClass = field.getDeclaringClass();
+        Method[] methods = inClass.getDeclaredMethods();
+        for (Method method : methods) {
+            if (!Modifier.isPublic(method.getModifiers()) || Modifier.isStatic(method.getModifiers())) {
+                continue;
+            }
+            String name = method.getName();
+            if (name.startsWith("get") && name.toLowerCase().equals("get" + field.getName().toLowerCase())) {
+                return method;
+            } else if (name.startsWith("is")
+                    && (field.getType() == Boolean.class || field.getType() == boolean.class || field.getType() == byte.class || field.getType() == Byte.class)
+                    && (name.toLowerCase().equals("is" + field.getName().toLowerCase())
+                    || name.toLowerCase().equals(field.getName().toLowerCase())
+            )) {
+                return method;
+            }
+
+        }
+        return null;
+    }
+    public static Method findSetMethod(Field field) {
+        Class inClass = field.getDeclaringClass();
+        Method[] methods = inClass.getDeclaredMethods();
+        for (Method method : methods) {
+            if (!Modifier.isPublic(method.getModifiers()) || Modifier.isStatic(method.getModifiers())) {
+                continue;
+            }
+            String name = method.getName();
+            if (name.startsWith("set") && name.toLowerCase().equals("set" + field.getName().toLowerCase())) {
+                return method;
+            }
+
+        }
+        return null;
+    }
+
+
     /**
      * 计算对象的hashCode <br>
      * 2013-8-14 下午3:43:44
