@@ -6,4 +6,5 @@ common_helper
 -----------------------------------
 基本帮助类
 >
-EntityHelper: 实体帮助类，如果使用EntityHelper.print(); 则打印到控制台时能找到是那一行输出的。
+EntityHelper: 实体帮助类
+### 如果使用EntityHelper.print(); 则打印到控制台时能找到是那一行输出的。

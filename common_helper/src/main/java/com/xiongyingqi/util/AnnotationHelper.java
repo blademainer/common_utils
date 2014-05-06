@@ -6,7 +6,10 @@ package com.xiongyingqi.util;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
 /**
  * @author xiongyingqi <a href="http://xiongyingqi.com">xiongyingqi.com</a>
@@ -28,6 +31,13 @@ public class AnnotationHelper {
         }
     }
 
+    /**
+     * 读取field的注解值（包括get、set方法）
+     * @param field
+     * @param annotationClass
+     * @param <T>
+     * @return
+     */
     public static <T extends Annotation> T readAnnotationValueOnField(Field field, Class<T> annotationClass) {
         if (field.isAnnotationPresent(annotationClass)) {
             T t = field.getAnnotation(annotationClass);
@@ -63,6 +73,7 @@ public class AnnotationHelper {
 
     /**
      * 在类内搜索所有的字段的annotationClass注解值
+     *
      * @param clazz
      * @param annotationClass
      * @param <T>
@@ -74,11 +85,11 @@ public class AnnotationHelper {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             T t = readAnnotationValueOnField(field, annotationClass);
-            if(t == null){
+            if (t == null) {
                 continue;
             }
 
-            if(collection == null){
+            if (collection == null) {
                 collection = new ArrayList<T>();
             }
 
@@ -86,6 +97,33 @@ public class AnnotationHelper {
         }
 
         return collection;
+    }
+
+    /**
+     * 在类内搜索使用annotationClass注解的字段（包括在get、set方法上注解）
+     * @param inClazz
+     * @param annotationClass
+     * @param <T>
+     * @return
+     */
+    public static <T extends Annotation> Collection<Field> getFieldsWithAnnotationInClass(Class<?> inClazz, Class<T> annotationClass) {
+        Collection<Field> fieldCollection = null;
+
+        Field[] fields = inClazz.getDeclaredFields();
+        for (Field field : fields) {
+            T t = readAnnotationValueOnField(field, annotationClass);
+            if (t == null) {
+                continue;
+            }
+
+            if (fieldCollection == null) {
+                fieldCollection = new ArrayList<Field>();
+            }
+
+            fieldCollection.add(field);
+        }
+
+        return fieldCollection;
     }
 
 }
