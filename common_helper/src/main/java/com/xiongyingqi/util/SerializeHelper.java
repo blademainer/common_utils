@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/4/28 0028.
  */
 public class SerializeHelper {
-    private static int index;
+    private static byte index;
 
     /**
      * 将对象序列化到文件
@@ -48,13 +48,36 @@ public class SerializeHelper {
         return arrayOutputStream.toByteArray();
     }
 
-    private static int nextIndex() {
+    /**
+     * 返回固定长度的
+     *
+     * @return
+     */
+    private static String nextIndex() {
+        String rs = "";
         synchronized (SerializeHelper.class) {
-            return index++;
+            rs += ++index < 0 ? -index : index;
+            int least = 3 - rs.length();
+            for (int i = 0; i < least; i++) {
+                rs = "0" + rs;
+            }
+            return rs;
         }
     }
 
+    public static long getTimeOfTheName(String fileName) throws NumberFormatException{
+        String longStr = fileName.substring(0, fileName.length() - 3);
+        Long lo = Long.parseLong(longStr);
+        return lo;
+    }
+
     public static void main(String[] args) {
+        for (int i = 0; i < 1000; i++) {
+            EntityHelper.print(nextIndex());
+            String fileName = System.currentTimeMillis() + nextIndex();
+            EntityHelper.print(getTimeOfTheName(fileName));
+        }
+
         System.out.println(Base64.decodeToObject(Base64.encodeObject(new Date())));
     }
 

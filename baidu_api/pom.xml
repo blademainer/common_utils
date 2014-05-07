@@ -9,7 +9,6 @@
     </parent>
     <artifactId>baidu_api</artifactId>
     <modelVersion>4.0.0</modelVersion>
-
     <properties>
         <httpclient.version>4.3.1</httpclient.version>
     </properties>
