@@ -8,6 +8,7 @@ import java.util.Date;
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/4/28 0028.
  */
 public class SerializeHelper {
+    public static final String ENCODING = "UTF-8";
     private static byte index;
 
     /**
@@ -89,4 +90,5 @@ public class SerializeHelper {
         Key privateKey = (Key) objectInputStream.readObject();
         return privateKey;
     }
+
 }

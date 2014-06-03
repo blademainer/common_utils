@@ -3,6 +3,7 @@ package com.xiongyingqi.utils.baidu;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiongyingqi.http.BuildNameValuePairsHelper;
+import com.xiongyingqi.http.HttpAccess;
 import com.xiongyingqi.http.HttpBuilder;
 import com.xiongyingqi.util.EntityHelper;
 import com.xiongyingqi.util.MD5Helper;
@@ -54,7 +55,7 @@ public class IpAddress {
             String sign = caculateAKSN(ak, sk, url, httpBuilder.getNameValuePairs(), "POST");
             httpBuilder.param("sn", sign);
         }
-        String rs = HttpBuilder.execute(HttpBuilder.getClient(), httpBuilder.build());
+        String rs = HttpAccess.execute(HttpAccess.getClient(), httpBuilder.build());
         rs = UnicodeHelper.unicodeToUtf8(rs);
         ObjectMapper mapper = _mapper.get();
         IpAddressVo ipAddressVo = mapper.readValue(rs, IpAddressVo.class);

@@ -17,6 +17,16 @@ public class ByteHelper {
             'u', 'v', 'w', 'x', 'y', 'z'
     };
 
+    final static char[] letters = new char[255];
+
+    static {
+        char first = '0';
+        for (int i = 0; i < letters.length; i++) {
+            char c = (char) (first + i);
+            EntityHelper.print(c);
+        }
+    }
+
     /**
      * Convert the integer to an unsigned number.
      */

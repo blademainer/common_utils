@@ -842,6 +842,7 @@ public class EntityHelper {
         }
         return null;
     }
+
     public static Method findSetMethod(Field field) {
         Class inClass = field.getDeclaringClass();
         Method[] methods = inClass.getDeclaredMethods();
@@ -1002,12 +1003,51 @@ public class EntityHelper {
         } else {
             builder.append(object.getClass().getSimpleName());
             builder.append(" =============== ");
-            builder.append(object.toString());
+            builder.append(buildObjectToString(object));
         }
         builder.append(StringHelper.line());
         builder.append(" ------------------------------------------------------------ ");
         System.out.println(builder.toString());
     }
+
+    public static String buildObjectToString(Object object) {
+        if(object == null){
+            return null;
+        }
+
+        Class clazz = object.getClass();
+
+        StringBuilder builder = new StringBuilder();
+        if (clazz.isArray()) {
+            builder.append("[");
+            int length = Array.getLength(object);
+            for (int i = 0; i < length; i++) {
+                Object one = Array.get(object, i);
+                builder.append(buildObjectToString(one));
+                if (i < length - 1) {
+                    builder.append(", ");
+                }
+            }
+            builder.append("]");
+//        } else if (clazz.getSuperclass() == Collection.class) {
+//            builder.append("[");
+//            Collection collection = (Collection) object;
+//
+//            int i = 0;
+//            int length = collection.size();
+//            for (Object o : collection) {
+//                builder.append(buildObjectToString(o));
+//                if (i < length - 1) {
+//                    builder.append(", ");
+//                }
+//            }
+//            builder.append("]");
+        } else {
+            builder.append(object.toString());
+        }
+        return builder.toString();
+    }
+
 
     /**
      * <br>
@@ -1078,6 +1118,16 @@ public class EntityHelper {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         String str = "asf";
         System.out.println(getFieldValue(str, "hash"));
+
+        String[] as = {"af", "asf"};
+        print(as);
+
+        Collection strs = new ArrayList();
+        strs.add("asf");
+        strs.add("asdf");
+        strs.add("ff");
+        strs.add("asf");
+        print(strs);
 
     }
 

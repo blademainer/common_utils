@@ -1,21 +1,16 @@
 package com.xiongyingqi.http;
 
 import com.xiongyingqi.util.EntityHelper;
-import com.xiongyingqi.util.FileHelper;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
-import org.apache.http.entity.ContentType;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
@@ -171,32 +166,12 @@ public class HttpBuilder {
         return requestBase;
     }
 
-    public static String readResponse(CloseableHttpResponse response) throws IOException {
-        HttpEntity entity = response.getEntity();
-        ContentType contentType = ContentType.getOrDefault(entity);// 获取编码
-//            EntityHelper.print(contentType);
-        Charset charset = contentType.getCharset();
-        InputStream inputStream = entity.getContent();
-        String result = FileHelper.readInputStreamToString(inputStream, charset);
-//        result = URLDecoder.decode(result, charset.toString());
-        return result;
-    }
 
-    public static CloseableHttpClient getClient() {
-        HttpClientBuilder client = HttpClientBuilder.create();
-        CloseableHttpClient closeableHttpClient = client.build();
-        return closeableHttpClient;
-    }
-
-    public static String execute(CloseableHttpClient closeableHttpClient, HttpRequestBase requestBase) throws IOException {
-        CloseableHttpResponse response = closeableHttpClient.execute(requestBase);
-        return readResponse(response);
-    }
 
     @Test
     public void test() {
         try {
-            String rs = HttpBuilder.execute(getClient(), HttpBuilder.newBuilder().url("http://10.188.199.4:8080/WEB_LOAN_WEB/login/doLogin").post().param("user.userName","xyq").param("user.userPassword","111").param("isPasswordMd5", "false").build());
+            String rs = HttpAccess.execute(HttpAccess.getClient(), HttpBuilder.newBuilder().url("http://10.188.199.4:8080/WEB_LOAN_WEB/login/doLogin").post().param("user.userName","xyq").param("user.userPassword","111").param("isPasswordMd5", "false").build());
             EntityHelper.print(rs);
         } catch (IOException e) {
             e.printStackTrace();
