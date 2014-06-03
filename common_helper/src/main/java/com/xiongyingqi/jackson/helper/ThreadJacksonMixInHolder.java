@@ -62,7 +62,7 @@ public class ThreadJacksonMixInHolder {
     }
 
     /**
-     * 设置MixIn集合到线程内，如果线程内已经存在数据，则会先清楚
+     * 设置MixIn集合到线程内，如果线程内已经存在数据，则会先清除
      *
      * @param resetMixIns
      */
