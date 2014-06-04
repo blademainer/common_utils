@@ -1,6 +1,7 @@
 package com.xiongyingqi.jackson.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xiongyingqi.util.EntityHelper;
 
 import java.util.HashSet;
 import java.util.Map;
