@@ -18,7 +18,7 @@ import java.util.Collection;
 /**
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/6/4 0004.
  */
-public class JsonFileterPropertyTest {
+public class JsonFilterPropertyTest {
 
     @IgnoreProperties(@IgnoreProperty(pojo = User.class, name = "id"))
     public Collection<User> listUsers() {
@@ -72,7 +72,7 @@ public class JsonFileterPropertyTest {
         FilterPropertyHandler filterPropertyHandler = new JavassistFilterPropertyHandler(false);
         Object object = listUsers();
 
-        object = filterPropertyHandler.filterProperties(JsonFileterPropertyTest.class.getMethod("listUsers"), object);
+        object = filterPropertyHandler.filterProperties(JsonFilterPropertyTest.class.getMethod("listUsers"), object);
 
 
         ObjectMapper mapper = ThreadJacksonMixInHolder.builderMapper();
