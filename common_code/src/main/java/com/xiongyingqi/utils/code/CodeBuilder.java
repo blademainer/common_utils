@@ -49,6 +49,11 @@ public class CodeBuilder {
      */
     private boolean removeSuperClass;
 
+    /**
+     * 标识是否删除所有注解
+     */
+    private boolean removeAnnotations;
+
     public CodeBuilder() {
 
     }
@@ -253,6 +258,11 @@ public class CodeBuilder {
         return this;
     }
 
+    public CodeBuilder removeAnnotations(){
+        this.removeAnnotations = true;
+        return this;
+    }
+
     /**
      * 开始重写文件
      */
@@ -313,9 +323,53 @@ public class CodeBuilder {
         return exclude;
     }
 
+    public void setInclude(Pattern include) {
+        this.include = include;
+    }
+
+    public void setExclude(Pattern exclude) {
+        this.exclude = exclude;
+    }
+
+    public void setBaseFile(File baseFile) {
+        this.baseFile = baseFile;
+    }
+
+    public void setInterfaces(Set<String> interfaces) {
+        this.interfaces = interfaces;
+    }
+
+    public void setCodeFragments(Set<String> codeFragments) {
+        this.codeFragments = codeFragments;
+    }
+
+    public void setImports(Set<String> imports) {
+        this.imports = imports;
+    }
+
+    public void setFiles(Set<File> files) {
+        this.files = files;
+    }
+
+    public void setRemoveSuperClass(boolean removeSuperClass) {
+        this.removeSuperClass = removeSuperClass;
+    }
+
+    public boolean isRemoveAnnotations() {
+        return removeAnnotations;
+    }
+
+    public void setRemoveAnnotations(boolean removeAnnotations) {
+        this.removeAnnotations = removeAnnotations;
+    }
+
     @Override
     public String toString() {
         return EntityHelper.reflectToString(this);
     }
 
+    public static void main(String[] args){
+        CodeHelper.newCodeBuilder("D:\\workspace_JavaEE\\IWasHere\\IWasHere_ENTITY\\src\\main\\domainbak")
+                .removeAnnotations().build();
+    }
 }

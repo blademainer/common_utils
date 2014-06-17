@@ -1,5 +1,6 @@
 package com.xiongyingqi.utils.code;
 
+import com.xiongyingqi.util.EntityHelper;
 import com.xiongyingqi.util.FileHelper;
 import com.xiongyingqi.util.StringHelper;
 
@@ -57,6 +58,12 @@ public class CodeProcessor {
      */
     private final Pattern PATTERN_FIND_IMPORT_NAME = Pattern.compile("[\\w\\d]+(\\.([\\w\\d]+|[\\*]+)+)*");
 
+    /**
+     * 查找注解
+     */
+    private final Pattern PATTERN_FIND_ANNOTAION = Pattern.compile("@\\w+(\\(.*?\\)){0,1}");
+
+
     private File file;
     private String content;
     private CodeBuilder builder;
@@ -76,6 +83,7 @@ public class CodeProcessor {
         checkClass();
         checkImport();
         checkCodeFragment();
+        checkAnnotations();
 //                EntityHelper.print(content);
         writeFile();
         System.out.println("文件：\"" + file + "\"处理完成。");
@@ -316,5 +324,23 @@ public class CodeProcessor {
     }
     // ---------------------------------------- 代码段 ----------------------------------------
 
+    // -------------------------- 移除注解 --------------------------
+    private void checkAnnotations() {
+        EntityHelper.print(builder.isRemoveAnnotations());
+        if (!builder.isRemoveAnnotations()) {
+            return;
+        }
+        Matcher matcher = PATTERN_FIND_ANNOTAION.matcher(content);
+        while (matcher.find()) {
+            final String annotation = matcher.group();
+//            StringBuilder builder = new StringBuilder(annotation);
+//            for (String codeFragment : this.builder.getCodeFragments()) {
+//                builder.append(StringHelper.line());
+//                builder.append(codeFragment);
+//            }
+            content = StringHelper.replaceFirst(content, annotation, "");
+            EntityHelper.print(content);
+        }
+    }
 
 }
