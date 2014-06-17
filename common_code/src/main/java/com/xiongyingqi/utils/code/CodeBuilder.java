@@ -38,6 +38,7 @@ public class CodeBuilder {
     private Set<String> codeFragments = new HashSet<String>();
 
     private Set<String> imports = new HashSet<String>();
+    private Set<String> removeImports = new HashSet<String>();
 
     private Set<File> files = new HashSet<File>();
 
@@ -210,6 +211,11 @@ public class CodeBuilder {
         return this;
     }
 
+    public CodeBuilder removeImport(String impt) {
+        this.removeImports.add(impt);
+        return this;
+    }
+
     /**
      * 过滤包含规则
      */
@@ -258,7 +264,7 @@ public class CodeBuilder {
         return this;
     }
 
-    public CodeBuilder removeAnnotations(){
+    public CodeBuilder removeAnnotations() {
         this.removeAnnotations = true;
         return this;
     }
@@ -323,44 +329,14 @@ public class CodeBuilder {
         return exclude;
     }
 
-    public void setInclude(Pattern include) {
-        this.include = include;
-    }
-
-    public void setExclude(Pattern exclude) {
-        this.exclude = exclude;
-    }
-
-    public void setBaseFile(File baseFile) {
-        this.baseFile = baseFile;
-    }
-
-    public void setInterfaces(Set<String> interfaces) {
-        this.interfaces = interfaces;
-    }
-
-    public void setCodeFragments(Set<String> codeFragments) {
-        this.codeFragments = codeFragments;
-    }
-
-    public void setImports(Set<String> imports) {
-        this.imports = imports;
-    }
-
-    public void setFiles(Set<File> files) {
-        this.files = files;
-    }
-
-    public void setRemoveSuperClass(boolean removeSuperClass) {
-        this.removeSuperClass = removeSuperClass;
-    }
 
     public boolean isRemoveAnnotations() {
         return removeAnnotations;
     }
 
-    public void setRemoveAnnotations(boolean removeAnnotations) {
-        this.removeAnnotations = removeAnnotations;
+
+    public Set<String> getRemoveImports() {
+        return removeImports;
     }
 
     @Override
@@ -368,8 +344,8 @@ public class CodeBuilder {
         return EntityHelper.reflectToString(this);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         CodeHelper.newCodeBuilder("D:\\workspace_JavaEE\\IWasHere\\IWasHere_ENTITY\\src\\main\\domainbak")
-                .removeAnnotations().build();
+                .removeAnnotations().removeImport("javax.persistence.*").build();
     }
 }

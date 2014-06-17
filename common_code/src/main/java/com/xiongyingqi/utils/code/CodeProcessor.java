@@ -5,6 +5,7 @@ import com.xiongyingqi.util.FileHelper;
 import com.xiongyingqi.util.StringHelper;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -84,6 +85,7 @@ public class CodeProcessor {
         checkImport();
         checkCodeFragment();
         checkAnnotations();
+        removeImport();
 //                EntityHelper.print(content);
         writeFile();
         System.out.println("文件：\"" + file + "\"处理完成。");
@@ -326,7 +328,6 @@ public class CodeProcessor {
 
     // -------------------------- 移除注解 --------------------------
     private void checkAnnotations() {
-        EntityHelper.print(builder.isRemoveAnnotations());
         if (!builder.isRemoveAnnotations()) {
             return;
         }
@@ -340,6 +341,35 @@ public class CodeProcessor {
 //            }
             content = StringHelper.replaceFirst(content, annotation, "");
             EntityHelper.print(content);
+        }
+    }
+
+    private void removeImport() {
+        Set<String> removeImports = builder.getRemoveImports();
+        if (removeImports == null || removeImports.size() == 0) {
+            return;
+        }
+
+        Matcher matcher = PATTERN_FIND_IMPORT.matcher(content);
+        Collection<String> found = new HashSet<String>();
+        while (matcher.find()) {
+            found.add(matcher.group());
+//            StringBuilder builder = new StringBuilder(annotation);
+//            for (String codeFragment : this.builder.getCodeFragments()) {
+//                builder.append(StringHelper.line());
+//                builder.append(codeFragment);
+//            }
+//            content = StringHelper.replaceFirst(content, annotation, "");
+//            EntityHelper.print(content);
+        }
+
+
+        for (String s : found) {
+            for (String removeImport : removeImports) {
+                if(s.contains(removeImport)){
+                    content = StringHelper.replaceFirst(content, s, "");
+                }
+            }
         }
     }
 
