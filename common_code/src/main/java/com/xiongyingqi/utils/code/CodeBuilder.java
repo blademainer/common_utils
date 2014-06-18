@@ -346,6 +346,6 @@ public class CodeBuilder {
 
     public static void main(String[] args) {
         CodeHelper.newCodeBuilder("D:\\workspace_JavaEE\\IWasHere\\IWasHere_ENTITY\\src\\main\\domainbak")
-                .removeAnnotations().removeImport("javax.persistence.*").build();
+                .removeAnnotations().removeImport("javax.persistence").removeImport("org.hibernate").removeSuperClass().build();
     }
 }

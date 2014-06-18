@@ -6,6 +6,7 @@ package com.xiongyingqi.util;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -111,6 +112,9 @@ public class AnnotationHelper {
 
         Field[] fields = inClazz.getDeclaredFields();
         for (Field field : fields) {
+            if(Modifier.isStatic(field.getModifiers()) || Modifier.isFinal(field.getModifiers())){
+                continue;
+            }
             T t = readAnnotationValueOnField(field, annotationClass);
             if (t == null) {
                 continue;
