@@ -54,7 +54,7 @@ public class AnnotationHelper {
     }
 
     public static Collection<? super Annotation> readAnnotationsOnField(Field field) {
-        Collection<? super Annotation> annotations = new HashSet<>();
+        Collection<? super Annotation> annotations = new HashSet();
 
         Annotation[] annotationArray = field.getAnnotations();
         if (annotationArray != null && annotationArray.length > 0) {
