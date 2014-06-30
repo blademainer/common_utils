@@ -386,7 +386,7 @@
                     <includes>
                         <include>**/*</include>
                     </includes>
-                    <repositoryName>${project.artifactId}</repositoryName>      <!-- github repo name -->
+                    <repositoryName>common_utils</repositoryName>      <!-- github repo name -->
                     <repositoryOwner>blademainer</repositoryOwner>    <!-- github username -->
                 </configuration>
                 <executions>
