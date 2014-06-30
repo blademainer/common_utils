@@ -382,6 +382,7 @@
                     <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
                     <noJekyll>false</noJekyll>                                  <!-- disable webpage processing -->
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+                    <!--<outputDirectory>${settings.localRepository}</outputDirectory>-->
                     <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
                     <includes>
                         <include>**/*</include>
