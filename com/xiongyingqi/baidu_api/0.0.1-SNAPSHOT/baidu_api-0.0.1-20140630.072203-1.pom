@@ -7,24 +7,29 @@
         <groupId>com.xiongyingqi</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <artifactId>baidu_api</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>common_http</artifactId>
     <properties>
         <httpclient.version>4.3.1</httpclient.version>
     </properties>
 
-
     <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_helper</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.xiongyingqi</groupId>
+            <artifactId>common_http</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
     </dependencies>
+
 
 </project>
