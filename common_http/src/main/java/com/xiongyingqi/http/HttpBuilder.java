@@ -171,7 +171,7 @@ public class HttpBuilder {
     @Test
     public void test() {
         try {
-            String rs = HttpAccess.execute(HttpAccess.getClient(), HttpBuilder.newBuilder().url("http://10.188.199.4:8080/WEB_LOAN_WEB/login/doLogin").post().param("user.userName","xyq").param("user.userPassword","111").param("isPasswordMd5", "false").build());
+            String rs = HttpAccess.execute(HttpAccess.getClient(), HttpBuilder.newBuilder().url("http://www.baidu.com").get().build());
             EntityHelper.print(rs);
         } catch (IOException e) {
             e.printStackTrace();

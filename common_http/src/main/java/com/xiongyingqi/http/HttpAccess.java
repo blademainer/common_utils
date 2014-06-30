@@ -16,6 +16,8 @@ import java.nio.charset.Charset;
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/5/4 0004.
  */
 public class HttpAccess {
+    public static Charset defaultCharset = Charset.forName("UTF-8");
+
     public static CloseableHttpClient getClient() {
         HttpClientBuilder client = HttpClientBuilder.create();
         CloseableHttpClient closeableHttpClient = client.build();
@@ -33,6 +35,9 @@ public class HttpAccess {
         ContentType contentType = ContentType.getOrDefault(entity);// 获取编码
 //            EntityHelper.print(contentType);
         Charset charset = contentType.getCharset();
+        if(charset == null){
+            charset = defaultCharset;
+        }
         InputStream inputStream = entity.getContent();
         String result = FileHelper.readInputStreamToString(inputStream, charset);
 //        result = URLDecoder.decode(result, charset.toString());
