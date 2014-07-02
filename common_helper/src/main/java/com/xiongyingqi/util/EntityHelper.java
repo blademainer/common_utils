@@ -859,6 +859,15 @@ public class EntityHelper {
         return null;
     }
 
+    public static int arrayHashCode(Object array){
+        int hashCode = 0;
+        int length = Array.getLength(array);
+        for (int i = 0; i < length; i++) {
+            Object one = Array.get(array, i);
+            hashCode = hashCode * 31 + (one == null ? 0 : one.hashCode());
+        }
+        return hashCode;
+    }
 
     /**
      * 计算对象的hashCode <br>
@@ -887,7 +896,11 @@ public class EntityHelper {
                 Method method = clazz.getDeclaredMethod(methodGet);
                 try {
                     Object value = method.invoke(object); // 拥有get方法的参数
-                    hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
+                    if(value.getClass().isArray()){
+                        hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
+                    } else {
+                        hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
+                    }
                 } catch (IllegalArgumentException e) {
                 } catch (IllegalAccessException e) {
                 } catch (InvocationTargetException e) {

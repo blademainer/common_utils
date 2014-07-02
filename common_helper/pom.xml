@@ -31,7 +31,7 @@
                     <outputDirectory>${project.parent.build.directory}/mvn-repo</outputDirectory>
                     <!-- matches distribution management repository url above -->
                     <!--<outputDirectory>${settings.localRepository}</outputDirectory>-->
-                    <branch>refs/heads/mvn-repo</branch>
+                    <branch>refs/heads/gh-pages</branch>
                     <!-- remote branch name -->
                     <includes>
                         <include>**/*</include>

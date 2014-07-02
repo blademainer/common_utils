@@ -263,6 +263,36 @@ public class FileHelper {
         return rs;
     }
 
+
+    public static InputStream openStream(File file){
+        Assert.isTrue(file.exists(), "文件：" + file + "不存在！");
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(file);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
+
+    public static Reader openReader(File file){
+        Assert.isTrue(file.exists(), "文件：" + file + "不存在！");
+        Reader reader = null;
+        try {
+            reader = new FileReader(file);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return reader;
+    }
+
+    public static BufferedReader openBufferedReader(File file){
+        BufferedReader bufferedReader = new BufferedReader(openReader(file));
+        return bufferedReader;
+    }
+
     public static String readInputStreamToString(InputStream inputStream) {
         return readInputStreamToString(inputStream, "UTF-8");
     }

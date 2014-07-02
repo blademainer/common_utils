@@ -4,13 +4,13 @@ package com.xiongyingqi.util;
  * 键对象<br>
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/6/18 0018.
  */
-public class KeyObject {
+public class KeyObject extends EntityHelper {
     private Class<?> clazz;
-    private String name;
+    private String[] names;
 
-    public KeyObject(Class<?> clazz, String name) {
+    public KeyObject(Class<?> clazz, String... name) {
         this.clazz = clazz;
-        this.name = name;
+        this.names = name;
     }
 
     public Class<?> getClazz() {
@@ -21,11 +21,12 @@ public class KeyObject {
         this.clazz = clazz;
     }
 
-    public String getName() {
-        return name;
+    public String[] getNames() {
+        return names;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNames(String[] names) {
+        this.names = names;
     }
+    
 }
