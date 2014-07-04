@@ -6,7 +6,7 @@ maven依赖配置：
 <repository>
     <id>common_utils</id>
     <name>Blademainer Repository</name>
-    <url>https://github.com/blademainer/common_utils/tree/mvn-repo</url>
+    <url>http://xiongyingqi.com/common_utils/</url>
 </repository>
 ```
 
