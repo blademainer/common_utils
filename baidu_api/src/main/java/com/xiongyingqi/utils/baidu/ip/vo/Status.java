@@ -1,4 +1,4 @@
-package com.xiongyingqi.utils.baidu.vo;
+package com.xiongyingqi.utils.baidu.ip.vo;
 
 /**
  * <pre>

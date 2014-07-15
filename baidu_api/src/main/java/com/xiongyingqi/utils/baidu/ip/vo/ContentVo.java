@@ -1,4 +1,4 @@
-package com.xiongyingqi.utils.baidu.vo;
+package com.xiongyingqi.utils.baidu.ip.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.xiongyingqi.util.EntityHelper;

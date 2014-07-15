@@ -1,16 +1,15 @@
-package com.xiongyingqi.utils.baidu;
+package com.xiongyingqi.utils.baidu.ip;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiongyingqi.http.BuildNameValuePairsHelper;
 import com.xiongyingqi.http.HttpAccess;
 import com.xiongyingqi.http.HttpBuilder;
 import com.xiongyingqi.util.EntityHelper;
 import com.xiongyingqi.util.MD5Helper;
-import com.xiongyingqi.util.PropertiesHelper;
 import com.xiongyingqi.util.UnicodeHelper;
 import com.xiongyingqi.util.comparator.StringComparator;
-import com.xiongyingqi.utils.baidu.vo.IpAddressVo;
+import com.xiongyingqi.utils.baidu.CommonUtil;
+import com.xiongyingqi.utils.baidu.ip.vo.IpAddressVo;
 import org.apache.http.NameValuePair;
 
 import java.io.IOException;
@@ -22,42 +21,17 @@ import java.util.*;
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/5/4 0004.
  */
 public class IpAddress {
-    private static String url;
-    private static String ak;
-    private static String sk;
-    private static boolean sn;
-
-    private ThreadLocal<ObjectMapper> _mapper = new ThreadLocal<ObjectMapper>() {
-        @Override
-        protected ObjectMapper initialValue() {
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-            objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-            return objectMapper;
-        }
-    };
-
-    static {
-        Map<String, String> propertiesMap = PropertiesHelper.readProperties(IpAddress.class.getClassLoader().getResource("baidu_api.properties").getFile());
-        url = propertiesMap.get("ip-location-api");
-        ak = propertiesMap.get("ak");
-        sk = propertiesMap.get("sk");
-        String snStr = propertiesMap.get("sn");
-        if (snStr != null && "true".equals(snStr)) {
-            sn = true;
-        }
-    }
 
     public IpAddressVo getIp(String ip) throws IOException {
-        HttpBuilder httpBuilder = HttpBuilder.newBuilder().get().charset("UTF-8").param("ip", ip).param("ak", ak);
-        httpBuilder.url(url + "?" + BuildNameValuePairsHelper.buildParameters(httpBuilder.getNameValuePairs()));
-        if (sn) {
-            String sign = caculateAKSN(ak, sk, url, httpBuilder.getNameValuePairs(), "POST");
+        HttpBuilder httpBuilder = HttpBuilder.newBuilder().get().charset("UTF-8").param("ip", ip).param("ak", CommonUtil.ak);
+        httpBuilder.url(CommonUtil.ipLocationApiUrl + "?" + BuildNameValuePairsHelper.buildParameters(httpBuilder.getNameValuePairs()));
+        if (CommonUtil.sn) {
+            String sign = calculateAKSN(CommonUtil.ak, CommonUtil.sk, CommonUtil.ipLocationApiUrl, httpBuilder.getNameValuePairs(), "POST");
             httpBuilder.param("sn", sign);
         }
         String rs = HttpAccess.execute(HttpAccess.getClient(), httpBuilder.build());
         rs = UnicodeHelper.unicodeToUtf8(rs);
-        ObjectMapper mapper = _mapper.get();
+        ObjectMapper mapper = CommonUtil._mapper.get();
         IpAddressVo ipAddressVo = mapper.readValue(rs, IpAddressVo.class);
         return ipAddressVo;
     }
@@ -82,7 +56,7 @@ public class IpAddress {
      * @param method         method 只能为'POST'或者'GET'
      * @brief 计算SN签名算法
      */
-    public String caculateAKSN(String ak, String sk, String url, List<NameValuePair> nameValuePairs, String method) {
+    public String calculateAKSN(String ak, String sk, String url, List<NameValuePair> nameValuePairs, String method) {
         String params = "";
         if (method.equals("POST")) {
             Collections.sort(nameValuePairs, new Comparator<NameValuePair>() {
@@ -136,5 +110,14 @@ public class IpAddress {
         EntityHelper.print(comparator.compare("a", "a"));
         EntityHelper.print(comparator.compare("a", "ab"));
         EntityHelper.print(comparator.compare("ab", "ac"));
+
+
+        IpAddress ipAddress = new IpAddress();
+        try {
+            IpAddressVo ip = ipAddress.getIp("");
+            EntityHelper.print(ip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
