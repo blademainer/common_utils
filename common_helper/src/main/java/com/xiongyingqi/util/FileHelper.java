@@ -621,6 +621,23 @@ public class FileHelper {
 
     }
 
+
+    /**
+     * 将源文件剪切到目标文件
+     * @param originFile 源文件
+     * @param targetFile 目标文件
+     * @return
+     */
+    public static boolean cutFile(File originFile, File targetFile){
+        Assert.notNull(originFile);
+        Assert.notNull(targetFile);
+        copyFile(originFile, targetFile);
+        if(originFile.length() == targetFile.length()){
+            return originFile.delete();
+        }
+        return false;
+    }
+
     /**
      * 检查文件不为空且存在 <br>
      * 2013-6-24 下午10:52:54
