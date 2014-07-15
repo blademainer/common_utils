@@ -38,6 +38,7 @@ public class CodeBuilder {
     private Set<String> codeFragments = new HashSet<String>();
 
     private Set<String> imports = new HashSet<String>();
+    private Set<String> removeImports = new HashSet<String>();
 
     private Set<File> files = new HashSet<File>();
 
@@ -48,6 +49,11 @@ public class CodeBuilder {
      * @version 2014/3/20 0020 18:18
      */
     private boolean removeSuperClass;
+
+    /**
+     * 标识是否删除所有注解
+     */
+    private boolean removeAnnotations;
 
     public CodeBuilder() {
 
@@ -205,6 +211,11 @@ public class CodeBuilder {
         return this;
     }
 
+    public CodeBuilder removeImport(String impt) {
+        this.removeImports.add(impt);
+        return this;
+    }
+
     /**
      * 过滤包含规则
      */
@@ -250,6 +261,11 @@ public class CodeBuilder {
      */
     public CodeBuilder removeSuperClass() {
         this.removeSuperClass = true;
+        return this;
+    }
+
+    public CodeBuilder removeAnnotations() {
+        this.removeAnnotations = true;
         return this;
     }
 
@@ -313,9 +329,23 @@ public class CodeBuilder {
         return exclude;
     }
 
+
+    public boolean isRemoveAnnotations() {
+        return removeAnnotations;
+    }
+
+
+    public Set<String> getRemoveImports() {
+        return removeImports;
+    }
+
     @Override
     public String toString() {
         return EntityHelper.reflectToString(this);
     }
 
+    public static void main(String[] args) {
+        CodeHelper.newCodeBuilder("D:\\workspace_JavaEE\\IWasHere\\IWasHere_ENTITY\\src\\main\\domainbak")
+                .removeAnnotations().removeImport("javax.persistence").removeImport("org.hibernate").removeSuperClass().build();
+    }
 }

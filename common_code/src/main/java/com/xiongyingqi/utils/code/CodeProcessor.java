@@ -1,9 +1,11 @@
 package com.xiongyingqi.utils.code;
 
+import com.xiongyingqi.util.EntityHelper;
 import com.xiongyingqi.util.FileHelper;
 import com.xiongyingqi.util.StringHelper;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -57,6 +59,12 @@ public class CodeProcessor {
      */
     private final Pattern PATTERN_FIND_IMPORT_NAME = Pattern.compile("[\\w\\d]+(\\.([\\w\\d]+|[\\*]+)+)*");
 
+    /**
+     * 查找注解
+     */
+    private final Pattern PATTERN_FIND_ANNOTAION = Pattern.compile("@\\w+(\\(.*?\\)){0,1}");
+
+
     private File file;
     private String content;
     private CodeBuilder builder;
@@ -76,6 +84,8 @@ public class CodeProcessor {
         checkClass();
         checkImport();
         checkCodeFragment();
+        checkAnnotations();
+        removeImport();
 //                EntityHelper.print(content);
         writeFile();
         System.out.println("文件：\"" + file + "\"处理完成。");
@@ -316,5 +326,51 @@ public class CodeProcessor {
     }
     // ---------------------------------------- 代码段 ----------------------------------------
 
+    // -------------------------- 移除注解 --------------------------
+    private void checkAnnotations() {
+        if (!builder.isRemoveAnnotations()) {
+            return;
+        }
+        Matcher matcher = PATTERN_FIND_ANNOTAION.matcher(content);
+        while (matcher.find()) {
+            final String annotation = matcher.group();
+//            StringBuilder builder = new StringBuilder(annotation);
+//            for (String codeFragment : this.builder.getCodeFragments()) {
+//                builder.append(StringHelper.line());
+//                builder.append(codeFragment);
+//            }
+            content = StringHelper.replaceFirst(content, annotation, "");
+            EntityHelper.print(content);
+        }
+    }
+
+    private void removeImport() {
+        Set<String> removeImports = builder.getRemoveImports();
+        if (removeImports == null || removeImports.size() == 0) {
+            return;
+        }
+
+        Matcher matcher = PATTERN_FIND_IMPORT.matcher(content);
+        Collection<String> found = new HashSet<String>();
+        while (matcher.find()) {
+            found.add(matcher.group());
+//            StringBuilder builder = new StringBuilder(annotation);
+//            for (String codeFragment : this.builder.getCodeFragments()) {
+//                builder.append(StringHelper.line());
+//                builder.append(codeFragment);
+//            }
+//            content = StringHelper.replaceFirst(content, annotation, "");
+//            EntityHelper.print(content);
+        }
+
+
+        for (String s : found) {
+            for (String removeImport : removeImports) {
+                if(s.contains(removeImport)){
+                    content = StringHelper.replaceFirst(content, s, "");
+                }
+            }
+        }
+    }
 
 }

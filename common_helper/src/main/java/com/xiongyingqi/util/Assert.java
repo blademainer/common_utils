@@ -52,6 +52,25 @@ import java.util.Map;
  */
 public abstract class Assert {
 
+    public static void notTrue(boolean expression, String message) {
+        if (expression) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * Assert a boolean expression, throwing {@code IllegalArgumentException}
+     * if the test result is {@code false}.
+     * <pre class="code">Assert.isTrue(i &gt; 0);</pre>
+     *
+     * @param expression a boolean expression
+     * @throws IllegalArgumentException if expression is {@code false}
+     */
+    public static void notTrue(boolean expression) {
+        notTrue(expression, "[Assertion failed] - this expression must be false");
+    }
+
+
     /**
      * Assert a boolean expression, throwing {@code IllegalArgumentException}
      * if the test result is {@code false}.
