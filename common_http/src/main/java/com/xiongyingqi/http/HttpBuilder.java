@@ -114,7 +114,7 @@ public class HttpBuilder {
 
     private String buildUrl() {
         if (this.url != null && !"".equals(this.url.trim())) {
-            if (!this.url.startsWith(protocol + "://")) {
+            if (!this.url.startsWith("http://") && !this.url.startsWith("https://")) {
                 this.url = protocol + "://" + this.url;
             }
             return this.url;
@@ -131,7 +131,7 @@ public class HttpBuilder {
             url += "/";
         }
         url += uri;
-        System.out.println(url);
+        EntityHelper.print(url);
         return url;
     }
 
@@ -165,7 +165,6 @@ public class HttpBuilder {
 
         return requestBase;
     }
-
 
 
     @Test

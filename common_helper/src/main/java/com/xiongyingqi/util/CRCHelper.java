@@ -22,8 +22,7 @@ public class CRCHelper {
             for (long j = 0; j < 8; j++) {
                 bit = (short) (rs & 1);// 检查被移出的LSB
                 rs = (short) ((rs >> 1) & 0x7FFF);// 16bitCRC寄存器向右移一位(MSB补零)
-                if (bit != 0)// 若被移出的LSB为1
-                {
+                if (bit != 0) {// 若被移出的LSB为1
                     rs = (short) (rs ^ 0xA001);// 16bitCRC寄存器与A001(hex)相异或
                 }
             }

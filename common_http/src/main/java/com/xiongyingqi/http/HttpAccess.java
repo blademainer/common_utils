@@ -26,16 +26,28 @@ public class HttpAccess {
 
     public static String execute(CloseableHttpClient closeableHttpClient, HttpRequestBase requestBase) throws IOException {
         CloseableHttpResponse response = closeableHttpClient.execute(requestBase);
+        return readResponseToString(response);
+    }
+
+    public static InputStream executeAndGetInputStream(CloseableHttpClient closeableHttpClient, HttpRequestBase requestBase) throws IOException {
+        CloseableHttpResponse response = closeableHttpClient.execute(requestBase);
         return readResponse(response);
     }
 
 
-    public static String readResponse(CloseableHttpResponse response) throws IOException {
+    public static InputStream readResponse(CloseableHttpResponse response) throws IOException {
+        HttpEntity entity = response.getEntity();
+        InputStream inputStream = entity.getContent();
+//        String result = FileHelper.readInputStreamToString(inputStream, charset);
+//        result = URLDecoder.decode(result, charset.toString());
+        return inputStream;
+    }
+
+    public static String readResponseToString(CloseableHttpResponse response) throws IOException {
         HttpEntity entity = response.getEntity();
         ContentType contentType = ContentType.getOrDefault(entity);// 获取编码
-//            EntityHelper.print(contentType);
         Charset charset = contentType.getCharset();
-        if(charset == null){
+        if (charset == null) {
             charset = defaultCharset;
         }
         InputStream inputStream = entity.getContent();
