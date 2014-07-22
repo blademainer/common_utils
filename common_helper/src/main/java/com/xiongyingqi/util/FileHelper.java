@@ -22,6 +22,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**
@@ -182,89 +183,62 @@ public class FileHelper {
     }
 
     public static String readInputStreamToString(InputStream inputStream, Charset charset) {
-        String rs = null;
+        byte[] bts = null;
         try {
-            Reader reader = new InputStreamReader(inputStream, charset);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            StringBuilder builder = new StringBuilder();
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                builder.append(line);
-            }
-            rs = builder.toString();
-
-//            ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 1024 * 1024);
-//            int length = -1;
-//            int bufferSize = 128;
-//            byte[] buffer = new byte[bufferSize];
-//            while ((length = inputStream.read(buffer)) != -1) {
-//                if (length != bufferSize) {
-//                    System.arraycopy(buffer, 0, buffer, 0, length);
-//                }
-//                EntityHelper.print(new String(buffer));
-//                byteBuffer.put(buffer);
-//            }
-//            rs = new String(byteBuffer.array(), encoding);
-        } catch (IOException e) {
+            bts = readInputStreamToBytes(inputStream);
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            // try {
-            // inputStream.close();
-            // } catch (IOException e1) {
-            // e1.printStackTrace();
-            // }
-            try {
-                inputStream.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
         }
-        return rs;
+        String content = null;
+        content = new String(bts, charset);
+        return content;
+
+//        String rs = null;
+//        try {
+//            Reader reader = new InputStreamReader(inputStream, charset);
+//            BufferedReader bufferedReader = new BufferedReader(reader);
+//            StringBuilder builder = new StringBuilder();
+//            String line = null;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                builder.append(line);
+//            }
+//            rs = builder.toString();
+//
+////            ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 1024 * 1024);
+////            int length = -1;
+////            int bufferSize = 128;
+////            byte[] buffer = new byte[bufferSize];
+////            while ((length = inputStream.read(buffer)) != -1) {
+////                if (length != bufferSize) {
+////                    System.arraycopy(buffer, 0, buffer, 0, length);
+////                }
+////                EntityHelper.print(new String(buffer));
+////                byteBuffer.put(buffer);
+////            }
+////            rs = new String(byteBuffer.array(), encoding);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            // try {
+//            // inputStream.close();
+//            // } catch (IOException e1) {
+//            // e1.printStackTrace();
+//            // }
+//            try {
+//                inputStream.close();
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//        }
+//        return rs;
     }
 
     public static String readInputStreamToString(InputStream inputStream, String encoding) {
-        String rs = null;
-        try {
-            Reader reader = new InputStreamReader(inputStream, encoding);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            StringBuilder builder = new StringBuilder();
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                builder.append(line);
-            }
-            rs = builder.toString();
-
-//            ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 1024 * 1024);
-//            int length = -1;
-//            int bufferSize = 128;
-//            byte[] buffer = new byte[bufferSize];
-//            while ((length = inputStream.read(buffer)) != -1) {
-//                if (length != bufferSize) {
-//                    System.arraycopy(buffer, 0, buffer, 0, length);
-//                }
-//                EntityHelper.print(new String(buffer));
-//                byteBuffer.put(buffer);
-//            }
-//            rs = new String(byteBuffer.array(), encoding);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // try {
-            // inputStream.close();
-            // } catch (IOException e1) {
-            // e1.printStackTrace();
-            // }
-            try {
-                inputStream.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-        return rs;
+        return readInputStreamToString(inputStream, Charset.forName(encoding));
     }
 
 
-    public static InputStream openStream(File file){
+    public static InputStream openStream(File file) {
         Assert.isTrue(file.exists(), "文件：" + file + "不存在！");
         InputStream inputStream = null;
         try {
@@ -276,7 +250,7 @@ public class FileHelper {
         return inputStream;
     }
 
-    public static Reader openReader(File file){
+    public static Reader openReader(File file) {
         Assert.isTrue(file.exists(), "文件：" + file + "不存在！");
         Reader reader = null;
         try {
@@ -288,7 +262,7 @@ public class FileHelper {
         return reader;
     }
 
-    public static BufferedReader openBufferedReader(File file){
+    public static BufferedReader openBufferedReader(File file) {
         BufferedReader bufferedReader = new BufferedReader(openReader(file));
         return bufferedReader;
     }
@@ -654,15 +628,16 @@ public class FileHelper {
 
     /**
      * 将源文件剪切到目标文件
+     *
      * @param originFile 源文件
      * @param targetFile 目标文件
      * @return
      */
-    public static boolean cutFile(File originFile, File targetFile){
+    public static boolean cutFile(File originFile, File targetFile) {
         Assert.notNull(originFile);
         Assert.notNull(targetFile);
         copyFile(originFile, targetFile);
-        if(originFile.length() == targetFile.length()){
+        if (originFile.length() == targetFile.length()) {
             return originFile.delete();
         }
         return false;
@@ -680,6 +655,57 @@ public class FileHelper {
         if (file == null || !file.exists()) {
             throw new Exception("文件不存在！");
         }
+    }
+
+    /**
+     * 读取inputStream并返回字节数组 <br>
+     * 2013-9-3 下午12:10:06
+     *
+     * @param inputStream
+     * @return
+     */
+    public static byte[] readInputStreamToBytes(InputStream inputStream) throws Exception {
+        byte[] data = null;
+        try {
+            int bufferSize = 128;
+            byte[] buffer = new byte[bufferSize];
+            int offset = 0;
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            int length = -1;
+            while ((length = inputStream.read(buffer)) != -1) {
+                // if(length != bufferSize){
+                // System.arraycopy(buffer, 0, data, offset, length);
+                // }
+//                    System.arraycopy(buffer, 0, data, offset, length);// 从缓冲区拷贝数组
+                if (offset + length > byteBuffer.limit()) {
+                    byteBuffer = growByteBuffer(byteBuffer, (int) (byteBuffer.limit() * 1.5));
+                }
+                byteBuffer.put(buffer);
+                offset += length;
+            }
+            byteBuffer.flip();
+//            byteBuffer.limit(offset);
+            data = new byte[offset];
+            byteBuffer.get(data, 0, offset);
+//            data = byteBuffer.array();
+        } catch (IOException e) {
+            LOGGER.error(e);
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return data;
+    }
+
+    public static ByteBuffer growByteBuffer(ByteBuffer byteBuffer, int size) {
+        Assert.isTrue(size > byteBuffer.limit(), "扩容的大小小于已经存在的字节缓冲！");
+        ByteBuffer byteBufferNew = ByteBuffer.allocate(size);
+        byteBuffer.flip();
+        byteBufferNew.put(byteBuffer);
+        return byteBufferNew;
     }
 
     /**

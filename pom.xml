@@ -78,6 +78,8 @@
         <jbpm.version>6.1.0-SNAPSHOT</jbpm.version>
         <dbcp.version>1.4-DBCP330</dbcp.version>
         <cpdetector.version>1.04</cpdetector.version>
+        <antlr.version>3.5</antlr.version>
+        <jchardet.version>1.0</jchardet.version>
     </properties>
 
     <dependencies>
@@ -321,6 +323,18 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>${antlr.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.jchardet</groupId>
+            <artifactId>jchardet</artifactId>
+            <version>${jchardet.version}</version>
         </dependency>
     </dependencies>
 

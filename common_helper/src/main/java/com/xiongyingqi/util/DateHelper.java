@@ -543,6 +543,7 @@ public class
     public static void main(String[] args) throws Exception {
         try {
             System.out.println(strToDate("2012-11-11"));
+
             System.out.println(dateToStrLong(strToDateLong("2012-11-11 18:11:22")));
         } catch (Exception e) {
             throw new Exception();

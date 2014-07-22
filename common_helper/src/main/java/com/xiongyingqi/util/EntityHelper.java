@@ -861,6 +861,7 @@ public class EntityHelper {
 
     /**
      * 比较两个数组
+     *
      * @param one
      * @param anotherOne
      * @return
@@ -869,6 +870,8 @@ public class EntityHelper {
         if (one == null || anotherOne == null) {
             return false;
         } else if (!one.getClass().equals(anotherOne.getClass()) || !one.getClass().isArray()) {
+            return false;
+        } else if (Array.getLength(one) != Array.getLength(anotherOne)) {
             return false;
         }
         return arrayHashCode(one) == arrayHashCode(anotherOne);
