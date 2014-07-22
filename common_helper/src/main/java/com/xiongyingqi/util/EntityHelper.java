@@ -859,7 +859,22 @@ public class EntityHelper {
         return null;
     }
 
-    public static int arrayHashCode(Object array){
+    /**
+     * 比较两个数组
+     * @param one
+     * @param anotherOne
+     * @return
+     */
+    public static boolean arrayEquals(Object one, Object anotherOne) {
+        if (one == null || anotherOne == null) {
+            return false;
+        } else if (!one.getClass().equals(anotherOne.getClass()) || !one.getClass().isArray()) {
+            return false;
+        }
+        return arrayHashCode(one) == arrayHashCode(anotherOne);
+    }
+
+    public static int arrayHashCode(Object array) {
         int hashCode = 0;
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
@@ -896,7 +911,7 @@ public class EntityHelper {
                 Method method = clazz.getDeclaredMethod(methodGet);
                 try {
                     Object value = method.invoke(object); // 拥有get方法的参数
-                    if(value.getClass().isArray()){
+                    if (value.getClass().isArray()) {
                         hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
                     } else {
                         hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
@@ -1024,7 +1039,7 @@ public class EntityHelper {
     }
 
     public static String buildObjectToString(Object object) {
-        if(object == null){
+        if (object == null) {
             return null;
         }
 
