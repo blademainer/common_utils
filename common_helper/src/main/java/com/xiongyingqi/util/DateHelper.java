@@ -1,5 +1,6 @@
 package com.xiongyingqi.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -92,6 +93,31 @@ public class
     public static Date strToDateLong(String strDate) {
         ParsePosition pos = new ParsePosition(0);
         Date strtodate = FORMATTER_LONG.parse(strDate, pos);
+        return strtodate;
+    }
+
+
+    /**
+     * 字符串转换为时间
+     *
+     * @param strDate
+     * @param dateFormat
+     * @return
+     */
+    public static Date strToDate(String strDate, String dateFormat) {
+        return strToDate(strDate, new SimpleDateFormat(dateFormat));
+    }
+
+    /**
+     * 字符串转换为时间
+     *
+     * @param strDate
+     * @param dateFormat
+     * @return
+     */
+    public static Date strToDate(String strDate, DateFormat dateFormat) {
+        ParsePosition pos = new ParsePosition(0);
+        Date strtodate = dateFormat.parse(strDate, pos);
         return strtodate;
     }
 
@@ -519,7 +545,7 @@ public class
     }
 
     /**
-     * @param args
+     * @param date
      */
     public static boolean RightDate(String date) {
 

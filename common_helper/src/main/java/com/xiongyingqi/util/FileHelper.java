@@ -680,7 +680,7 @@ public class FileHelper {
                 if (offset + length > byteBuffer.limit()) {
                     byteBuffer = growByteBuffer(byteBuffer, (int) (byteBuffer.limit() * 1.5));
                 }
-                byteBuffer.put(buffer);
+                byteBuffer.put(buffer, 0, length);
                 offset += length;
             }
             byteBuffer.flip();
