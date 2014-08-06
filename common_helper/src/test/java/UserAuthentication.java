@@ -1,10 +1,4 @@
 import com.xiongyingqi.jackson.annotation.AllowProperty;
-import com.xiongyingqi.util.AnnotationHelper;
-import com.xiongyingqi.util.EntityHelper;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.Collection;
 
 /**
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/4/28 0028.
@@ -150,12 +144,13 @@ public class UserAuthentication {
     }
 
     public static void main(String[] args) {
-        Field[] fields = UserAuthentication.class.getDeclaredFields();
-        for (Field field : fields) {
-            Collection<Annotation> annotations = (Collection<Annotation>) AnnotationHelper.readAnnotationsOnField(field);
-            for (Annotation annotation : annotations) {
-                EntityHelper.print(annotation);
-            }
-        }
+
+//        Field[] fields = UserAuthentication.class.getDeclaredFields();
+//        for (Field field : fields) {
+//            Collection<Annotation> annotations = (Collection<Annotation>) AnnotationHelper.readAnnotationsOnField(field);
+//            for (Annotation annotation : annotations) {
+//                EntityHelper.print(annotation);
+//            }
+//        }
     }
 }

@@ -550,7 +550,6 @@ public class
     public static boolean RightDate(String date) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        ;
         if (date == null)
             return false;
         if (date.length() > 10) {
