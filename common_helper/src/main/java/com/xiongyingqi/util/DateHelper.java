@@ -282,11 +282,21 @@ public class
     /**
      * 得到一个时间延后或前移几天的时间,nowdate为时间,delay为前移或后延的天数
      */
-    public static String getNextDay(String nowdate, int delay) {
+    public static Date getNextDay(Date nowDate, int delay) {
+        long myTime = (nowDate.getTime() / 1000) + delay * 24 * 60 * 60;
+        Date date = new Date();
+        date.setTime(myTime * 1000);
+        return date;
+    }
+
+    /**
+     * 得到一个时间延后或前移几天的时间,nowdate为时间,delay为前移或后延的天数
+     */
+    public static String getNextDay(String nowDate, int delay) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String mdate = "";
-            Date d = strToDate(nowdate);
+            Date d = strToDate(nowDate);
             long myTime = (d.getTime() / 1000) + delay * 24 * 60 * 60;
             d.setTime(myTime * 1000);
             mdate = format.format(d);
@@ -589,7 +599,7 @@ public class
         System.out.println(dateToStrLong(strToDateLong("2012-11-11 18:11:22")));
         System.out.println(dateToStrLong(getDay(new Date())));
         System.out.println("1407686400000L ========= " + dateToStrLong(new Date(1407715200000L - 1407715200000L % (CalendarHelper.HOUR * 32))));
-        System.out.println("1407686400000L ========= " + getNextDay("2012-11-11 18:11:22", 1));
+        System.out.println("1407686400000L ========= " + getNextDay(new Date(), -1));
         //86400000
         // System.out.println("sss");
     }
