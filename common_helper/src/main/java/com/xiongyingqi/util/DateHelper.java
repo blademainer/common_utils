@@ -136,7 +136,6 @@ public class
      * 将短时间格式时间转换为字符串 yyyy-MM-dd
      *
      * @param dateDate
-     * @param k
      * @return
      */
     public static String dateToStr(Date dateDate) {
@@ -283,12 +282,12 @@ public class
     /**
      * 得到一个时间延后或前移几天的时间,nowdate为时间,delay为前移或后延的天数
      */
-    public static String getNextDay(String nowdate, String delay) {
+    public static String getNextDay(String nowdate, int delay) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String mdate = "";
             Date d = strToDate(nowdate);
-            long myTime = (d.getTime() / 1000) + Integer.parseInt(delay) * 24 * 60 * 60;
+            long myTime = (d.getTime() / 1000) + delay * 24 * 60 * 60;
             d.setTime(myTime * 1000);
             mdate = format.format(d);
             return mdate;
@@ -511,7 +510,7 @@ public class
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         int u = c.get(Calendar.DAY_OF_WEEK);
-        String newday = DateHelper.getNextDay(sdate, (1 - u) + "");
+        String newday = DateHelper.getNextDay(sdate, 1 - u);
         return newday;
     }
 
@@ -547,7 +546,7 @@ public class
     /**
      * @param date
      */
-    public static boolean RightDate(String date) {
+    public static boolean rightDate(String date) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         if (date == null)
@@ -565,14 +564,33 @@ public class
         return true;
     }
 
-    public static void main(String[] args) throws Exception {
-        try {
-            System.out.println(strToDate("2012-11-11"));
+    /**
+     * 获取时间的日期（转换为0时）
+     *
+     * @param date
+     * @return
+     */
+    public static Date getDay(Date date) {
+//        long time = date.getTime() / 1000;
+//        System.out.println(time);
+//        System.out.println(CalendarHelper.DAY);
+//        long day = 24 * 60 * 60;
+//        System.out.println(time % (day * 1000));
+//        System.out.println((time % day) / CalendarHelper.HOUR);
+//        time = time - (time % day);
+//        Date date1 = new Date(time * 1000);
+        String dateStr = FORMATTER_SHORT.format(date);
+        Date date1 = strToDate(dateStr, FORMATTER_SHORT);
+        return date1;
+    }
 
-            System.out.println(dateToStrLong(strToDateLong("2012-11-11 18:11:22")));
-        } catch (Exception e) {
-            throw new Exception();
-        }
+    public static void main(String[] args) {
+        System.out.println(strToDate("2012-11-11"));
+        System.out.println(dateToStrLong(strToDateLong("2012-11-11 18:11:22")));
+        System.out.println(dateToStrLong(getDay(new Date())));
+        System.out.println("1407686400000L ========= " + dateToStrLong(new Date(1407715200000L - 1407715200000L % (CalendarHelper.HOUR * 32))));
+        System.out.println("1407686400000L ========= " + getNextDay("2012-11-11 18:11:22", 1));
+        //86400000
         // System.out.println("sss");
     }
 }

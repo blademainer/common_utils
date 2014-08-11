@@ -74,6 +74,5 @@ public class EmailServiceTest extends EmailBaseTest {
     }
 
     public static void main(String[] args) {
-
     }
 }

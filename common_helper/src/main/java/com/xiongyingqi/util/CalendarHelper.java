@@ -14,19 +14,19 @@ public class CalendarHelper {
     public static final long DAY = 24 * HOUR;
     public static final long MONTH = 30 * DAY;
     public static final long YEAR = 12 * MONTH;
-    public static final DateCaculator YEARS_BEFORE = new DateCaculator(1 * YEAR, 2000 * YEAR,
+    public static final DateCalculator YEARS_BEFORE = new DateCalculator(1 * YEAR, 2000 * YEAR,
             "{0}年前");
-    public static final DateCaculator MONTHS_BEFORE = new DateCaculator(1 * MONTH, 12 * MONTH,
+    public static final DateCalculator MONTHS_BEFORE = new DateCalculator(1 * MONTH, 12 * MONTH,
             "{0}个月前");
-    public static final DateCaculator DAYS_BEFORE = new DateCaculator(3 * DAY, 30 * DAY, "{0}天前");
-    public static final DateCaculator THE_DAY_BEFORE_YESTERDAY = new DateCaculator(2 * DAY,
+    public static final DateCalculator DAYS_BEFORE = new DateCalculator(3 * DAY, 30 * DAY, "{0}天前");
+    public static final DateCalculator THE_DAY_BEFORE_YESTERDAY = new DateCalculator(2 * DAY,
             3 * DAY, "前天");
-    public static final DateCaculator YESTERDAY = new DateCaculator(1 * DAY, 2 * DAY, "昨天");
-    public static final DateCaculator HOURS_BEFORE = new DateCaculator(1 * HOUR, 24 * HOUR,
+    public static final DateCalculator YESTERDAY = new DateCalculator(1 * DAY, 2 * DAY, "昨天");
+    public static final DateCalculator HOURS_BEFORE = new DateCalculator(1 * HOUR, 24 * HOUR,
             "{0}小时前");
-    public static final DateCaculator HALF_HOUR_BEFORE = new DateCaculator(30 * MINUTE,
+    public static final DateCalculator HALF_HOUR_BEFORE = new DateCalculator(30 * MINUTE,
             60 * MINUTE, "半小时左右");
-    public static final DateCaculator JUST_NOW = new DateCaculator(0, 30 * MINUTE, "刚刚");
+    public static final DateCalculator JUST_NOW = new DateCalculator(0, 30 * MINUTE, "刚刚");
 
     // static{
     // final DateCaculator YEARS_BEFORE = new DateCaculator(1 * YEAR, 2000 *
@@ -77,17 +77,17 @@ public class CalendarHelper {
      */
     public static String caculatorDateToString(Date date) {
         long milliSecond = compareDate(date);
-        List dateCaculators = DateCaculator.getDateCaculators();
+        List dateCaculators = DateCalculator.getDateCalculators();
         for (Iterator iterator = dateCaculators.iterator(); iterator.hasNext(); ) {
-            DateCaculator dateCaculator = (DateCaculator) iterator.next();
-            if (milliSecond >= dateCaculator.getMinMilliSecond()
-                    && milliSecond <= dateCaculator.getMaxMilliSecond()) {
-                String displayStr = dateCaculator.getDisplayStr();
+            DateCalculator dateCalculator = (DateCalculator) iterator.next();
+            if (milliSecond >= dateCalculator.getMinMilliSecond()
+                    && milliSecond <= dateCalculator.getMaxMilliSecond()) {
+                String displayStr = dateCalculator.getDisplayStr();
                 long numberOfUnit = 0;
-                if (dateCaculator.getMinMilliSecond() == 0) { // 分母为零，则直接为0
+                if (dateCalculator.getMinMilliSecond() == 0) { // 分母为零，则直接为0
                     numberOfUnit = 0;
                 } else {
-                    numberOfUnit = milliSecond / dateCaculator.getMinMilliSecond();
+                    numberOfUnit = milliSecond / dateCalculator.getMinMilliSecond();
                 }
 
                 // 替代所有{0}
@@ -119,27 +119,27 @@ public class CalendarHelper {
         return (afterCalendar.compareTo(beforeCalendar) > 0);
     }
 
-    static class DateCaculator {
+    static class DateCalculator {
         private long minMilliSecond;
         private long maxMilliSecond;
         private String displayStr;
-        private static List dateCaculators;
+        private static List dateCalculators;
 
-        public DateCaculator(long minMilliSecond, long maxMilliSecond, String displayStr) {
+        public DateCalculator(long minMilliSecond, long maxMilliSecond, String displayStr) {
             this.minMilliSecond = minMilliSecond;
             this.maxMilliSecond = maxMilliSecond;
             this.displayStr = displayStr;
-            if (dateCaculators == null) {
-                dateCaculators = new ArrayList();
+            if (dateCalculators == null) {
+                dateCalculators = new ArrayList();
             }
-            dateCaculators.add(this);
+            dateCalculators.add(this);
         }
 
         /**
-         * @return the dateCaculators
+         * @return the dateCalculators
          */
-        public static List getDateCaculators() {
-            return dateCaculators;
+        public static List getDateCalculators() {
+            return dateCalculators;
         }
 
         /**

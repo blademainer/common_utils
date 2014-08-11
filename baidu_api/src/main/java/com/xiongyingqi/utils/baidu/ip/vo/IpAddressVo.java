@@ -31,6 +31,7 @@ import java.util.HashSet;
  */
 public class IpAddressVo extends EntityHelper {
     private static Collection<Status> all = new HashSet<Status>();
+    private String message;
 
     private String address;
 
@@ -66,4 +67,11 @@ public class IpAddressVo extends EntityHelper {
         this.content = content;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
