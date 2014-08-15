@@ -914,7 +914,7 @@ public class EntityHelper {
                 Method method = clazz.getDeclaredMethod(methodGet);
                 try {
                     Object value = method.invoke(object); // 拥有get方法的参数
-                    if (value.getClass().isArray()) {
+                    if (method.getReturnType().isArray()) {
                         hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
                     } else {
                         hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());

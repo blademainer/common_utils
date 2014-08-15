@@ -186,11 +186,13 @@ public class FileHelper {
         byte[] bts = null;
         try {
             bts = readInputStreamToBytes(inputStream);
+            if (bts == null) {
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String content = null;
-        content = new String(bts, charset);
+        String content = new String(bts, charset);
         return content;
 
 //        String rs = null;
