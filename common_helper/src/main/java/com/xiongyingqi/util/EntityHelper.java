@@ -520,6 +520,9 @@ public class EntityHelper {
                     Object value = method.invoke(object);
                     String propertyName = methodName.substring(3, 4).toLowerCase()
                             + methodName.substring(4);
+                    if (propertyName.equals("class")) {// 忽略getClass方法
+                        continue;
+                    }
                     builder.append(propertyName);
                     builder.append("=");
 
@@ -1036,6 +1039,20 @@ public class EntityHelper {
             builder.append(" =============== ");
             builder.append(buildObjectToString(object));
         }
+        builder.append(StringHelper.line());
+        builder.append(" ------------------------------------------------------------ ");
+        System.out.println(builder.toString());
+    }
+
+    public static void print() {
+        StackTraceElement[] stackTraceElements = StackTraceHelper.getStackTrace();
+        StackTraceElement stackTraceElement = stackTraceElements[2]; // 调用本类的对象类型堆栈
+        StringBuilder builder = new StringBuilder();
+        builder.append(" ------------------------------------------------------------ ");
+        builder.append(StringHelper.line());
+        builder.append(StackTraceHelper
+                .buildStackTrace(new StackTraceElement[]{stackTraceElement}));
+        builder.append("    ");
         builder.append(StringHelper.line());
         builder.append(" ------------------------------------------------------------ ");
         System.out.println(builder.toString());
