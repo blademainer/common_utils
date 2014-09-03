@@ -1523,11 +1523,20 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
                     <checkModificationExcludes>
                         <checkModificationExclude>**/pom.xml</checkModificationExclude>
                     </checkModificationExcludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9</version>
+                <configuration>
+                    <scmVersionType>branch</scmVersionType>
+                    <scmVersion>master</scmVersion>
                 </configuration>
             </plugin>
 
