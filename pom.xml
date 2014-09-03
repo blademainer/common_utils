@@ -1526,9 +1526,6 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
-                    <checkModificationExcludes>
-                        <modificationExclude>*.pom</modificationExclude>
-                    </checkModificationExcludes>
                 </configuration>
             </plugin>
 
