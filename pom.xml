@@ -12,7 +12,7 @@
     </modules>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <description>提供最基础的工具类</description>
     <url>https://github.com/blademainer/common_utils</url>
 
@@ -37,12 +37,6 @@
         <tag>common_utils-0.0.1</tag>
     </scm>-->
 
-    <scm>
-        <connection>scm:git:https://github.com/blademainer/common_utils.git</connection>
-        <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
-        <url>https://github.com/blademainer/common_utils</url>
-    <tag>common_utils-0.0.1</tag>
-  </scm>
 
     <repositories>
         <repository>
@@ -1387,6 +1381,13 @@
         </repository>
     </distributionManagement>
 
+    <scm>
+        <connection>scm:git:https://github.com/blademainer/common_utils.git</connection>
+        <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
+        <url>https://github.com/blademainer/common_utils</url>
+        <tag>common_utils-0.0.1</tag>
+    </scm>
+
     <build>
         <plugins>
             <!--<plugin>
@@ -1483,17 +1484,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.2</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
             <!--测试插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
