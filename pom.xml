@@ -31,9 +31,16 @@
         </developer>
     </developers>
 
-    <scm>
+    <!--<scm>
         <connection>scm:git@github.com:blademainer/common_utils.git</connection>
         <developerConnection>scm:git@github.com:blademainer/common_utils.git</developerConnection>
+        <url>git@github.com:blademainer/common_utils.git</url>
+        <tag>common_utils-0.0.1</tag>
+    </scm>-->
+
+    <scm>
+        <connection>scm:git:ssh://@github.com:blademainer/common_utils.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>
         <url>git@github.com:blademainer/common_utils.git</url>
         <tag>common_utils-0.0.1</tag>
     </scm>
@@ -1519,6 +1526,9 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                    <checkModificationExcludes>
+                        <modificationExclude>*.pom</modificationExclude>
+                    </checkModificationExcludes>
                 </configuration>
             </plugin>
 
