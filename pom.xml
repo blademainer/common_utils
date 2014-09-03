@@ -1382,8 +1382,8 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/blademainer/common_utils.git</connection>
-        <developerConnection>scm:git:github.com/blademainer/common_utils.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com/blademainer/common_utils.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/blademainer/common_utils.git</developerConnection>
         <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
         <url>https://github.com/blademainer/common_utils</url>
         <tag>common_utils-0.0.1</tag>
@@ -1717,6 +1717,7 @@
                         <serverId>ossrh</serverId>
                         <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                         <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        <!--<stagingRepositoryId>Staging Repositories</stagingRepositoryId>-->
                     </configuration>
                 </plugin>
                 <!--签名插件-->
