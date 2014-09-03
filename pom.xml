@@ -12,7 +12,7 @@
     </modules>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <description>提供最基础的工具类</description>
     <url>https://github.com/blademainer/common_utils</url>
 
