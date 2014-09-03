@@ -38,7 +38,7 @@
     </scm>-->
 
     <scm>
-        <connection>scm:git:ssh://@github.com:blademainer/common_utils.git master:master</connection>
+        <connection>scm:git:ssh://@github.com:blademainer/common_utils.git</connection>
         <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
         <url>https://github.com/blademainer/common_utils</url>
       <tag>common_utils-0.0.1</tag>
@@ -1526,7 +1526,7 @@
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
                     <checkModificationExcludes>
-                        <checkModificationExclude>*.pom</checkModificationExclude>
+                        <checkModificationExclude>**/pom.xml</checkModificationExclude>
                     </checkModificationExcludes>
                 </configuration>
             </plugin>
