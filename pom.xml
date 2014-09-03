@@ -12,7 +12,7 @@
     </modules>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <description>提供最基础的工具类</description>
     <url>https://github.com/blademainer/common_utils</url>
 
@@ -40,7 +40,7 @@
     <scm>
         <connection>scm:git:ssh://@github.com:blademainer/common_utils.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>
-        <url>git@github.com:blademainer/common_utils.git</url>
+        <url>https://github.com/blademainer/common_utils</url>
         <tag>common_utils-0.0.1</tag>
     </scm>
 
