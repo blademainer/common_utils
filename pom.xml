@@ -38,8 +38,8 @@
     </scm>-->
 
     <scm>
-        <connection>scm:git:ssh://git@github.com:blademainer/common_utils.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>
+        <connection>scm:git:git@github.com:blademainer/common_utils.git</connection>
+        <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
         <url>https://github.com/blademainer/common_utils</url>
     <tag>common_utils-0.0.1</tag>
   </scm>
