@@ -35,6 +35,7 @@ public class EntityHelper {
         baseTypePackagingMap.put(Character.class, Character.class);
         baseTypePackagingMap.put(Byte.class, Byte.class);
         baseTypePackagingMap.put(Short.class, Short.class);
+//        baseTypePackagingMap.put(String.class, String.class);
 
     }
 

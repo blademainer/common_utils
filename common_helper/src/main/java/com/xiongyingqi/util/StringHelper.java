@@ -8,10 +8,45 @@ import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author KRXiongYingqi
+ * @author XiongYingqi
  * @version 2013-6-17 上午11:19:19
  */
 public class StringHelper {
+
+    /**
+     * 从第一个字符开始比较两个字符串的大小（按照单个字符的ascii码比较），例如： "abc"大于"aac"、"1234"小于"2234"、"1234"大于"123"、"223"大于"1234"
+     *
+     * @param firstString  第一个字符串
+     * @param secondString 第二个字符串
+     * @return 如果第一个字符串小于第二个字符串，则返回true，否则返回false
+     */
+    public static boolean compareNumberString(String firstString, String secondString) {
+        Assert.notNull(firstString, "第一个字符串为空！");
+        Assert.notNull(secondString, "第二个字符串为空！");
+        char[] chars1 = firstString.toCharArray();
+        char[] chars2 = secondString.toCharArray();
+        int length1 = chars1.length;
+        int length2 = chars2.length;
+        int maxLength = length1 > length2 ? length1 : length2;
+        for (int i = 0; i < maxLength; i++) {
+            int value1 = -1;
+            int value2 = -1;
+            if (i < length1) {
+                value1 = chars1[i];
+            }
+
+            if (i < length2) {
+                value2 = chars2[i];
+            }
+
+            if(value1 < value2){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
 
     public static String encode(String str, String charset) {
         String content = null;
@@ -137,5 +172,11 @@ public class StringHelper {
 
     public static void main(String[] args) {
         System.out.println(replaceFirst("asfasf.ccc.bbb.ccc.cccc.", "ccc.", "dddd."));
+        //"abc"大于"aac"、"1234"小于"2234"、"1234"大于"123"、"223"大于"1234"
+        System.out.println(compareNumberString("", ""));
+        System.out.println(compareNumberString("abc", "aac"));
+        System.out.println(compareNumberString("1234", "2234"));
+        System.out.println(compareNumberString("1234", "123"));
+        System.out.println(compareNumberString("223", "1234"));
     }
 }
