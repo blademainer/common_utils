@@ -3,7 +3,7 @@
     <parent>
         <artifactId>common_utils</artifactId>
         <groupId>com.xiongyingqi</groupId>
-        <version>0.0.5-SNAPSHOT</version>
+        <version>0.0.4</version>
     </parent>
     <artifactId>baidu_api</artifactId>
     <modelVersion>4.0.0</modelVersion>
@@ -15,12 +15,10 @@
         <dependency>
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_helper</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_http</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
