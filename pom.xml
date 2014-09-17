@@ -1553,6 +1553,26 @@
         </profile>
     </profiles>
 
+    <!--
+    部署到中央库： mvn clean deploy 然后 mvn release:clean release:prepare release:perform
+    settins.xml:
+    <profile>
+        <id>ossrh</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <gpg.executable>gpg2</gpg.executable>
+            <gpg.passphrase>password</gpg.passphrase>
+        </properties>
+    </profile>
+
+    <server>
+        <id>ossrh</id>
+        <username>blademainer</username>
+        <password>password</password>
+    </server>
+    -->
     <build>
         <plugins>
             <!--<plugin>

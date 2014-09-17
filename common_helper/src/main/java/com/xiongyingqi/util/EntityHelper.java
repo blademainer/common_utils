@@ -1045,6 +1045,7 @@ public class EntityHelper {
         System.out.println(builder.toString());
     }
 
+
     public static void print() {
         StackTraceElement[] stackTraceElements = StackTraceHelper.getStackTrace();
         StackTraceElement stackTraceElement = stackTraceElements[2]; // 调用本类的对象类型堆栈
