@@ -1,5 +1,6 @@
 package com.xiongyingqi.http;
 
+import com.xiongyingqi.Logger;
 import com.xiongyingqi.util.EntityHelper;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -12,6 +13,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
@@ -131,7 +133,6 @@ public class HttpBuilder {
             url += "/";
         }
         url += uri;
-        EntityHelper.print(url);
         return url;
     }
 
@@ -156,13 +157,40 @@ public class HttpBuilder {
         for (Header header : headers) {
             requestBase.addHeader(header);
         }
-        requestBase.setURI(URI.create(url));
 
-        if (nameValuePairs != null && nameValuePairs.size() > 0 && requestBase instanceof HttpPost) {
-            HttpEntity requestEntity = new UrlEncodedFormEntity(nameValuePairs, charset);
-            ((HttpPost) requestBase).setEntity(requestEntity);
+        if (nameValuePairs != null && nameValuePairs.size() > 0) {
+            if (requestBase instanceof HttpPost) {// 如果是post
+                HttpEntity requestEntity = new UrlEncodedFormEntity(nameValuePairs, charset);
+                ((HttpPost) requestBase).setEntity(requestEntity);
+            } else { // 如果是其他方法
+                StringBuilder builder = new StringBuilder(url);
+                String start = "&";
+                if (!url.contains("?")) {
+                    start = "?";
+                }
+
+                NameValuePair nameValuePairStart = nameValuePairs.get(0);
+                String nameStart = nameValuePairStart.getName();
+                String valueStart = nameValuePairStart.getValue();
+                builder.append(start);// ?a=b    &a=b
+                builder.append(nameStart);
+                builder.append("=");
+                builder.append(valueStart);
+
+                for (int i = 1; i < nameValuePairs.size(); i++) {
+                    NameValuePair nameValuePair = nameValuePairs.get(i);
+                    String name = nameValuePair.getName();
+                    String value = nameValuePair.getValue();
+                    builder.append("&");
+                    builder.append(name);
+                    builder.append("=");
+                    builder.append(value);
+                }
+                url = builder.toString();
+            }
         }
-
+        requestBase.setURI(URI.create(url));
+        Logger.debug(getClass(), "nameValuePairs: " + nameValuePairs + ", headers: " + headers + ", url: " + url);
         return requestBase;
     }
 
@@ -172,6 +200,21 @@ public class HttpBuilder {
         try {
             String rs = HttpAccess.execute(HttpAccess.getClient(), HttpBuilder.newBuilder().url("http://www.baidu.com").get().build());
             EntityHelper.print(rs);
+
+            String encode = URLEncoder.encode("?", "UTF-8");
+            System.out.println(encode);
+
+
+            HttpRequestBase requestBase = HttpBuilder.newBuilder()
+                    .get()
+                    .url("http://xueqiu.com/stock/f10/bonus.json")
+                    .param("symbol", "SZ002261")
+                    .param("page", "1")
+                    .param("size", "4")
+                    .build();
+//        InputStream inputStream = HttpAccess.executeAndGetInputStream(httpClient, requestBase);
+            String s = HttpAccess.execute(HttpAccess.getClient(), requestBase);
+            EntityHelper.print(s);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -36,7 +36,10 @@
         <dependency>
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_helper</artifactId>
-            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xiongyingqi</groupId>
+            <artifactId>common_log</artifactId>
         </dependency>
     </dependencies>
     <build>
