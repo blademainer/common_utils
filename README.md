@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/blademainer/common_utils.png)](https://travis-ci.org/blademainer/common_utils)
+
 common_utils
 ============
 公共帮助类，工具包括文件工具、字符串工具、文件工具、注解工具，公共平台包括百度ip查询，其他的暂未加入。
