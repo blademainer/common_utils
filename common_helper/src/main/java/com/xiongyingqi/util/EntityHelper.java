@@ -15,7 +15,7 @@ import java.util.*;
  * @version 2013-8-7 下午12:09:13
  */
 public class EntityHelper {
-
+    public static final Map<Class<?>, Method[]> getMethodCache = new HashMap<Class<?>, Method[]>();
     public static final Map<Class<?>, Class<?>> baseTypePackagingMap = new HashMap<Class<?>, Class<?>>();
 
     static {
@@ -891,6 +891,52 @@ public class EntityHelper {
         return hashCode;
     }
 
+    private static Method[] getMethodsInClass(Class<?> clazz) {
+        Method[] methods = getMethodCache.get(clazz);
+        if (methods == null) {
+            List<Method> methodList = new ArrayList<Method>();
+            Field[] fields = clazz.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                Field field = fields[i];
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                String fieldName = field.getName();
+                String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
+                        + fieldName.substring(1, fieldName.length());
+                try {
+                    Method method = clazz.getDeclaredMethod(methodGet);
+                    methodList.add(method);
+                } catch (Exception e) {
+                }
+            }
+
+            Class<?> superClazz = clazz.getSuperclass();
+            Field[] superFields = superClazz.getDeclaredFields();
+            for (int i = 0; i < superFields.length; i++) {
+                Field field = superFields[i];
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                String fieldName = field.getName();
+                String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
+                        + fieldName.substring(1, fieldName.length());
+                try {
+                    Method method = superClazz.getDeclaredMethod(methodGet);
+                    methodList.add(method);
+                } catch (NoSuchMethodException e) {
+                }
+            }
+
+            if (methodList.size() > 0) {
+                methods = methodList.toArray(new Method[]{});
+                getMethodCache.put(clazz, methods);
+            }
+        }
+
+        return methods;
+    }
+
     /**
      * 计算对象的hashCode <br>
      * 2013-8-14 下午3:43:44
@@ -905,54 +951,70 @@ public class EntityHelper {
 
         int hashCode = 17;
         Class<?> clazz = object.getClass();
-        Field[] fields = clazz.getDeclaredFields();
-        for (int i = 0; i < fields.length; i++) {
-            Field field = fields[i];
-            if (Modifier.isStatic(field.getModifiers())) {
-                continue;
-            }
-            String fieldName = field.getName();
-            String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
-                    + fieldName.substring(1, fieldName.length());
+        Method[] methodsInClass = getMethodsInClass(clazz);
+        for (Method method : methodsInClass) {
             try {
-                Method method = clazz.getDeclaredMethod(methodGet);
-                try {
-                    Object value = method.invoke(object); // 拥有get方法的参数
-                    if (method.getReturnType().isArray()) {
-                        hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
-                    } else {
-                        hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
-                    }
-                } catch (IllegalArgumentException e) {
-                } catch (IllegalAccessException e) {
-                } catch (InvocationTargetException e) {
+                Object value = method.invoke(object); // 拥有get方法的参数
+                if (method.getReturnType().isArray()) {
+                    hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
+                } else {
+                    hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalAccessException e) {
+            } catch (InvocationTargetException e) {
             }
         }
 
-        Class<?> superClazz = clazz.getSuperclass();
-        Field[] superFields = superClazz.getDeclaredFields();
-        for (int i = 0; i < superFields.length; i++) {
-            Field field = superFields[i];
-            if (Modifier.isStatic(field.getModifiers())) {
-                continue;
-            }
-            String fieldName = field.getName();
-            String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
-                    + fieldName.substring(1, fieldName.length());
-            try {
-                Method method = superClazz.getDeclaredMethod(methodGet);
-                try {
-                    Object value = method.invoke(object); // 拥有get方法的参数
-                    hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
-                } catch (IllegalArgumentException e) {
-                } catch (IllegalAccessException e) {
-                } catch (InvocationTargetException e) {
-                }
-            } catch (Exception e) {
-            }
-        }
+
+//        Field[] fields = clazz.getDeclaredFields();
+//        for (int i = 0; i < fields.length; i++) {
+//            Field field = fields[i];
+//            if (Modifier.isStatic(field.getModifiers())) {
+//                continue;
+//            }
+//            String fieldName = field.getName();
+//            String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
+//                    + fieldName.substring(1, fieldName.length());
+//            try {
+//                Method method = clazz.getDeclaredMethod(methodGet);
+//                try {
+//                    Object value = method.invoke(object); // 拥有get方法的参数
+//                    if (method.getReturnType().isArray()) {
+//                        hashCode = hashCode * 31 + (value == null ? 0 : arrayHashCode(value));
+//                    } else {
+//                        hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
+//                    }
+//                } catch (IllegalArgumentException e) {
+//                } catch (IllegalAccessException e) {
+//                } catch (InvocationTargetException e) {
+//                }
+//            } catch (Exception e) {
+//            }
+//        }
+//
+//        Class<?> superClazz = clazz.getSuperclass();
+//        Field[] superFields = superClazz.getDeclaredFields();
+//        for (int i = 0; i < superFields.length; i++) {
+//            Field field = superFields[i];
+//            if (Modifier.isStatic(field.getModifiers())) {
+//                continue;
+//            }
+//            String fieldName = field.getName();
+//            String methodGet = "get" + fieldName.substring(0, 1).toUpperCase()
+//                    + fieldName.substring(1, fieldName.length());
+//            try {
+//                Method method = superClazz.getDeclaredMethod(methodGet);
+//                try {
+//                    Object value = method.invoke(object); // 拥有get方法的参数
+//                    hashCode = hashCode * 31 + (value == null ? 0 : value.hashCode());
+//                } catch (IllegalArgumentException e) {
+//                } catch (IllegalAccessException e) {
+//                } catch (InvocationTargetException e) {
+//                }
+//            } catch (Exception e) {
+//            }
+//        }
 
         return hashCode;
     }
