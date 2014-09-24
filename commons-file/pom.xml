@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <groupId>com.xiongyingqi</groupId>
+    <version>0.0.7-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>commons-file</artifactId>
+    <!--<parent>
+         <artifactId>common_utils</artifactId>
+         <groupId>com.xiongyingqi</groupId>
+         <version>0.0.7-SNAPSHOT</version>
+     </parent>-->
+
+    <repositories>
+        <repository>
+            <id>ebi</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cpdetector.version>1.04</cpdetector.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cpdetector</groupId>
+            <artifactId>cpdetector</artifactId>
+            <version>${cpdetector.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>antlr</artifactId>
+                    <groupId>antlr</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>

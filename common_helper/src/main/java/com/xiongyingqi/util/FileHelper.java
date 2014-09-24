@@ -3,10 +3,6 @@
  */
 package com.xiongyingqi.util;
 
-import cpdetector.io.ASCIIDetector;
-import cpdetector.io.CodepageDetectorProxy;
-import cpdetector.io.JChardetFacade;
-import cpdetector.io.ParsingDetector;
 import org.apache.log4j.Logger;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -442,62 +438,34 @@ public class FileHelper {
      * @return
      */
     public static String getEncode(File file) {
-//        InputStream inputStream = null;
-//        String code = "UTF-8";
-//        try {
-//            inputStream = new FileInputStream(file);
-//            byte[] head = new byte[3];
-//            inputStream.read(head);
-//            if (head[0] == -1 && head[1] == -2) {
-//                code = "UTF-16";
-//            }
-//            if (head[0] == -2 && head[1] == -1) {
-//                code = "Unicode";
-//            }
-//            if (head[0] == -17 && head[1] == -69 && head[2] == -65) {
-//                code = "UTF-8";
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                inputStream.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        return getEncodeByUtil(file);
-    }
-
-    /**
-     * 使用工具获取文件的编码方式
-     *
-     * @param file
-     * @return
-     */
-    public static synchronized String getEncodeByUtil(File file) {
-        CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
-
-        detector.add(new ParsingDetector(false));
-
-        detector.add(JChardetFacade.getInstance());// 用到antlr.jar、chardet.jar
-        // ASCIIDetector用于ASCII编码测定
-        detector.add(ASCIIDetector.getInstance());
-        // UnicodeDetector用于Unicode家族编码的测定
-//        detector.add(UnicodeDetector.getInstance());
-        Charset charset = null;
+        InputStream inputStream = null;
+        String code = "UTF-8";
         try {
-            charset = detector.detectCodepage(file.toURI().toURL());
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            inputStream = new FileInputStream(file);
+            byte[] head = new byte[3];
+            inputStream.read(head);
+            if (head[0] == -1 && head[1] == -2) {
+                code = "UTF-16";
+            }
+            if (head[0] == -2 && head[1] == -1) {
+                code = "Unicode";
+            }
+            if (head[0] == -17 && head[1] == -69 && head[2] == -65) {
+                code = "UTF-8";
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        if (charset != null)
-            return charset.name();
-        else
-            return null;
+        return code;
     }
 
     public static File validateFile(File file) throws Exception {
