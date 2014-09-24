@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xiongyingqi</groupId>
     <modules>
@@ -14,7 +13,7 @@
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.7</version>
     <description>提供最基础的工具类</description>
     <url>https://github.com/blademainer/common_utils</url>
 
@@ -83,7 +82,7 @@
         <!-- <log4j.version>2.0-beta9</log4j.version> <log4j.sl4j.version>2.0-alpha2</log4j.sl4j.version> -->
         <!--对应hibernate版本为4.3.0.Final以上-->
         <!--<javax.persistence.version>2.1</javax.persistence.version>-->
-        <common_utils.version>0.0.7-SNAPSHOT</common_utils.version>
+        <common_utils.version>0.0.7</common_utils.version>
         <aliyun-openservices.version>1.2.2</aliyun-openservices.version>
         <activemq.version>5.9.0</activemq.version>
         <jsr250.version>1.0</jsr250.version>
@@ -1399,7 +1398,7 @@
         <developerConnection>scm:git:git@github.com:blademainer/common_utils.git</developerConnection>
         <!--<developerConnection>scm:git:ssh://git@github.com:blademainer/common_utils.git</developerConnection>-->
         <url>https://github.com/blademainer/common_utils</url>
-        <tag>common_utils-0.0.1</tag>
+        <tag>common_utils-0.0.7</tag>
     </scm>
 
     <profiles>
@@ -1505,8 +1504,8 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>2.5</version>
                         <configuration>
-                            <releaseVersion></releaseVersion>
-                            <developmentVersion></developmentVersion>
+                            <releaseVersion />
+                            <developmentVersion />
                             <autoVersionSubmodules>true</autoVersionSubmodules>
                             <useReleaseProfile>false</useReleaseProfile>
                             <goals>deploy</goals>
