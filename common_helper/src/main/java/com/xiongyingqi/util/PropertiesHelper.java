@@ -1,10 +1,7 @@
 package com.xiongyingqi.util;
 
 import java.io.*;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * 属性帮助类
@@ -36,7 +33,7 @@ public class PropertiesHelper {
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(propertiesFile);
-            propertiesMap = new HashMap<String, String>();
+            propertiesMap = new LinkedHashMap<String, String>();
 
             Properties properties = new Properties();
             properties.load(inputStream);
@@ -63,9 +60,33 @@ public class PropertiesHelper {
         return propertiesMap;
     }
 
+    public static void save(Map<String, String> map, File file) throws IOException {
+        Assert.notNull(map, "属性集合为空！");
+        Properties properties = new Properties();
+        Set<Map.Entry<String, String>> entries = map.entrySet();
+        for (Map.Entry<String, String> entry : entries) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            properties.setProperty(key, value);
+        }
+        save(properties, file);
+    }
+
+    public static void save(Properties properties, File file) throws IOException {
+        Assert.notNull(properties, "存储的属性为空！");
+        OutputStream outputStream = new FileOutputStream(file);
+        properties.store(outputStream, "saved on " + DateHelper.getStringDate());
+        outputStream.flush();
+        outputStream.close();
+    }
+
     public static void main(String[] args) throws IOException {
         File file = new File("test.properties");
-        readProperties(file);
+        Map<String, String> map = readProperties(file);
+        map.put("a", "测试");
+        save(map, file);
+
+
 //        File xmlFile = new File("test.xml");
 //	    EntityHelper.print(file.getCanonicalPath());
 //        System.out.println(file.exists());
