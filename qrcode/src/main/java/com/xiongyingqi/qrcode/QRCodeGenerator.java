@@ -1,9 +1,11 @@
 package com.xiongyingqi.qrcode;
 
+import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/10/17 0017.
@@ -124,6 +126,12 @@ public class QRCodeGenerator {
         QRCode qrCode = new QRCode();
         File file = qrCode.encode(profile);
         return file;
+    }
+
+    public OutputStream generateOutputStream() throws IOException, WriterException {
+        QRCode qrCode = new QRCode();
+        OutputStream outputStream = qrCode.encodeToOutputStream(profile);
+        return outputStream;
     }
 
 }

@@ -5,7 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
+import java.io.*;
+import java.util.UUID;
 
 public class QRCodeTest {
     private Profile profile;
@@ -25,7 +26,7 @@ public class QRCodeTest {
         profile.setWidth(300);
         profile.setHeight(300);
         profile.setPath(folder);
-        profile.setLogoPath(logoPath + "a");
+        profile.setLogoPath(logoPath);
     }
 
     @Test
@@ -35,7 +36,22 @@ public class QRCodeTest {
         System.out.println("生成二维码: " + file);
         String decode = qrCode.decode(file.getPath());
         Assert.assertEquals(decode, profile.getContent());
+    }
 
+
+    @Test
+    public void testEncodeToOutputStream() throws Exception {
+        File file = new File(profile.getPath(), UUID.randomUUID().toString() + ".png");
+        QRCode qrCode = new QRCode();
+        OutputStream outputStream = qrCode.encodeToOutputStream(profile);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) outputStream;
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        fileOutputStream.write(bytes);
+        System.out.println("生成二维码: " + file);
+        Assert.assertNotNull(file);
+        String decode = qrCode.decode(file.getPath());
+        Assert.assertEquals(decode, profile.getContent());
     }
 
     @Test
