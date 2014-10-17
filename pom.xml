@@ -9,6 +9,7 @@
         <module>common_http</module>
         <module>common_log</module>
         <module>spring-email</module>
+        <module>qrcode</module>
     </modules>
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>
@@ -119,6 +120,7 @@
         <cpdetector.version>1.04</cpdetector.version>
         <antlr.version>3.5</antlr.version>
         <jchardet.version>1.0</jchardet.version>
+        <zxing.version>3.1.0</zxing.version>
 
     </properties>
 
@@ -157,6 +159,18 @@
                 <groupId>com.xiongyingqi</groupId>
                 <artifactId>common_http</artifactId>
                 <version>${common_utils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${zxing.version}</version>
             </dependency>
 
             <dependency>
