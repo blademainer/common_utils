@@ -64,8 +64,8 @@ public abstract class ReflectionUtils {
      * @return the corresponding Field object, or {@code null} if not found
      */
     public static Field findField(Class<?> clazz, String name, Class<?> type) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.isTrue(name != null || type != null, "Either name or type of the field must be specified");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.isTrue(name != null || type != null, "Either name or type of the field must be specified");
         Class<?> searchType = clazz;
         while (!Object.class.equals(searchType) && searchType != null) {
             Field[] fields = searchType.getDeclaredFields();
@@ -146,8 +146,8 @@ public abstract class ReflectionUtils {
      * @return the Method object, or {@code null} if none found
      */
     public static Method findMethod(Class<?> clazz, String name, Class<?>... paramTypes) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(name, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(name, "Method name must not be null");
         Class<?> searchType = clazz;
         while (searchType != null) {
             Method[] methods = (searchType.isInterface() ? searchType.getMethods() : searchType.getDeclaredMethods());
@@ -327,7 +327,7 @@ public abstract class ReflectionUtils {
      * {@code false} if it needs to be wrapped
      */
     public static boolean declaresException(Method method, Class<?> exceptionType) {
-        org.springframework.util.Assert.notNull(method, "Method must not be null");
+        Assert.notNull(method, "Method must not be null");
         Class<?>[] declaredExceptions = method.getExceptionTypes();
         for (Class<?> declaredException : declaredExceptions) {
             if (declaredException.isAssignableFrom(exceptionType)) {

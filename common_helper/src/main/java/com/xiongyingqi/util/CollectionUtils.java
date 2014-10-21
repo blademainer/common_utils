@@ -62,7 +62,7 @@ public abstract class CollectionUtils {
      *
      * @param source the (potentially primitive) array
      * @return the converted List result
-     * @see org.springframework.util.ObjectUtils#toObjectArray(Object)
+     * @see ObjectUtils#toObjectArray(Object)
      * @see java.util.Arrays#asList(Object[])
      */
     @SuppressWarnings("rawtypes")
@@ -354,7 +354,7 @@ public abstract class CollectionUtils {
      * @return an unmodifiable view of the specified multi-value map.
      */
     public static <K, V> MultiValueMap<K, V> unmodifiableMultiValueMap(MultiValueMap<? extends K, ? extends V> map) {
-        org.springframework.util.Assert.notNull(map, "'map' must not be null");
+        Assert.notNull(map, "'map' must not be null");
         Map<K, List<V>> result = new LinkedHashMap<K, List<V>>(map.size());
         for (Map.Entry<? extends K, ? extends List<? extends V>> entry : map.entrySet()) {
             List<V> values = Collections.unmodifiableList(entry.getValue());
@@ -401,7 +401,7 @@ public abstract class CollectionUtils {
         private final Map<K, List<V>> map;
 
         public MultiValueMapAdapter(Map<K, List<V>> map) {
-            org.springframework.util.Assert.notNull(map, "'map' must not be null");
+            Assert.notNull(map, "'map' must not be null");
             this.map = map;
         }
 

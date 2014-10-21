@@ -79,8 +79,8 @@ public class PropertyPlaceholderHelper {
     public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,
                                      String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
 
-        org.springframework.util.Assert.notNull(placeholderPrefix, "placeholderPrefix must not be null");
-        org.springframework.util.Assert.notNull(placeholderSuffix, "placeholderSuffix must not be null");
+        Assert.notNull(placeholderPrefix, "placeholderPrefix must not be null");
+        Assert.notNull(placeholderSuffix, "placeholderSuffix must not be null");
         this.placeholderPrefix = placeholderPrefix;
         this.placeholderSuffix = placeholderSuffix;
         String simplePrefixForSuffix = wellKnownSimplePrefixes.get(this.placeholderSuffix);
@@ -103,7 +103,7 @@ public class PropertyPlaceholderHelper {
      * @return the supplied value with placeholders replaced inline.
      */
     public String replacePlaceholders(String value, final Properties properties) {
-        org.springframework.util.Assert.notNull(properties, "Argument 'properties' must not be null.");
+        Assert.notNull(properties, "Argument 'properties' must not be null.");
         return replacePlaceholders(value, new PlaceholderResolver() {
             @Override
             public String resolvePlaceholder(String placeholderName) {
@@ -121,7 +121,7 @@ public class PropertyPlaceholderHelper {
      * @return the supplied value with placeholders replaced inline.
      */
     public String replacePlaceholders(String value, PlaceholderResolver placeholderResolver) {
-        org.springframework.util.Assert.notNull(value, "Argument 'value' must not be null.");
+        Assert.notNull(value, "Argument 'value' must not be null.");
         return parseStringValue(value, placeholderResolver, new HashSet<String>());
     }
 

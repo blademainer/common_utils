@@ -11,6 +11,8 @@
         <module>spring-email</module>
         <module>qrcode</module>
         <module>commons-file</module>
+        <module>commons-scan</module>
+        <module>commons-spring</module>
     </modules>
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>
@@ -1138,6 +1140,12 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml-schemas</artifactId>
                 <version>${apache.poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr</artifactId>
+                <version>${antlr.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

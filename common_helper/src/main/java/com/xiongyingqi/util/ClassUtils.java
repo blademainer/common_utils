@@ -31,8 +31,8 @@ import java.util.*;
  * @author Keith Donald
  * @author Rob Harrop
  * @author Sam Brannen
- * @see org.springframework.util.TypeUtils
- * @see org.springframework.util.ReflectionUtils
+ * @see TypeUtils
+ * @see ReflectionUtils
  * @since 1.1
  */
 public abstract class ClassUtils {
@@ -202,7 +202,7 @@ public abstract class ClassUtils {
      * @see Class#forName(String, boolean, ClassLoader)
      */
     public static Class<?> forName(String name, ClassLoader classLoader) throws ClassNotFoundException, LinkageError {
-        org.springframework.util.Assert.notNull(name, "Name must not be null");
+        Assert.notNull(name, "Name must not be null");
 
         Class<?> clazz = resolvePrimitiveClassName(name);
         if (clazz == null) {
@@ -330,7 +330,7 @@ public abstract class ClassUtils {
      * @return the user-defined class
      */
     public static Class<?> getUserClass(Object instance) {
-        org.springframework.util.Assert.notNull(instance, "Instance must not be null");
+        Assert.notNull(instance, "Instance must not be null");
         return getUserClass(instance.getClass());
     }
 
@@ -359,7 +359,7 @@ public abstract class ClassUtils {
      * @param classLoader the ClassLoader to potentially cache metadata in
      */
     public static boolean isCacheSafe(Class<?> clazz, ClassLoader classLoader) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         ClassLoader target = clazz.getClassLoader();
         if (target == null) {
             return false;
@@ -386,7 +386,7 @@ public abstract class ClassUtils {
      * @throws IllegalArgumentException if the className is empty
      */
     public static String getShortName(String className) {
-        org.springframework.util.Assert.hasLength(className, "Class name must not be empty");
+        Assert.hasLength(className, "Class name must not be empty");
         int lastDotIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
         int nameEndIndex = className.indexOf(CGLIB_CLASS_SEPARATOR);
         if (nameEndIndex == -1) {
@@ -430,7 +430,7 @@ public abstract class ClassUtils {
      * @return the file name of the ".class" file
      */
     public static String getClassFileName(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         String className = clazz.getName();
         int lastDotIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
         return className.substring(lastDotIndex + 1) + CLASS_FILE_SUFFIX;
@@ -445,7 +445,7 @@ public abstract class ClassUtils {
      * is defined in the default package
      */
     public static String getPackageName(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return getPackageName(clazz.getName());
     }
 
@@ -458,7 +458,7 @@ public abstract class ClassUtils {
      * is defined in the default package
      */
     public static String getPackageName(String fqClassName) {
-        org.springframework.util.Assert.notNull(fqClassName, "Class name must not be null");
+        Assert.notNull(fqClassName, "Class name must not be null");
         int lastDotIndex = fqClassName.lastIndexOf(PACKAGE_SEPARATOR);
         return (lastDotIndex != -1 ? fqClassName.substring(0, lastDotIndex) : "");
     }
@@ -471,7 +471,7 @@ public abstract class ClassUtils {
      * @return the qualified name of the class
      */
     public static String getQualifiedName(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         if (clazz.isArray()) {
             return getQualifiedNameForArray(clazz);
         } else {
@@ -504,7 +504,7 @@ public abstract class ClassUtils {
      * @return the qualified name of the method
      */
     public static String getQualifiedMethodName(Method method) {
-        org.springframework.util.Assert.notNull(method, "Method must not be null");
+        Assert.notNull(method, "Method must not be null");
         return method.getDeclaringClass().getName() + "." + method.getName();
     }
 
@@ -576,7 +576,7 @@ public abstract class ClassUtils {
      * @see Class#getConstructor
      */
     public static <T> Constructor<T> getConstructorIfAvailable(Class<T> clazz, Class<?>... paramTypes) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         try {
             return clazz.getConstructor(paramTypes);
         } catch (NoSuchMethodException ex) {
@@ -614,8 +614,8 @@ public abstract class ClassUtils {
      * @see Class#getMethod
      */
     public static Method getMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(methodName, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(methodName, "Method name must not be null");
         if (paramTypes != null) {
             try {
                 return clazz.getMethod(methodName, paramTypes);
@@ -655,8 +655,8 @@ public abstract class ClassUtils {
      * @see Class#getMethod
      */
     public static Method getMethodIfAvailable(Class<?> clazz, String methodName, Class<?>... paramTypes) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(methodName, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(methodName, "Method name must not be null");
         if (paramTypes != null) {
             try {
                 return clazz.getMethod(methodName, paramTypes);
@@ -687,8 +687,8 @@ public abstract class ClassUtils {
      * @return the number of methods with the given name
      */
     public static int getMethodCountForName(Class<?> clazz, String methodName) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(methodName, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(methodName, "Method name must not be null");
         int count = 0;
         Method[] declaredMethods = clazz.getDeclaredMethods();
         for (Method method : declaredMethods) {
@@ -716,8 +716,8 @@ public abstract class ClassUtils {
      * @return whether there is at least one method with the given name
      */
     public static boolean hasAtLeastOneMethodWithName(Class<?> clazz, String methodName) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(methodName, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(methodName, "Method name must not be null");
         Method[] declaredMethods = clazz.getDeclaredMethods();
         for (Method method : declaredMethods) {
             if (method.getName().equals(methodName)) {
@@ -789,7 +789,7 @@ public abstract class ClassUtils {
      * @return {@code true} if the method can be considered as user-declared; [@code false} otherwise
      */
     public static boolean isUserLevelMethod(Method method) {
-        org.springframework.util.Assert.notNull(method, "Method must not be null");
+        Assert.notNull(method, "Method must not be null");
         return (method.isBridge() || (!method.isSynthetic() && !isGroovyObjectMethod(method)));
     }
 
@@ -823,8 +823,8 @@ public abstract class ClassUtils {
      * @throws IllegalArgumentException if the method name is blank or the clazz is null
      */
     public static Method getStaticMethod(Class<?> clazz, String methodName, Class<?>... args) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
-        org.springframework.util.Assert.notNull(methodName, "Method name must not be null");
+        Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(methodName, "Method name must not be null");
         try {
             Method method = clazz.getMethod(methodName, args);
             return Modifier.isStatic(method.getModifiers()) ? method : null;
@@ -842,7 +842,7 @@ public abstract class ClassUtils {
      * @return whether the given class is a primitive wrapper class
      */
     public static boolean isPrimitiveWrapper(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return primitiveWrapperTypeMap.containsKey(clazz);
     }
 
@@ -855,7 +855,7 @@ public abstract class ClassUtils {
      * @return whether the given class is a primitive or primitive wrapper class
      */
     public static boolean isPrimitiveOrWrapper(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return (clazz.isPrimitive() || isPrimitiveWrapper(clazz));
     }
 
@@ -867,7 +867,7 @@ public abstract class ClassUtils {
      * @return whether the given class is a primitive array class
      */
     public static boolean isPrimitiveArray(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return (clazz.isArray() && clazz.getComponentType().isPrimitive());
     }
 
@@ -879,7 +879,7 @@ public abstract class ClassUtils {
      * @return whether the given class is a primitive wrapper array class
      */
     public static boolean isPrimitiveWrapperArray(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return (clazz.isArray() && isPrimitiveWrapper(clazz.getComponentType()));
     }
 
@@ -891,7 +891,7 @@ public abstract class ClassUtils {
      * @return the original class, or a primitive wrapper for the original primitive type
      */
     public static Class<?> resolvePrimitiveIfNecessary(Class<?> clazz) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         return (clazz.isPrimitive() && clazz != void.class ? primitiveTypeToWrapperMap.get(clazz) : clazz);
     }
 
@@ -903,11 +903,11 @@ public abstract class ClassUtils {
      * @param lhsType the target type
      * @param rhsType the value type that should be assigned to the target type
      * @return if the target type is assignable from the value type
-     * @see org.springframework.util.TypeUtils#isAssignable
+     * @see TypeUtils#isAssignable
      */
     public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
-        org.springframework.util.Assert.notNull(lhsType, "Left-hand side type must not be null");
-        org.springframework.util.Assert.notNull(rhsType, "Right-hand side type must not be null");
+        Assert.notNull(lhsType, "Left-hand side type must not be null");
+        Assert.notNull(rhsType, "Right-hand side type must not be null");
         if (lhsType.isAssignableFrom(rhsType)) {
             return true;
         }
@@ -935,7 +935,7 @@ public abstract class ClassUtils {
      * @return if the type is assignable from the value
      */
     public static boolean isAssignableValue(Class<?> type, Object value) {
-        org.springframework.util.Assert.notNull(type, "Type must not be null");
+        Assert.notNull(type, "Type must not be null");
         return (value != null ? isAssignable(type, value.getClass()) : !type.isPrimitive());
     }
 
@@ -947,7 +947,7 @@ public abstract class ClassUtils {
      * @return the corresponding fully qualified class name
      */
     public static String convertResourcePathToClassName(String resourcePath) {
-        org.springframework.util.Assert.notNull(resourcePath, "Resource path must not be null");
+        Assert.notNull(resourcePath, "Resource path must not be null");
         return resourcePath.replace('/', '.');
     }
 
@@ -958,7 +958,7 @@ public abstract class ClassUtils {
      * @return the corresponding resource path, pointing to the class
      */
     public static String convertClassNameToResourcePath(String className) {
-        org.springframework.util.Assert.notNull(className, "Class name must not be null");
+        Assert.notNull(className, "Class name must not be null");
         return className.replace('.', '/');
     }
 
@@ -980,7 +980,7 @@ public abstract class ClassUtils {
      * @see Class#getResource
      */
     public static String addResourcePathToPackagePath(Class<?> clazz, String resourceName) {
-        org.springframework.util.Assert.notNull(resourceName, "Resource name must not be null");
+        Assert.notNull(resourceName, "Resource name must not be null");
         if (!resourceName.startsWith("/")) {
             return classPackageAsResourcePath(clazz) + "/" + resourceName;
         }
@@ -1078,7 +1078,7 @@ public abstract class ClassUtils {
      * @return all interfaces that the given instance implements as array
      */
     public static Class<?>[] getAllInterfaces(Object instance) {
-        org.springframework.util.Assert.notNull(instance, "Instance must not be null");
+        Assert.notNull(instance, "Instance must not be null");
         return getAllInterfacesForClass(instance.getClass());
     }
 
@@ -1117,7 +1117,7 @@ public abstract class ClassUtils {
      * @return all interfaces that the given instance implements as Set
      */
     public static Set<Class<?>> getAllInterfacesAsSet(Object instance) {
-        org.springframework.util.Assert.notNull(instance, "Instance must not be null");
+        Assert.notNull(instance, "Instance must not be null");
         return getAllInterfacesForClassAsSet(instance.getClass());
     }
 
@@ -1144,7 +1144,7 @@ public abstract class ClassUtils {
      * @return all interfaces that the given object implements as Set
      */
     public static Set<Class<?>> getAllInterfacesForClassAsSet(Class<?> clazz, ClassLoader classLoader) {
-        org.springframework.util.Assert.notNull(clazz, "Class must not be null");
+        Assert.notNull(clazz, "Class must not be null");
         if (clazz.isInterface() && isVisible(clazz, classLoader)) {
             return Collections.<Class<?>>singleton(clazz);
         }
@@ -1170,8 +1170,8 @@ public abstract class ClassUtils {
      * @see java.lang.reflect.Proxy#getProxyClass
      */
     public static Class<?> createCompositeInterface(Class<?>[] interfaces, ClassLoader classLoader) {
-        org.springframework.util.Assert.notEmpty(interfaces, "Interfaces must not be empty");
-        org.springframework.util.Assert.notNull(classLoader, "ClassLoader must not be null");
+        Assert.notEmpty(interfaces, "Interfaces must not be empty");
+        Assert.notNull(classLoader, "ClassLoader must not be null");
         return Proxy.getProxyClass(classLoader, interfaces);
     }
 

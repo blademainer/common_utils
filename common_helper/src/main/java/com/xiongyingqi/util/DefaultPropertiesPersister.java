@@ -16,8 +16,6 @@
 
 package com.xiongyingqi.util;
 
-import org.springframework.util.PropertiesPersister;
-
 import java.io.*;
 import java.util.Properties;
 

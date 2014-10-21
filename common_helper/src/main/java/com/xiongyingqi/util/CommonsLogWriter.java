@@ -39,7 +39,7 @@ public class CommonsLogWriter extends Writer {
      * @param logger the Commons Logging logger to write to
      */
     public CommonsLogWriter(Log logger) {
-        org.springframework.util.Assert.notNull(logger, "Logger must not be null");
+        Assert.notNull(logger, "Logger must not be null");
         this.logger = logger;
     }
 

@@ -18,11 +18,8 @@ import javassist.bytecode.ClassFile;
 import javassist.bytecode.ConstPool;
 import javassist.bytecode.annotation.*;
 import org.apache.log4j.Logger;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -50,7 +47,7 @@ public class JavassistFilterPropertyHandler implements FilterPropertyHandler {
     private static Map<Integer, Class<?>> proxyMixInAnnotationMap = new HashMap<Integer, Class<?>>();
 
     private static String[] globalIgnoreProperties = new String[]{"hibernateLazyInitializer",
-            "handler" };
+            "handler"};
 
     /**
      * 如果是标注的SpringMVC中的Controller方法，则应判断是否注解了@ResponseBody
@@ -69,8 +66,14 @@ public class JavassistFilterPropertyHandler implements FilterPropertyHandler {
     }
 
     /**
+     * 为了减少包的依赖大小，新版本不再支持对@ResponseBody的支持，请在Aop中使用以下方法自行判断：
+     * <pre>
+     *     Method.isAnnotationPresent(ResponseBody.class)
+     * </pre>
+     *
      * @param isResponseBodyAnnotation 如果是标注的SpringMVC中的Controller方法，则应判断是否注解了@ResponseBody
      */
+    @Deprecated
     public JavassistFilterPropertyHandler(boolean isResponseBodyAnnotation) {
         this.isResponseBodyAnnotation = isResponseBodyAnnotation;
     }
@@ -186,9 +189,9 @@ public class JavassistFilterPropertyHandler implements FilterPropertyHandler {
      * @return Map<Class<?>, Collection<Class<?>>> pojo与其属性的映射表
      */
     public Map<Class<?>, Class<?>> getProxyMixInAnnotation(Method method) {
-        if (isResponseBodyAnnotation && !method.isAnnotationPresent(ResponseBody.class)) {
-            return null;
-        }
+//        if (isResponseBodyAnnotation && !method.isAnnotationPresent(ResponseBody.class)) {
+//            return null;
+//        }
         Map<Class<?>, Class<?>> map = proxyMethodMap.get(method);// 从缓存中查找是否存在
 
         if (map != null && map.entrySet().size() > 0) {// 如果已经读取该方法的注解信息，则从缓存中读取
@@ -453,22 +456,5 @@ public class JavassistFilterPropertyHandler implements FilterPropertyHandler {
         return JsonEncoding.UTF8;
     }
 
-    /**
-     * Determine the JSON encoding to use for the given content type.
-     *
-     * @param contentType the media type as requested by the caller
-     * @return the JSON encoding to use (never {@code null})
-     */
-    protected JsonEncoding getJsonEncoding(MediaType contentType) {
-        if (contentType != null && contentType.getCharSet() != null) {
-            Charset charset = contentType.getCharSet();
-            for (JsonEncoding encoding : JsonEncoding.values()) {
-                if (charset.name().equals(encoding.getJavaName())) {
-                    return encoding;
-                }
-            }
-        }
-        return JsonEncoding.UTF8;
-    }
 
 }
