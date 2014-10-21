@@ -41,7 +41,7 @@ public class ClassLookupHelper {
         Set<Class<?>> klasses = new LinkedHashSet<Class<?>>();
         for (URLClassLoader cl : loaders) {
             for (URL url : cl.getURLs()) {
-                String file = url.getFile().toLowerCase();
+                String file = url.getFile();
                 if (file.endsWith(".jar") || file.endsWith(".zip")) {
                     lookupClassesInJar(null, url, true, cl, filter, klasses);
                 } else {
@@ -211,6 +211,23 @@ public class ClassLookupHelper {
             }
         } catch (IOException e) {
         } finally {
+        }
+    }
+    
+    public static void main(String[] args){
+        Collection<Class<?>> classes = getClasses(new ClassFileFilter() {
+            @Override
+            public boolean accept(String klassName, File file, ClassLoader loader) {
+                return true;
+            }
+
+            @Override
+            public boolean accept(String klassName, JarFile jar, JarEntry entry, ClassLoader loader) {
+                return true;
+            }
+        });
+        for (Class<?> aClass : classes) {
+            System.out.println(aClass);
         }
     }
 }
