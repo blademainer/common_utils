@@ -437,35 +437,46 @@ public class FileHelper {
      * @param file
      * @return
      */
-    public static String getEncode(File file) {
-        InputStream inputStream = null;
-        String code = "UTF-8";
-        try {
-            inputStream = new FileInputStream(file);
-            byte[] head = new byte[3];
-            inputStream.read(head);
-            if (head[0] == -1 && head[1] == -2) {
-                code = "UTF-16";
-            }
-            if (head[0] == -2 && head[1] == -1) {
-                code = "Unicode";
-            }
-            if (head[0] == -17 && head[1] == -69 && head[2] == -65) {
-                code = "UTF-8";
-            }
+//    public static String getEncode(File file) {
+//        InputStream inputStream = null;
+//        String code = "UTF-8";
+//        try {
+//            inputStream = new FileInputStream(file);
+//            byte[] head = new byte[3];
+//            inputStream.read(head);
+//            if (head[0] == -1 && head[1] == -2) {
+//                code = "UTF-16";
+//            }
+//            if (head[0] == -2 && head[1] == -1) {
+//                code = "Unicode";
+//            }
+//            if (head[0] == -17 && head[1] == -69 && head[2] == -65) {
+//                code = "UTF-8";
+//            }
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                inputStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return code;
+//    }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return code;
+    /**
+     * 获取文本文档的编码
+     * <br>2013年12月5日 下午5:27:07
+     *
+     * @param file
+     * @return
+     */
+    public static String getEncode(File file) {
+        return FileEncode.getEncodeByUtil(file);
     }
 
     public static File validateFile(File file) throws Exception {

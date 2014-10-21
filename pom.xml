@@ -10,6 +10,7 @@
         <module>common_log</module>
         <module>spring-email</module>
         <module>qrcode</module>
+        <module>commons-file</module>
     </modules>
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>

@@ -9,6 +9,12 @@
     <artifactId>common_helper</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.xiongyingqi</groupId>
+            <artifactId>commons-file</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-parsers</artifactId>
             <version>${tika.version}</version>

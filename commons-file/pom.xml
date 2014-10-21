@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>com.xiongyingqi</groupId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>commons-file</artifactId>
-    <!--<parent>
-         <artifactId>common_utils</artifactId>
-         <groupId>com.xiongyingqi</groupId>
-         <version>0.0.7-SNAPSHOT</version>
-     </parent>-->
+    <parent>
+        <artifactId>common_utils</artifactId>
+        <groupId>com.xiongyingqi</groupId>
+        <version>0.0.9-SNAPSHOT</version>
+    </parent>
 
     <repositories>
         <repository>
@@ -26,6 +26,22 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.sourceforge.jchardet</groupId>
+            <artifactId>jchardet</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <!--<dependency>
             <groupId>cpdetector</groupId>
             <artifactId>cpdetector</artifactId>
             <version>${cpdetector.version}</version>
@@ -35,6 +51,8 @@
                     <groupId>antlr</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
+
+
     </dependencies>
 </project>
