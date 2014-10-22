@@ -16,13 +16,11 @@
 
 package com.xiongyingqi.util;
 
-import org.springframework.util.MultiValueMap;
-
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * Simple implementation of {@link org.springframework.util.MultiValueMap} that wraps a {@link java.util.LinkedHashMap},
+ * Simple implementation of {@link MultiValueMap} that wraps a {@link java.util.LinkedHashMap},
  * storing multiple values in a {@link java.util.LinkedList}.
  * <p/>
  * <p>This Map implementation is generally not thread-safe. It is primarily designed

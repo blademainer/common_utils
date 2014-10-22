@@ -7,6 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>qrcode</artifactId>
+    <description>二维码生成与识别</description>
 
     <dependencies>
         <dependency>

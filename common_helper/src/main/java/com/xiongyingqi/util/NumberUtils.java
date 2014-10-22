@@ -54,8 +54,8 @@ public abstract class NumberUtils {
     public static <T extends Number> T convertNumberToTargetClass(Number number, Class<T> targetClass)
             throws IllegalArgumentException {
 
-        org.springframework.util.Assert.notNull(number, "Number must not be null");
-        org.springframework.util.Assert.notNull(targetClass, "Target class must not be null");
+        Assert.notNull(number, "Number must not be null");
+        Assert.notNull(targetClass, "Target class must not be null");
 
         if (targetClass.isInstance(number)) {
             return (T) number;
@@ -134,8 +134,8 @@ public abstract class NumberUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T extends Number> T parseNumber(String text, Class<T> targetClass) {
-        org.springframework.util.Assert.notNull(text, "Text must not be null");
-        org.springframework.util.Assert.notNull(targetClass, "Target class must not be null");
+        Assert.notNull(text, "Text must not be null");
+        Assert.notNull(targetClass, "Target class must not be null");
         String trimmed = StringUtils.trimAllWhitespace(text);
 
         if (targetClass.equals(Byte.class)) {
@@ -178,8 +178,8 @@ public abstract class NumberUtils {
      */
     public static <T extends Number> T parseNumber(String text, Class<T> targetClass, NumberFormat numberFormat) {
         if (numberFormat != null) {
-            org.springframework.util.Assert.notNull(text, "Text must not be null");
-            org.springframework.util.Assert.notNull(targetClass, "Target class must not be null");
+            Assert.notNull(text, "Text must not be null");
+            Assert.notNull(targetClass, "Target class must not be null");
             DecimalFormat decimalFormat = null;
             boolean resetBigDecimal = false;
             if (numberFormat instanceof DecimalFormat) {

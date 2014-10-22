@@ -18,17 +18,6 @@ package com.xiongyingqi.util;
 
 import java.io.Serializable;
 
-/**
- * Simple customizable helper class for creating threads. Provides various
- * bean properties, such as thread name prefix, thread priority, etc.
- * <p/>
- * <p>Serves as base class for thread factories such as
- * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
- *
- * @author Juergen Hoeller
- * @see org.springframework.scheduling.concurrent.CustomizableThreadFactory
- * @since 2.0.3
- */
 @SuppressWarnings("serial")
 public class CustomizableThreadCreator implements Serializable {
 
@@ -182,7 +171,7 @@ public class CustomizableThreadCreator implements Serializable {
      * @return the default thread name prefix (never {@code null})
      */
     protected String getDefaultThreadNamePrefix() {
-        return org.springframework.util.ClassUtils.getShortName(getClass()) + "-";
+        return ClassUtils.getShortName(getClass()) + "-";
     }
 
 

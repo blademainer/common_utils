@@ -32,7 +32,7 @@ import java.net.*;
  * file system through its {@code getFile()} method.
  * <p/>
  * <p>The main reason for these utility methods for resource location handling
- * is to support {@link org.springframework.util.Log4jConfigurer}, which must be able to resolve
+ * is to support {@link Log4jConfigurer}, which must be able to resolve
  * resource locations <i>before the logging system has been initialized</i>.
  * Spring's {@code Resource} abstraction in the core package, on the other hand,
  * already expects the logging system to be available.
@@ -128,10 +128,10 @@ public abstract class ResourceUtils {
      * @throws java.io.FileNotFoundException if the resource cannot be resolved to a URL
      */
     public static URL getURL(String resourceLocation) throws FileNotFoundException {
-        org.springframework.util.Assert.notNull(resourceLocation, "Resource location must not be null");
+        Assert.notNull(resourceLocation, "Resource location must not be null");
         if (resourceLocation.startsWith(CLASSPATH_URL_PREFIX)) {
             String path = resourceLocation.substring(CLASSPATH_URL_PREFIX.length());
-            URL url = org.springframework.util.ClassUtils.getDefaultClassLoader().getResource(path);
+            URL url = ClassUtils.getDefaultClassLoader().getResource(path);
             if (url == null) {
                 String description = "class path resource [" + path + "]";
                 throw new FileNotFoundException(
@@ -166,11 +166,11 @@ public abstract class ResourceUtils {
      *                                       a file in the file system
      */
     public static File getFile(String resourceLocation) throws FileNotFoundException {
-        org.springframework.util.Assert.notNull(resourceLocation, "Resource location must not be null");
+        Assert.notNull(resourceLocation, "Resource location must not be null");
         if (resourceLocation.startsWith(CLASSPATH_URL_PREFIX)) {
             String path = resourceLocation.substring(CLASSPATH_URL_PREFIX.length());
             String description = "class path resource [" + path + "]";
-            URL url = org.springframework.util.ClassUtils.getDefaultClassLoader().getResource(path);
+            URL url = ClassUtils.getDefaultClassLoader().getResource(path);
             if (url == null) {
                 throw new FileNotFoundException(
                         description + " cannot be resolved to absolute file path " +
@@ -213,7 +213,7 @@ public abstract class ResourceUtils {
      *                                       a file in the file system
      */
     public static File getFile(URL resourceUrl, String description) throws FileNotFoundException {
-        org.springframework.util.Assert.notNull(resourceUrl, "Resource URL must not be null");
+        Assert.notNull(resourceUrl, "Resource URL must not be null");
         if (!URL_PROTOCOL_FILE.equals(resourceUrl.getProtocol())) {
             throw new FileNotFoundException(
                     description + " cannot be resolved to absolute file path " +

@@ -64,14 +64,14 @@ public abstract class SocketUtils {
      * configuration files using the Spring Expression Language (SpEL) and the
      * following syntax.
      * <p/>
-     * <pre><code>&lt;bean id="bean1" ... p:port="#{T(org.springframework.util.SocketUtils).findAvailableTcpPort(12000)}" /&gt;</code></pre>
+     * <pre><code>&lt;bean id="bean1" ... p:port="#{T(SocketUtils).findAvailableTcpPort(12000)}" /&gt;</code></pre>
      * <p/>
      * If this constructor were {@code private}, you would be required to supply
      * the fully qualified class name to SpEL's {@code T()} function for each usage.
      * Thus, the fact that this constructor is {@code public} allows you to reduce
      * boilerplate configuration with SpEL as can be seen in the following example.
      * <p/>
-     * <pre><code>&lt;bean id="socketUtils" class="org.springframework.util.SocketUtils" /&gt;
+     * <pre><code>&lt;bean id="socketUtils" class="SocketUtils" /&gt;
      * <p/>
      * &lt;bean id="bean1" ... p:port="#{socketUtils.findAvailableTcpPort(12000)}" /&gt;
      * <p/>
@@ -264,9 +264,9 @@ public abstract class SocketUtils {
          * @throws IllegalStateException if no available port could be found
          */
         int findAvailablePort(int minPort, int maxPort) {
-            org.springframework.util.Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");
-            org.springframework.util.Assert.isTrue(maxPort > minPort, "'maxPort' must be greater than 'minPort'");
-            org.springframework.util.Assert.isTrue(maxPort <= PORT_RANGE_MAX, "'maxPort' must be less than or equal to " + PORT_RANGE_MAX);
+            Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");
+            Assert.isTrue(maxPort > minPort, "'maxPort' must be greater than 'minPort'");
+            Assert.isTrue(maxPort <= PORT_RANGE_MAX, "'maxPort' must be less than or equal to " + PORT_RANGE_MAX);
 
             int portRange = maxPort - minPort;
             int candidatePort;
@@ -294,11 +294,11 @@ public abstract class SocketUtils {
          * @throws IllegalStateException if the requested number of available ports could not be found
          */
         SortedSet<Integer> findAvailablePorts(int numRequested, int minPort, int maxPort) {
-            org.springframework.util.Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");
-            org.springframework.util.Assert.isTrue(maxPort > minPort, "'maxPort' must be greater than 'minPort'");
-            org.springframework.util.Assert.isTrue(maxPort <= PORT_RANGE_MAX, "'maxPort' must be less than or equal to " + PORT_RANGE_MAX);
-            org.springframework.util.Assert.isTrue(numRequested > 0, "'numRequested' must be greater than 0");
-            org.springframework.util.Assert.isTrue((maxPort - minPort) >= numRequested,
+            Assert.isTrue(minPort > 0, "'minPort' must be greater than 0");
+            Assert.isTrue(maxPort > minPort, "'maxPort' must be greater than 'minPort'");
+            Assert.isTrue(maxPort <= PORT_RANGE_MAX, "'maxPort' must be less than or equal to " + PORT_RANGE_MAX);
+            Assert.isTrue(numRequested > 0, "'numRequested' must be greater than 0");
+            Assert.isTrue((maxPort - minPort) >= numRequested,
                     "'numRequested' must not be greater than 'maxPort' - 'minPort'");
 
             final SortedSet<Integer> availablePorts = new TreeSet<Integer>();

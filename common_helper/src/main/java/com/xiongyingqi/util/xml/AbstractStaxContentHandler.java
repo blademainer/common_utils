@@ -33,7 +33,7 @@ import javax.xml.stream.XMLStreamException;
  */
 abstract class AbstractStaxContentHandler implements ContentHandler {
 
-    private org.springframework.util.xml.SimpleNamespaceContext namespaceContext = new org.springframework.util.xml.SimpleNamespaceContext();
+    private SimpleNamespaceContext namespaceContext = new SimpleNamespaceContext();
 
     private boolean namespaceContextChanged = false;
 
@@ -66,7 +66,7 @@ abstract class AbstractStaxContentHandler implements ContentHandler {
     /**
      * Binds the given prefix to the given namespaces.
      *
-     * @see org.springframework.util.xml.SimpleNamespaceContext#bindNamespaceUri(String, String)
+     * @see SimpleNamespaceContext#bindNamespaceUri(String, String)
      */
     @Override
     public final void startPrefixMapping(String prefix, String uri) {
@@ -77,7 +77,7 @@ abstract class AbstractStaxContentHandler implements ContentHandler {
     /**
      * Removes the binding for the given prefix.
      *
-     * @see org.springframework.util.xml.SimpleNamespaceContext#removeBinding(String)
+     * @see SimpleNamespaceContext#removeBinding(String)
      */
     @Override
     public final void endPrefixMapping(String prefix) {
@@ -95,7 +95,7 @@ abstract class AbstractStaxContentHandler implements ContentHandler {
         }
     }
 
-    protected abstract void startElementInternal(QName name, Attributes atts, org.springframework.util.xml.SimpleNamespaceContext namespaceContext)
+    protected abstract void startElementInternal(QName name, Attributes atts, SimpleNamespaceContext namespaceContext)
             throws XMLStreamException;
 
     @Override
@@ -108,7 +108,7 @@ abstract class AbstractStaxContentHandler implements ContentHandler {
         }
     }
 
-    protected abstract void endElementInternal(QName name, org.springframework.util.xml.SimpleNamespaceContext namespaceContext)
+    protected abstract void endElementInternal(QName name, SimpleNamespaceContext namespaceContext)
             throws XMLStreamException;
 
     @Override

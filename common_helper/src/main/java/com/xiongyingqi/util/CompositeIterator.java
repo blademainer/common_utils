@@ -42,7 +42,7 @@ public class CompositeIterator<E> implements Iterator<E> {
      * Add given iterator to this composite.
      */
     public void add(Iterator<E> iterator) {
-        org.springframework.util.Assert.state(!inUse, "You can no longer add iterator to a composite iterator that's already in use");
+        Assert.state(!inUse, "You can no longer add iterator to a composite iterator that's already in use");
         if (iterators.contains(iterator)) {
             throw new IllegalArgumentException("You cannot add the same iterator twice");
         }

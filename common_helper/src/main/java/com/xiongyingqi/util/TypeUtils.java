@@ -41,8 +41,8 @@ public abstract class TypeUtils {
      * @return true if rhs is assignable to lhs
      */
     public static boolean isAssignable(Type lhsType, Type rhsType) {
-        org.springframework.util.Assert.notNull(lhsType, "Left-hand side type must not be null");
-        org.springframework.util.Assert.notNull(rhsType, "Right-hand side type must not be null");
+        Assert.notNull(lhsType, "Left-hand side type must not be null");
+        Assert.notNull(rhsType, "Right-hand side type must not be null");
 
         // all types are assignable to themselves and to class Object
         if (lhsType.equals(rhsType) || lhsType.equals(Object.class)) {
@@ -54,7 +54,7 @@ public abstract class TypeUtils {
 
             // just comparing two classes
             if (rhsType instanceof Class<?>) {
-                return org.springframework.util.ClassUtils.isAssignable(lhsClass, (Class<?>) rhsType);
+                return ClassUtils.isAssignable(lhsClass, (Class<?>) rhsType);
             }
 
             if (rhsType instanceof ParameterizedType) {
@@ -62,7 +62,7 @@ public abstract class TypeUtils {
 
                 // a parameterized type is always assignable to its raw class type
                 if (rhsRaw instanceof Class<?>) {
-                    return org.springframework.util.ClassUtils.isAssignable(lhsClass, (Class<?>) rhsRaw);
+                    return ClassUtils.isAssignable(lhsClass, (Class<?>) rhsRaw);
                 }
             } else if (lhsClass.isArray() && rhsType instanceof GenericArrayType) {
                 Type rhsComponent = ((GenericArrayType) rhsType).getGenericComponentType();

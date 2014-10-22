@@ -81,8 +81,8 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
      * and creates new elements on demand using the supplied {@link com.xiongyingqi.util.AutoPopulatingList.ElementFactory}.
      */
     public AutoPopulatingList(List<E> backingList, ElementFactory<E> elementFactory) {
-        org.springframework.util.Assert.notNull(backingList, "Backing List must not be null");
-        org.springframework.util.Assert.notNull(elementFactory, "Element factory must not be null");
+        Assert.notNull(backingList, "Backing List must not be null");
+        Assert.notNull(elementFactory, "Element factory must not be null");
         this.backingList = backingList;
         this.elementFactory = elementFactory;
     }
@@ -273,9 +273,9 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
         private final Class<? extends E> elementClass;
 
         public ReflectiveElementFactory(Class<? extends E> elementClass) {
-            org.springframework.util.Assert.notNull(elementClass, "Element class must not be null");
-            org.springframework.util.Assert.isTrue(!elementClass.isInterface(), "Element class must not be an interface type");
-            org.springframework.util.Assert.isTrue(!Modifier.isAbstract(elementClass.getModifiers()), "Element class cannot be an abstract class");
+            Assert.notNull(elementClass, "Element class must not be null");
+            Assert.isTrue(!elementClass.isInterface(), "Element class must not be an interface type");
+            Assert.isTrue(!Modifier.isAbstract(elementClass.getModifiers()), "Element class cannot be an abstract class");
             this.elementClass = elementClass;
         }
 

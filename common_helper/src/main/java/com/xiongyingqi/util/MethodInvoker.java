@@ -203,7 +203,7 @@ public class MethodInvoker {
      * @throws ClassNotFoundException if the class name was invalid
      */
     protected Class<?> resolveClassName(String className) throws ClassNotFoundException {
-        return org.springframework.util.ClassUtils.forName(className, org.springframework.util.ClassUtils.getDefaultClassLoader());
+        return ClassUtils.forName(className, ClassUtils.getDefaultClassLoader());
     }
 
     /**
@@ -309,7 +309,7 @@ public class MethodInvoker {
     public static int getTypeDifferenceWeight(Class<?>[] paramTypes, Object[] args) {
         int result = 0;
         for (int i = 0; i < paramTypes.length; i++) {
-            if (!org.springframework.util.ClassUtils.isAssignableValue(paramTypes[i], args[i])) {
+            if (!ClassUtils.isAssignableValue(paramTypes[i], args[i])) {
                 return Integer.MAX_VALUE;
             }
             if (args[i] != null) {
@@ -319,7 +319,7 @@ public class MethodInvoker {
                     if (paramType.equals(superClass)) {
                         result = result + 2;
                         superClass = null;
-                    } else if (org.springframework.util.ClassUtils.isAssignable(paramType, superClass)) {
+                    } else if (ClassUtils.isAssignable(paramType, superClass)) {
                         result = result + 2;
                         superClass = superClass.getSuperclass();
                     } else {

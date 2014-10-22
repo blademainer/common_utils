@@ -153,10 +153,10 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
     public ConcurrentReferenceHashMap(int initialCapacity, float loadFactor, int concurrencyLevel,
                                       ReferenceType referenceType) {
 
-        org.springframework.util.Assert.isTrue(concurrencyLevel > 0, "ConcurrencyLevel must be positive");
-        org.springframework.util.Assert.isTrue(initialCapacity >= 0, "InitialCapacity must not be negative");
-        org.springframework.util.Assert.isTrue(loadFactor > 0f, "LoadFactor must be positive");
-        org.springframework.util.Assert.notNull(referenceType, "Reference type must not be null");
+        Assert.isTrue(concurrencyLevel > 0, "ConcurrencyLevel must be positive");
+        Assert.isTrue(initialCapacity >= 0, "InitialCapacity must not be negative");
+        Assert.isTrue(loadFactor > 0f, "LoadFactor must be positive");
+        Assert.notNull(referenceType, "Reference type must not be null");
         this.loadFactor = loadFactor;
         this.shift = calculateShift(concurrencyLevel, MAXIMUM_CONCURRENCY_LEVEL);
         int size = 1 << this.shift;
@@ -891,7 +891,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
         @Override
         public void remove() {
-            org.springframework.util.Assert.state(this.last != null);
+            Assert.state(this.last != null);
             ConcurrentReferenceHashMap.this.remove(this.last.getKey());
         }
     }

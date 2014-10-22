@@ -21,14 +21,14 @@ import java.nio.charset.Charset;
 
 /**
  * Simple utility methods for dealing with streams. The copy methods of this class are
- * similar to those defined in {@link org.springframework.util.FileCopyUtils} except that all affected streams are
+ * similar to those defined in {@link FileCopyUtils} except that all affected streams are
  * left open when done. All copy methods use a block size of 4096 bytes.
  * <p/>
  * <p>Mainly for use within the framework, but also useful for application code.
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
- * @see org.springframework.util.FileCopyUtils
+ * @see FileCopyUtils
  * @since 3.2.2
  */
 public abstract class StreamUtils {
@@ -59,7 +59,7 @@ public abstract class StreamUtils {
      * @throws java.io.IOException in case of I/O errors
      */
     public static String copyToString(InputStream in, Charset charset) throws IOException {
-        org.springframework.util.Assert.notNull(in, "No InputStream specified");
+        Assert.notNull(in, "No InputStream specified");
         StringBuilder out = new StringBuilder();
         InputStreamReader reader = new InputStreamReader(in, charset);
         char[] buffer = new char[BUFFER_SIZE];
@@ -79,8 +79,8 @@ public abstract class StreamUtils {
      * @throws java.io.IOException in case of I/O errors
      */
     public static void copy(byte[] in, OutputStream out) throws IOException {
-        org.springframework.util.Assert.notNull(in, "No input byte array specified");
-        org.springframework.util.Assert.notNull(out, "No OutputStream specified");
+        Assert.notNull(in, "No input byte array specified");
+        Assert.notNull(out, "No OutputStream specified");
         out.write(in);
     }
 
@@ -94,9 +94,9 @@ public abstract class StreamUtils {
      * @throws java.io.IOException in case of I/O errors
      */
     public static void copy(String in, Charset charset, OutputStream out) throws IOException {
-        org.springframework.util.Assert.notNull(in, "No input String specified");
-        org.springframework.util.Assert.notNull(charset, "No charset specified");
-        org.springframework.util.Assert.notNull(out, "No OutputStream specified");
+        Assert.notNull(in, "No input String specified");
+        Assert.notNull(charset, "No charset specified");
+        Assert.notNull(out, "No OutputStream specified");
         Writer writer = new OutputStreamWriter(out, charset);
         writer.write(in);
         writer.flush();
@@ -112,8 +112,8 @@ public abstract class StreamUtils {
      * @throws java.io.IOException in case of I/O errors
      */
     public static int copy(InputStream in, OutputStream out) throws IOException {
-        org.springframework.util.Assert.notNull(in, "No InputStream specified");
-        org.springframework.util.Assert.notNull(out, "No OutputStream specified");
+        Assert.notNull(in, "No InputStream specified");
+        Assert.notNull(out, "No OutputStream specified");
         int byteCount = 0;
         byte[] buffer = new byte[BUFFER_SIZE];
         int bytesRead = -1;
@@ -133,7 +133,7 @@ public abstract class StreamUtils {
      * @return a version of the InputStream that ignores calls to close
      */
     public static InputStream nonClosing(InputStream in) {
-        org.springframework.util.Assert.notNull(in, "No InputStream specified");
+        Assert.notNull(in, "No InputStream specified");
         return new NonClosingInputStream(in);
     }
 
@@ -145,7 +145,7 @@ public abstract class StreamUtils {
      * @return a version of the OutputStream that ignores calls to close
      */
     public static OutputStream nonClosing(OutputStream out) {
-        org.springframework.util.Assert.notNull(out, "No OutputStream specified");
+        Assert.notNull(out, "No OutputStream specified");
         return new NonClosingOutputStream(out);
     }
 

@@ -7,6 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common_helper</artifactId>
+    <description>通用工具类</description>
     <dependencies>
         <dependency>
             <groupId>com.xiongyingqi</groupId>

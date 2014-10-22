@@ -306,7 +306,7 @@ public abstract class MimeTypeUtils {
      * 14.1</a>
      */
     public static void sortBySpecificity(List<MimeType> mimeTypes) {
-        org.springframework.util.Assert.notNull(mimeTypes, "'mimeTypes' must not be null");
+        Assert.notNull(mimeTypes, "'mimeTypes' must not be null");
         if (mimeTypes.size() > 1) {
             Collections.sort(mimeTypes, SPECIFICITY_COMPARATOR);
         }

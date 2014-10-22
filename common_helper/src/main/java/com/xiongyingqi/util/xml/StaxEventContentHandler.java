@@ -90,7 +90,7 @@ class StaxEventContentHandler extends AbstractStaxContentHandler {
     }
 
     @Override
-    protected void startElementInternal(QName name, Attributes atts, org.springframework.util.xml.SimpleNamespaceContext namespaceContext)
+    protected void startElementInternal(QName name, Attributes atts, SimpleNamespaceContext namespaceContext)
             throws XMLStreamException {
 
         List<Attribute> attributes = getAttributes(atts);
@@ -100,7 +100,7 @@ class StaxEventContentHandler extends AbstractStaxContentHandler {
     }
 
     @Override
-    protected void endElementInternal(QName name, org.springframework.util.xml.SimpleNamespaceContext namespaceContext) throws XMLStreamException {
+    protected void endElementInternal(QName name, SimpleNamespaceContext namespaceContext) throws XMLStreamException {
         List<Namespace> namespaces = createNamespaces(namespaceContext);
         consumeEvent(this.eventFactory.createEndElement(name, namespaces != null ? namespaces.iterator() : null));
     }
@@ -127,7 +127,7 @@ class StaxEventContentHandler extends AbstractStaxContentHandler {
     /**
      * Create and return a list of {@code NameSpace} objects from the {@code NamespaceContext}.
      */
-    private List<Namespace> createNamespaces(org.springframework.util.xml.SimpleNamespaceContext namespaceContext) {
+    private List<Namespace> createNamespaces(SimpleNamespaceContext namespaceContext) {
         if (namespaceContext == null) {
             return null;
         }

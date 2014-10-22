@@ -7,6 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common_http</artifactId>
+    <description>通用http帮助类</description>
     <properties>
         <httpclient.version>4.3.1</httpclient.version>
     </properties>

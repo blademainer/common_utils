@@ -13,6 +13,7 @@
         <module>commons-file</module>
         <module>commons-scan</module>
         <module>commons-spring</module>
+        <module>commons-logic</module>
     </modules>
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>

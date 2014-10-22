@@ -146,13 +146,13 @@ public class MimeType implements Comparable<MimeType>, Serializable {
      * @throws IllegalArgumentException if any of the parameters contain illegal characters
      */
     public MimeType(String type, String subtype, Map<String, String> parameters) {
-        org.springframework.util.Assert.hasLength(type, "type must not be empty");
-        org.springframework.util.Assert.hasLength(subtype, "subtype must not be empty");
+        Assert.hasLength(type, "type must not be empty");
+        Assert.hasLength(subtype, "subtype must not be empty");
         checkToken(type);
         checkToken(subtype);
         this.type = type.toLowerCase(Locale.ENGLISH);
         this.subtype = subtype.toLowerCase(Locale.ENGLISH);
-        if (!org.springframework.util.CollectionUtils.isEmpty(parameters)) {
+        if (!CollectionUtils.isEmpty(parameters)) {
             Map<String, String> m = new LinkedCaseInsensitiveMap<String>(parameters.size(), Locale.ENGLISH);
             for (Map.Entry<String, String> entry : parameters.entrySet()) {
                 String attribute = entry.getKey();
@@ -183,7 +183,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
     }
 
     protected void checkParameters(String attribute, String value) {
-        org.springframework.util.Assert.hasLength(attribute, "parameter attribute must not be empty");
+        Assert.hasLength(attribute, "parameter attribute must not be empty");
         Assert.hasLength(value, "parameter value must not be empty");
         checkToken(attribute);
         if (PARAM_CHARSET.equals(attribute)) {

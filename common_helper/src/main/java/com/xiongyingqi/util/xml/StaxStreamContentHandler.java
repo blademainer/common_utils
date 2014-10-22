@@ -63,7 +63,7 @@ class StaxStreamContentHandler extends AbstractStaxContentHandler {
     }
 
     @Override
-    protected void endElementInternal(QName name, org.springframework.util.xml.SimpleNamespaceContext namespaceContext) throws XMLStreamException {
+    protected void endElementInternal(QName name, SimpleNamespaceContext namespaceContext) throws XMLStreamException {
         streamWriter.writeEndElement();
     }
 
@@ -87,7 +87,7 @@ class StaxStreamContentHandler extends AbstractStaxContentHandler {
     }
 
     @Override
-    protected void startElementInternal(QName name, Attributes attributes, org.springframework.util.xml.SimpleNamespaceContext namespaceContext)
+    protected void startElementInternal(QName name, Attributes attributes, SimpleNamespaceContext namespaceContext)
             throws XMLStreamException {
         streamWriter.writeStartElement(name.getPrefix(), name.getLocalPart(), name.getNamespaceURI());
         if (namespaceContext != null) {
