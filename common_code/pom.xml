@@ -13,6 +13,10 @@
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_helper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
