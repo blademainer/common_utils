@@ -1,5 +1,6 @@
 package com.xiongyingqi.util;
 
+import java.io.Serializable;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -7,7 +8,22 @@ import java.lang.annotation.Target;
 import java.util.Collection;
 
 @PackageScannerTest.PackageScannerTestAnnotation
-public class PackageScannerTest {
+public class PackageScannerTest implements Serializable, CharSequence {
+
+    @Override
+    public int length() {
+        return 0;
+    }
+
+    @Override
+    public char charAt(int index) {
+        return 0;
+    }
+
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        return null;
+    }
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.TYPE})
@@ -51,5 +67,26 @@ public class PackageScannerTest {
                 .scan();
         org.junit.Assert.assertTrue(scan.contains(getClass()));
         System.out.println(scan);
+    }
+
+    @org.junit.Test
+    public void testAndImplementsInterface() throws Exception {
+        Collection<Class<?>> scan = PackageScanner.newScanner()
+                .addPackage(PackageScanner.class.getPackage())
+                .andInterface(Serializable.class)
+                .andInterface(CharSequence.class)
+                .scan();
+        System.out.println(scan);
+        org.junit.Assert.assertTrue(scan.contains(getClass()));
+    }
+    @org.junit.Test
+    public void testOrImplementsInterface() throws Exception {
+        Collection<Class<?>> scan = PackageScanner.newScanner()
+                .addPackage(PackageScanner.class.getPackage())
+                .orInterface(Serializable.class)
+                .orInterface(CharSequence.class)
+                .scan();
+        System.out.println(scan);
+        org.junit.Assert.assertTrue(scan.contains(getClass()));
     }
 }

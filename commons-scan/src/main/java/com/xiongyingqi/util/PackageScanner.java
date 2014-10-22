@@ -17,6 +17,8 @@ public class PackageScanner {
     private Collection<Class<? extends Annotation>> andAnnotations;
     private Collection<String> startWithStrings;
     private Collection<String> endWithStrings;
+    private Collection<Class<?>> orImplementsInterface;
+    private Collection<Class<?>> andImplementsInterface;
     private boolean recursive;
 
     private PackageScanner() {
@@ -29,6 +31,8 @@ public class PackageScanner {
         packageScanner.andAnnotations = new ArrayList<Class<? extends Annotation>>();
         packageScanner.startWithStrings = new ArrayList<String>();
         packageScanner.endWithStrings = new ArrayList<String>();
+        packageScanner.orImplementsInterface = new ArrayList<Class<?>>();
+        packageScanner.andImplementsInterface = new ArrayList<Class<?>>();
 
         packageScanner.recursive = true;
         return packageScanner;
@@ -89,6 +93,28 @@ public class PackageScanner {
     }
 
     /**
+     * 并且类实现接口
+     *
+     * @param interfc
+     * @return
+     */
+    public PackageScanner andInterface(Class<?> interfc) {
+        andImplementsInterface.add(interfc);
+        return this;
+    }
+
+    /**
+     * 或者类实现接口
+     *
+     * @param interfc
+     * @return
+     */
+    public PackageScanner orInterface(Class<?> interfc) {
+        orImplementsInterface.add(interfc);
+        return this;
+    }
+
+    /**
      * @param startWithString
      * @return
      */
@@ -131,7 +157,7 @@ public class PackageScanner {
         for (Package pkg : packages) {
             Set<Class<?>> scanClasses = ClassLookupHelper.getClasses(pkg, recursive, classFileFilter);
             for (Class<?> scanClass : scanClasses) {
-                if (isAnnotationPassed(scanClass) && isStartWithPassed(scanClass)) {
+                if (isAnnotationPassed(scanClass) && isStartWithPassed(scanClass) && isInterfacePassed(scanClass)) {
                     classes.add(scanClass);
                 }
             }
@@ -182,6 +208,31 @@ public class PackageScanner {
         }
         return flag;
     }
+
+    private boolean isInterfacePassed(Class<?> clazz) {
+        //true ^ true = false, true ^ false = true
+        boolean flag = true ^ (CollectionHelper.notNullAndHasSize(orImplementsInterface) || CollectionHelper.notNullAndHasSize(andImplementsInterface));// 如果判断是否需要注解，则初始值为false
+
+        for (Class<?> orInterface : orImplementsInterface) {
+            boolean isImplementsInterface = ClassHelper.isImplementsInterface(clazz, orInterface);
+            if (isImplementsInterface) {
+                flag = true;
+                break;
+            }
+        }
+
+
+        for (Class<?> andInterface : andImplementsInterface) {
+            boolean isImplementsInterface = ClassHelper.isImplementsInterface(clazz, andInterface);
+            if (!isImplementsInterface) {
+                flag = false;
+                break;
+            }
+            flag = true;
+        }
+        return flag;
+    }
+
 
     public static void main(String[] args) {
         Collection<Class<?>> scan = PackageScanner.newScanner().addPackage(PackageScanner.class.getPackage()).orAnnotation(Deprecated.class).scan();
