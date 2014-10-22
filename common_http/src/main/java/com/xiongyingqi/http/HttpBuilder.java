@@ -9,7 +9,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URI;
@@ -195,7 +194,6 @@ public class HttpBuilder {
     }
 
 
-    @Test
     public void test() {
         try {
             String rs = HttpAccess.execute(HttpAccess.getClient(), HttpBuilder.newBuilder().url("http://www.baidu.com").get().build());

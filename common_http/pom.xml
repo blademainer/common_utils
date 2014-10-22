@@ -12,7 +12,6 @@
         <httpclient.version>4.3.1</httpclient.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -41,6 +40,11 @@
         <dependency>
             <groupId>com.xiongyingqi</groupId>
             <artifactId>common_log</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
     <build>
