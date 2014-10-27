@@ -3,7 +3,7 @@
     <parent>
         <artifactId>common_utils</artifactId>
         <groupId>com.xiongyingqi</groupId>
-        <version>0.0.11-SNAPSHOT</version>
+        <version>0.0.11</version>
     </parent>
     <artifactId>baidu_api</artifactId>
     <modelVersion>4.0.0</modelVersion>
