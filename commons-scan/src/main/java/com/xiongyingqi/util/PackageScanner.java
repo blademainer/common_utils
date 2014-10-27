@@ -215,6 +215,7 @@ public class PackageScanner {
 
         for (Class<?> orInterface : orImplementsInterface) {
             boolean isImplementsInterface = ClassHelper.isImplementsInterface(clazz, orInterface);
+//            EntityHelper.print("clazz: " + clazz + ", isImplementsInterface: " + isImplementsInterface);
             if (isImplementsInterface) {
                 flag = true;
                 break;
@@ -237,6 +238,8 @@ public class PackageScanner {
     public static void main(String[] args) {
         Collection<Class<?>> scan = PackageScanner.newScanner().addPackage(PackageScanner.class.getPackage()).orAnnotation(Deprecated.class).scan();
         System.out.println(scan);
+        Collection<Class<?>> scan2 = PackageScanner.newScanner().addPackage(ArrayList.class.getPackage()).andInterface(Collection.class).scan();
+        System.out.println(scan2);
     }
 
 }

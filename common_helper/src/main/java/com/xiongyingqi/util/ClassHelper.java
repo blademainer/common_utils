@@ -10,6 +10,7 @@ public class ClassHelper {
 
     /**
      * 获取加载的所有类
+     *
      * @return
      */
     public static Class[] getAllClasses() {
@@ -48,6 +49,13 @@ public class ClassHelper {
         Assert.notNull(clazz);
         Assert.notNull(enterface);
         Class[] interfaces = clazz.getInterfaces();
+        Class superclass = clazz.getSuperclass();
+        if (superclass != null) {
+            boolean implementsInterface = isImplementsInterface(superclass, enterface);
+            if (implementsInterface) {
+                return true;
+            }
+        }
         boolean flag = false;
         for (Class anInterface : interfaces) {
             if (enterface == anInterface) {

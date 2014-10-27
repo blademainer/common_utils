@@ -10,6 +10,9 @@ public class ClassHelperTest {
     @org.junit.Test
     public void testIsImplementsInterface() throws Exception {
         org.junit.Assert.assertTrue(ClassHelper.isImplementsInterface(ArrayList.class, Collection.class));
+        org.junit.Assert.assertTrue(ClassHelper.isImplementsInterface(SubClass.class, TestInterface.class));
         org.junit.Assert.assertFalse(ClassHelper.isImplementsInterface(String.class, Collection.class));
+
+
     }
 }

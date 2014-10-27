@@ -89,4 +89,15 @@ public class PackageScannerTest implements Serializable, CharSequence {
         System.out.println(scan);
         org.junit.Assert.assertTrue(scan.contains(getClass()));
     }
+
+    @org.junit.Test
+    public void testImplementsInterface() throws Exception {
+        Collection<Class<?>> scan = PackageScanner.newScanner()
+                .addPackage(getClass().getPackage())
+                .orInterface(TestInterface.class)
+                .scan();
+        System.out.println(scan);
+        Assert.notNull(scan);
+//        org.junit.Assert.assertTrue(scan.contains(getClass()));
+    }
 }
