@@ -29,10 +29,29 @@ public class PropertiesHelper {
         if (!propertiesFile.exists()) {
             return null;
         }
-        Map<String, String> propertiesMap = null;
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(propertiesFile);
+            return readProperties(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Map<String, String> readProperties(InputStream inputStream) {
+        Map<String, String> propertiesMap = null;
+        try {
             propertiesMap = new LinkedHashMap<String, String>();
 
             Properties properties = new Properties();
