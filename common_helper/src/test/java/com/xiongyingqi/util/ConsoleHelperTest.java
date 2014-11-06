@@ -4,7 +4,7 @@ import java.io.File;
 
 public class ConsoleHelperTest {
 
-    @org.junit.Test
+//    @org.junit.Test
     public void test() {
         String filePath = getClass().getClassLoader().getResource("").getFile();
         File file = new File(filePath, "console.out");
