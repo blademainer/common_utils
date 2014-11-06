@@ -2,7 +2,6 @@ package com.xiongyingqi.util;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class EntityHelperTest {
@@ -268,36 +267,6 @@ public class EntityHelperTest {
         bHashSetEntities.removeAll(bHashSetEntitiesToRemove);
         System.out.println("HashSet B least ============ " + bHashSetEntities.size());
         System.out.println("HashSet B ====== " + TimerHelper.getTime());
-
-        TimerHelper.getTime();
-        ArrayList<AEntity> aEntities = new ArrayList<>();
-        ArrayList<AEntity> aEntitiesToRemove = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
-            AEntity aEntity = new AEntity(i, i + "", i * 10);
-            aEntities.add(aEntity);
-        }
-
-        for (int i = 0; i < 10000; i++) {
-            AEntity aEntity = new AEntity(i, i + "", i * 10);
-            aEntitiesToRemove.add(aEntity);
-        }
-        aEntities.removeAll(aEntitiesToRemove);
-        System.out.println("ArrayList A ====== " + TimerHelper.getTime());
-
-        TimerHelper.getTime();
-        ArrayList<BEntity> bEntities = new ArrayList<>();
-        ArrayList<BEntity> bEntitiesToRemove = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
-            BEntity aEntity = new BEntity(i, i + "", i * 10);
-            bEntities.add(aEntity);
-        }
-
-        for (int i = 0; i < 10000; i++) {
-            BEntity aEntity = new BEntity(i, i + "", i * 10);
-            bEntitiesToRemove.add(aEntity);
-        }
-        bEntities.removeAll(bEntitiesToRemove);
-        System.out.println("ArrayList B ====== " + TimerHelper.getTime());
 
     }
 
