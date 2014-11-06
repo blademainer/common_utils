@@ -72,6 +72,25 @@ public class StackTraceHelper {
         return stackTraceElementsTarget;
     }
 
+
+    /**
+     * 获取间接调用的类名<p></p>
+     * 比如A方法调用B方法，B方法再调用whoInvoke()方法，这样B方法内就能返回A方法在那个类下
+     *
+     * @return
+     */
+    public static Class whoInvoke() {
+        Throwable throwable = new Throwable();
+        StackTraceElement[] stackTraceElements = throwable.getStackTrace();
+        StackTraceElement stackTraceElement = stackTraceElements[2];
+        try {
+            return Class.forName(stackTraceElement.getClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         printStackTrace();
         StackTraceElement[] stackTraceElements = getStackTrace();

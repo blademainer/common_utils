@@ -6,11 +6,29 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class
-        DateHelper {
+public class DateHelper {
     public static final SimpleDateFormat FORMATTER_SHORT = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat FORMATTER_LONG = new SimpleDateFormat(
             "yyyy-MM-dd HH:mm:ss");
+
+
+    /**
+     * 计算日期之间相差多少天
+     *
+     * @param date1 较前日期
+     * @param date2 较后日期
+     * @return
+     */
+    public static int diffOfDay(Date date1, Date date2) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date1.getTime());
+        int i = calendar.get(Calendar.DAY_OF_YEAR);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(date2.getTime());
+        int i2 = calendar2.get(Calendar.DAY_OF_YEAR);
+        return i2 - i;
+    }
+
 
     /**
      * 获取现在时间

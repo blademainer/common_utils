@@ -54,7 +54,7 @@ public class FileHelper {
     public static File appendStringToFile(File file, String string) {
         FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(file);
+            fileWriter = new FileWriter(file, true);
             fileWriter.append(string);
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,6 +66,26 @@ public class FileHelper {
             }
             try {
                 fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
+
+    public static File appendBytesToFile(File file, byte[] bts) {
+        OutputStream outputStream = null;
+        try {
+            outputStream = new BufferedOutputStream(new FileOutputStream(file, true));
+            outputStream.write(bts);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.flush();
+                outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -962,5 +982,16 @@ public class FileHelper {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static boolean initFile(File file) {
+        if (file == null) {
+            return false;
+        }
+        File parentFile = file.getParentFile();
+        if (!parentFile.exists()) {
+            return parentFile.mkdirs();
+        }
+        return false;
     }
 }

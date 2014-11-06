@@ -24,9 +24,28 @@ public class FileHelperTest {
 
     }
 
-    @Test
+    @org.junit.Test
     public void testAppendStringToFile() throws Exception {
+        String filePath = getClass().getClassLoader().getResource("").getFile();
+        File file = new File(filePath, "appendTest.txt");
+        file.delete();
+        FileHelper.appendStringToFile(file, "a");
+        FileHelper.appendStringToFile(file, "b");
+        FileHelper.appendStringToFile(file, "c");
+        String s = FileHelper.readFileToString(file);
+        org.junit.Assert.assertEquals(s, "abc");
+    }
 
+    @org.junit.Test
+    public void testAppendBytesToFile() throws Exception {
+        String filePath = getClass().getClassLoader().getResource("").getFile();
+        File file = new File(filePath, "appendTest.txt");
+        file.delete();
+        FileHelper.appendBytesToFile(file, "a".getBytes());
+        FileHelper.appendBytesToFile(file, "b".getBytes());
+        FileHelper.appendBytesToFile(file, "c".getBytes());
+        String s = FileHelper.readFileToString(file);
+        org.junit.Assert.assertEquals(s, "abc");
     }
 
     @Test
