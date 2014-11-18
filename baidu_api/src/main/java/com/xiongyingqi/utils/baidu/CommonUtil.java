@@ -28,7 +28,7 @@ public class CommonUtil {
     };
 
     static {
-        Map<String, String> propertiesMap = PropertiesHelper.readProperties(CommonUtil.class.getClassLoader().getResource("baidu_api.properties").getFile());
+        Map<String, String> propertiesMap = PropertiesHelper.readProperties(CommonUtil.class.getClassLoader().getResourceAsStream("baidu_api.properties"));
         ipLocationApiUrl = propertiesMap.get("ip-location-api");
         ak = propertiesMap.get("ak");
         sk = propertiesMap.get("sk");

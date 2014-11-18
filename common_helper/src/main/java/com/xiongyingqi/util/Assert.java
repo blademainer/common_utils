@@ -71,6 +71,27 @@ public abstract class Assert {
     }
 
 
+    public static void equals(Object one, Object another) {
+        equals(one, another, "[Assertion failed] - this expression must be false");
+    }
+
+    public static void equals(Object one, Object another, String message) {
+        if (one == null || another == null || !one.equals(another)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void notEquals(Object one, Object another) {
+        notEquals(one, another, "[Assertion failed] - this expression must be false");
+    }
+
+
+    public static void notEquals(Object one, Object another, String message) {
+        if (one == null || another == null || one.equals(another)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
     /**
      * Assert a boolean expression, throwing {@code IllegalArgumentException}
      * if the test result is {@code false}.
@@ -155,7 +176,7 @@ public abstract class Assert {
      *
      * @param text    the String to check
      * @param message the exception message to use if the assertion fails
-     * @see org.springframework.util.StringUtils#hasLength
+     * @see com.xiongyingqi.util.StringUtils#hasLength
      */
     public static void hasLength(String text, String message) {
         if (!StringUtils.hasLength(text)) {
@@ -169,7 +190,7 @@ public abstract class Assert {
      * <pre class="code">Assert.hasLength(name);</pre>
      *
      * @param text the String to check
-     * @see org.springframework.util.StringUtils#hasLength
+     * @see com.xiongyingqi.util.StringUtils#hasLength
      */
     public static void hasLength(String text) {
         hasLength(text,
@@ -183,7 +204,7 @@ public abstract class Assert {
      *
      * @param text    the String to check
      * @param message the exception message to use if the assertion fails
-     * @see org.springframework.util.StringUtils#hasText
+     * @see com.xiongyingqi.util.StringUtils#hasText
      */
     public static void hasText(String text, String message) {
         if (!StringUtils.hasText(text)) {
@@ -197,7 +218,7 @@ public abstract class Assert {
      * <pre class="code">Assert.hasText(name, "'name' must not be empty");</pre>
      *
      * @param text the String to check
-     * @see org.springframework.util.StringUtils#hasText
+     * @see com.xiongyingqi.util.StringUtils#hasText
      */
     public static void hasText(String text) {
         hasText(text,

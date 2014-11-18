@@ -515,7 +515,7 @@ public class EntityHelper {
         for (Iterator iterator = methods.iterator(); iterator.hasNext(); ) {
             Method method = (Method) iterator.next();
             String methodName = method.getName();
-            if (methodName.startsWith("get") && !Modifier.isStatic(method.getModifiers())
+            if ((methodName.startsWith("get") || methodName.startsWith("is")) && !Modifier.isStatic(method.getModifiers())
                     && Modifier.isPublic(method.getModifiers())) {
                 try {
                     Object value = method.invoke(object);
