@@ -14,6 +14,7 @@
         <module>commons-scan</module>
         <module>commons-spring</module>
         <module>commons-logic</module>
+        <module>commons-ip</module>
     </modules>
     <name>common_utils</name>
     <artifactId>common_utils</artifactId>
