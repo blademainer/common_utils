@@ -137,7 +137,11 @@ public class Logger {
 
     public static void error(Class clazz, Object message) {
         org.apache.log4j.Logger logger = getLogger(clazz);
-        logger.error(message);
+        if (message instanceof Throwable) {
+            logger.error("Common Logger", (Throwable) message);
+        } else {
+            logger.error(message);
+        }
     }
 
     public static void error(Object object, Object message, Throwable cause) {
@@ -192,10 +196,6 @@ public class Logger {
             logger = org.apache.log4j.Logger.getLogger(name);
         }
         return logger;
-    }
-
-    public static void main(String[] args) {
-        debug("呵呵");
     }
 
 }

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xiongyingqi</groupId>
     <modules>
@@ -1408,6 +1409,33 @@
     </dependencies>-->
 
 
+    <!--
+    <settings>
+        <servers>
+            <server>
+              <id>ossrh</id>
+              <username>your-jira-id</username>
+              <password>your-jira-pwd</password>
+            </server>
+        </servers>
+    </settings>
+
+    <settings>
+        <profiles>
+            <profile>
+                  <id>ossrh</id>
+                  <activation>
+                    <activeByDefault>true</activeByDefault>
+                  </activation>
+                  <properties>
+                    <gpg.executable>gpg2</gpg.executable>
+                    <gpg.passphrase>the_pass_phrase</gpg.passphrase>
+                  </properties>
+            </profile>
+        </profiles>
+    </settings>
+    -->
+    <!--gpg2 336D116F-->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
