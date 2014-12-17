@@ -45,6 +45,7 @@ public class KeyObject extends EntityHelper {
         }
         String s = className + "|" + name;
         String s1 = Base64.encodeBytes(s.getBytes());
+        s1 = s1.replaceAll("\\s", "");
         return s1;
     }
 
