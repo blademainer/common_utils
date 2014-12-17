@@ -3,7 +3,7 @@
     <parent>
         <artifactId>common_utils</artifactId>
         <groupId>com.xiongyingqi</groupId>
-        <version>0.1.4-SNAPSHOT</version>
+        <version>0.1.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common_thread</artifactId>
