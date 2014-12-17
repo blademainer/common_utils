@@ -139,6 +139,16 @@ public class DateHelper {
         return strtodate;
     }
 
+
+    public static String dateToStr(Date date, String format) {
+        DateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
+    }
+
+    public static String dateToStr(Date date, DateFormat dateFormat) {
+        return dateFormat.format(date);
+    }
+
     /**
      * 将长时间格式时间转换为字符串 yyyy-MM-dd HH:mm:ss
      *

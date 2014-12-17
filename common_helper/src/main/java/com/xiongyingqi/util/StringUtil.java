@@ -10,11 +10,12 @@ public class StringUtil {
     private static int intLength = numberLength(Integer.MAX_VALUE);
 
     private static int numberLength(long number) {
-        int i = 0;
-        for (; number > 0; number = number / 10) {
-            i++;
-        }
-        return i;
+//        int i = 0;
+//        do{
+//            i++;
+//            number = number / 10;
+//        }while (number > 0);
+        return (number + "").length();
     }
 
     static {
@@ -94,10 +95,13 @@ public class StringUtil {
         //		System.out.println(numberLength(100));
         //		System.out.println(numberLength(Long.MAX_VALUE));
 
-        byte a = 1;
-        byte b = 1 << 1;
-        byte c = (byte) (a | b);
-        System.out.println(c & a);
+        System.out.println(fillZero(0, 10));
+        System.out.println(fillZero(10, 10));
+        System.out.println(fillZero(11, 10));
+//        byte a = 1;
+//        byte b = 1 << 1;
+//        byte c = (byte) (a | b);
+//        System.out.println(c & a);
 
     }
 }
