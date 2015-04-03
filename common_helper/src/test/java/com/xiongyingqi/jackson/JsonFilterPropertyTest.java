@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiongyingqi.jackson.annotation.IgnoreProperties;
 import com.xiongyingqi.jackson.annotation.IgnoreProperty;
 import com.xiongyingqi.jackson.helper.ThreadJacksonMixInHolder;
+import com.xiongyingqi.jackson.impl.Jackson1JavassistFilterPropertyHandler;
 import com.xiongyingqi.jackson.impl.JavassistFilterPropertyHandler;
 import com.xiongyingqi.jackson.pojo.Group;
 import com.xiongyingqi.jackson.pojo.User;
@@ -12,6 +13,7 @@ import com.xiongyingqi.util.Assert;
 import com.xiongyingqi.util.EntityHelper;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -76,6 +78,19 @@ public class JsonFilterPropertyTest {
 
 
         ObjectMapper mapper = ThreadJacksonMixInHolder.builderMapper();
+        String json = mapper.writeValueAsString(object);
+        EntityHelper.print(json);
+        Assert.hasText(json);
+    }
+    @Test
+    public void json1Test() throws NoSuchMethodException, IOException {
+        FilterPropertyHandler filterPropertyHandler = new Jackson1JavassistFilterPropertyHandler();
+        Object object = listUsers();
+
+        object = filterPropertyHandler.filterProperties(JsonFilterPropertyTest.class.getMethod("listUsers"), object);
+
+
+        org.codehaus.jackson.map.ObjectMapper mapper = ThreadJacksonMixInHolder.builderCodehausMapper();
         String json = mapper.writeValueAsString(object);
         EntityHelper.print(json);
         Assert.hasText(json);
