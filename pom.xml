@@ -1434,7 +1434,7 @@
         </profiles>
     </settings>
     -->
-    <!--gpg2 336D116F-->
+    <!-- gpg2 \-\-keyserver hkp://pool.sks-keyservers.net \-\-recv-keys 336D116F-->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
