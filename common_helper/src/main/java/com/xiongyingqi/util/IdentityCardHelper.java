@@ -112,11 +112,12 @@ public class IdentityCardHelper {
 
     public static void main(String[] args) {
         EntityHelper.print(ID_ADDRESS_FILE);
-        EntityHelper.print(generateCheckCode("210803198708177775"));
+        EntityHelper.print(generateCheckCode("210803180008177779"));
+        EntityHelper.print(generateCheckCode("210803180008177760"));
         EntityHelper.print(readAddress(210803 + ""));
-        EntityHelper.print(calculateVerifyCode("210803198708177775"));
-        EntityHelper.print(calculateVerifyCode("210803198708177775"));
-        EntityHelper.print(getSex("210803198708177775"));
-        EntityHelper.print(getSex("210803198708177766"));
+        EntityHelper.print(calculateVerifyCode("210803180008177779"));
+        EntityHelper.print(calculateVerifyCode("210803180008177760"));
+        EntityHelper.print(getSex("210803180008177779"));
+        EntityHelper.print(getSex("210803180008177760"));
     }
 }
