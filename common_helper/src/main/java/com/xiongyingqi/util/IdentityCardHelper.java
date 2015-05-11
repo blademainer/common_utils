@@ -24,8 +24,12 @@ public class IdentityCardHelper {
     public static final String FEMALE = "女";
 
     static {
-        String filePath = IdentityCardHelper.class.getClassLoader().getResource("id_address.txt").getFile();
-        ID_ADDRESS_FILE = new File(filePath);
+        try {
+            String filePath = IdentityCardHelper.class.getClassLoader().getResource("id_address.txt").getFile();
+            ID_ADDRESS_FILE = new File(filePath);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static String getSex(String number) {
@@ -45,12 +49,9 @@ public class IdentityCardHelper {
     }
 
 
-    public static boolean calculateVerifyCode(String number) {
-        Assert.isTrue(number.length() == 18, "身份证长度不符！");
+    public static char generateCheckCode(String number){
         String seventeen = number.substring(0, number.length() - 1);
         long l = Long.parseLong(seventeen);
-        EntityHelper.print(l);
-
         int sum = 0;
         for (int i = 0; i < 17; i++) {
             long n = l % 10;
@@ -59,7 +60,24 @@ public class IdentityCardHelper {
         }
         int verifyCode = sum % 11;
         char verifyCodeChar = checkCodes[verifyCode];
-        EntityHelper.print(verifyCodeChar);
+        return verifyCodeChar;
+
+    }
+
+    public static boolean calculateVerifyCode(String number) {
+//        Assert.isTrue(number.length() == 18, "身份证长度不符！");
+//        String seventeen = number.substring(0, number.length() - 1);
+//        long l = Long.parseLong(seventeen);
+//        EntityHelper.print(l);
+//
+//        int sum = 0;
+//        for (int i = 0; i < 17; i++) {
+//            long n = l % 10;
+//            l = l / 10;
+//            sum += n * numers[16 - i];
+//        }
+//        int verifyCode = sum % 11;
+        char verifyCodeChar = generateCheckCode(number);
         if (number.substring(number.length() - 1).toCharArray()[0] == verifyCodeChar) {
             return true;
         }
@@ -94,9 +112,11 @@ public class IdentityCardHelper {
 
     public static void main(String[] args) {
         EntityHelper.print(ID_ADDRESS_FILE);
-        EntityHelper.print(readAddress(360423 + ""));
-        EntityHelper.print(calculateVerifyCode("43012419870817777X"));
-        EntityHelper.print(getSex("43012419870817777X"));
-        EntityHelper.print(getSex("43012419870817767X"));
+        EntityHelper.print(generateCheckCode("210803198708177775"));
+        EntityHelper.print(readAddress(210803 + ""));
+        EntityHelper.print(calculateVerifyCode("210803198708177775"));
+        EntityHelper.print(calculateVerifyCode("210803198708177775"));
+        EntityHelper.print(getSex("210803198708177775"));
+        EntityHelper.print(getSex("210803198708177766"));
     }
 }
