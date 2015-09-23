@@ -52,7 +52,6 @@ public class Logger {
         }
     }
 
-
     // ---------------------------- info　----------------------------
 
     public static void info(Object object, Object message) {
@@ -65,7 +64,6 @@ public class Logger {
             logger.info(message);
         }
     }
-
 
     public static void info(Object object, Object message, Throwable cause) {
         Class clazz = object.getClass();
@@ -167,6 +165,10 @@ public class Logger {
         error(whoInvoke(), message);
     }
 
+    public static void error(Throwable throwable) {
+        error(whoInvoke(), "", throwable);
+    }
+
     /**
      * 获取间接调用的类名<p></p>
      * 比如A方法调用B方法，B方法再调用whoInvoke()方法，这样B方法内就能返回A方法在那个类下
@@ -184,7 +186,6 @@ public class Logger {
         }
         return null;
     }
-
 
     private static org.apache.log4j.Logger getLogger(Class clazz) {
         return getLogger(clazz.getName());

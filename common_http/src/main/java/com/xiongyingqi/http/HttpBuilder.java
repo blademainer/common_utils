@@ -11,6 +11,7 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
@@ -63,11 +64,40 @@ public class HttpBuilder {
         return this;
     }
 
+    /**
+     * 增加参数，默认使用urlEncoding
+     * @param name
+     * @param value
+     * @return
+     */
     public HttpBuilder param(String name, String value) {
-        NameValuePair nameValuePair = new BasicNameValuePair(name, value);
+        return param(name, value, true);
+    }
+
+    /**
+     * 增加参数
+     * @param name
+     * @param value
+     * @param urlEncoding
+     * @return
+     */
+    public HttpBuilder param(String name, String value, boolean urlEncoding) {
+        String encodedValue = null;
+        if(urlEncoding){
+            try {
+                encodedValue = URLEncoder.encode(value, charset.name());
+            } catch (UnsupportedEncodingException e) {
+                Logger.error(e);
+            }
+        }
+        if (encodedValue == null) {
+            encodedValue = value;
+        }
+        NameValuePair nameValuePair = new BasicNameValuePair(name, encodedValue);
         this.nameValuePairs.add(nameValuePair);
         return this;
     }
+
 
     public HttpBuilder http() {
         this.protocol = "http";
@@ -216,6 +246,10 @@ public class HttpBuilder {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args){
+        new HttpBuilder().test();
     }
 
     public List<NameValuePair> getNameValuePairs() {
