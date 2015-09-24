@@ -277,12 +277,6 @@ public class PhoneNumberAddress {
     }
 
 
-    /**
-     * Calculate multiple numbers of attribution
-     *
-     * @throws java.net.MalformedURLException
-     * @param mobileNumbers number list
-     */
 //    public static JSONObject calcMobilesCities(List<String> mobileNumbers) throws MalformedURLException{
 //        JSONObject jsonNumberCity = new JSONObject();
 //        for(String mobileNumber : mobileNumbers){
