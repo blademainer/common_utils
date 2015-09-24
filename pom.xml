@@ -1869,6 +1869,10 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <outputEncoding>UTF-8</outputEncoding>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
