@@ -186,7 +186,7 @@ public class JavassistFilterPropertyHandler implements FilterPropertyHandler {
      * 2013-10-25 下午2:47:34
      *
      * @param method 注解了 @IgnoreProperties 或 @IgnoreProperty 的方法（所在的类）
-     * @return Map<Class<?>, Collection<Class<?>>> pojo与其属性的映射表
+     * @return Map pojo与其属性的映射表
      */
     public Map<Class<?>, Class<?>> getProxyMixInAnnotation(Method method) {
 //        if (isResponseBodyAnnotation && !method.isAnnotationPresent(ResponseBody.class)) {

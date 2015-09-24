@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 /**
  * json属性过滤注解，对于同一个pojo来说 @AllowProperty 是与 @IgnoreProperty 是冲突的，如果这两个注解注解了<br>
  * 例如以下代码YxResource实体只会显示resourceName和resourceDescribe属性
- * <p/>
+ * <p>
  * <pre>
  * &#064;IgnoreProperties(
  * 	value = {
@@ -32,11 +32,11 @@ import java.lang.annotation.*;
  * 			pojo = YxResource.class,
  * 			name = { "<b><i>resourceDescribe</i></b>" })
  * </pre>
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * 但是，对于同一个pojo的同一属性来说@AllowProperty是与@IgnoreProperty则会按照@IgnoreProperty过滤的属性名过滤
  * 例如以下代码YxResource实体不会显示resourceName属性的值
- * <p/>
+ * <p>
  * <pre>
  * &#064;IgnoreProperties(
  * 	value = {

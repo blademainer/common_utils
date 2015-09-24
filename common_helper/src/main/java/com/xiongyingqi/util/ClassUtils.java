@@ -741,7 +741,6 @@ public abstract class ClassUtils {
      * {@code DefaultFoo.bar()}. This enables attributes on that method to be found.
      * <p><b>NOTE:</b> In contrast to {@link org.springframework.aop.support.AopUtils#getMostSpecificMethod},
      * this method does <i>not</i> resolve Java 5 bridge methods automatically.
-     * Call {@link org.springframework.core.BridgeMethodResolver#findBridgedMethod}
      * if bridge method resolution is desirable (e.g. for obtaining metadata from
      * the original method definition).
      * <p><b>NOTE:</b> Since Spring 3.1.1, if Java security settings disallow reflective

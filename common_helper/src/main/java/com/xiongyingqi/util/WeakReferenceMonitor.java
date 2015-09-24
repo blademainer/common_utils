@@ -31,12 +31,10 @@ import java.util.Map;
  * with the given handle object usually being a holder that uses the target
  * object underneath, and the release listener performing cleanup of the
  * target object once the handle is not strongly referenced anymore.
- * <p/>
  * <p>When a given handle becomes weakly reachable, the specified listener
  * will be called by a background thread. This thread will only be started
  * lazily and will be stopped once no handles are registered for monitoring
  * anymore, to be restarted if further handles are added.
- * <p/>
  * <p>Thanks to Tomasz Wysocki for the suggestion and the original
  * implementation of this class!
  *

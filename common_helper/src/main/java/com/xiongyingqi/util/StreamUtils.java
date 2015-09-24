@@ -19,45 +19,20 @@ package com.xiongyingqi.util;
 import java.io.*;
 import java.nio.charset.Charset;
 
-/**
- * Simple utility methods for dealing with streams. The copy methods of this class are
- * similar to those defined in {@link FileCopyUtils} except that all affected streams are
- * left open when done. All copy methods use a block size of 4096 bytes.
- * <p/>
- * <p>Mainly for use within the framework, but also useful for application code.
- *
- * @author Juergen Hoeller
- * @author Phillip Webb
- * @see FileCopyUtils
- * @since 3.2.2
- */
+
 public abstract class StreamUtils {
 
     public static final int BUFFER_SIZE = 4096;
 
 
-    /**
-     * Copy the contents of the given InputStream into a new byte array.
-     * Leaves the stream open when done.
-     *
-     * @param in the stream to copy from
-     * @return the new byte array that has been copied to
-     * @throws java.io.IOException in case of I/O errors
-     */
+    
     public static byte[] copyToByteArray(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream(BUFFER_SIZE);
         copy(in, out);
         return out.toByteArray();
     }
 
-    /**
-     * Copy the contents of the given InputStream into a String.
-     * Leaves the stream open when done.
-     *
-     * @param in the InputStream to copy from
-     * @return the String that has been copied to
-     * @throws java.io.IOException in case of I/O errors
-     */
+    
     public static String copyToString(InputStream in, Charset charset) throws IOException {
         Assert.notNull(in, "No InputStream specified");
         StringBuilder out = new StringBuilder();
@@ -70,29 +45,14 @@ public abstract class StreamUtils {
         return out.toString();
     }
 
-    /**
-     * Copy the contents of the given byte array to the given OutputStream.
-     * Leaves the stream open when done.
-     *
-     * @param in  the byte array to copy from
-     * @param out the OutputStream to copy to
-     * @throws java.io.IOException in case of I/O errors
-     */
+    
     public static void copy(byte[] in, OutputStream out) throws IOException {
         Assert.notNull(in, "No input byte array specified");
         Assert.notNull(out, "No OutputStream specified");
         out.write(in);
     }
 
-    /**
-     * Copy the contents of the given String to the given output OutputStream.
-     * Leaves the stream open when done.
-     *
-     * @param in      the String to copy from
-     * @param charset the Charset
-     * @param out     the OutputStream to copy to
-     * @throws java.io.IOException in case of I/O errors
-     */
+    
     public static void copy(String in, Charset charset, OutputStream out) throws IOException {
         Assert.notNull(in, "No input String specified");
         Assert.notNull(charset, "No charset specified");
@@ -102,15 +62,7 @@ public abstract class StreamUtils {
         writer.flush();
     }
 
-    /**
-     * Copy the contents of the given InputStream to the given OutputStream.
-     * Leaves both streams open when done.
-     *
-     * @param in  the InputStream to copy from
-     * @param out the OutputStream to copy to
-     * @return the number of bytes copied
-     * @throws java.io.IOException in case of I/O errors
-     */
+    
     public static int copy(InputStream in, OutputStream out) throws IOException {
         Assert.notNull(in, "No InputStream specified");
         Assert.notNull(out, "No OutputStream specified");
@@ -125,25 +77,13 @@ public abstract class StreamUtils {
         return byteCount;
     }
 
-    /**
-     * Returns a variant of the given {@link java.io.InputStream} where calling
-     * {@link java.io.InputStream#close() close()} has no effect.
-     *
-     * @param in the InputStream to decorate
-     * @return a version of the InputStream that ignores calls to close
-     */
+    
     public static InputStream nonClosing(InputStream in) {
         Assert.notNull(in, "No InputStream specified");
         return new NonClosingInputStream(in);
     }
 
-    /**
-     * Returns a variant of the given {@link java.io.OutputStream} where calling
-     * {@link java.io.OutputStream#close() close()} has no effect.
-     *
-     * @param out the OutputStream to decorate
-     * @return a version of the OutputStream that ignores calls to close
-     */
+    
     public static OutputStream nonClosing(OutputStream out) {
         Assert.notNull(out, "No OutputStream specified");
         return new NonClosingOutputStream(out);

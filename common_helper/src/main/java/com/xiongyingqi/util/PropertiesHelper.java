@@ -13,7 +13,6 @@ public class PropertiesHelper {
      * 读取属性文件
      *
      * @param propertiesFilePath
-     * @return Map<String, String>
      */
     public static Map<String, String> readProperties(String propertiesFilePath) {
         return readProperties(new File(propertiesFilePath));
@@ -23,7 +22,6 @@ public class PropertiesHelper {
      * 读取属性文件
      *
      * @param propertiesFile
-     * @return Map<String, String>
      */
     public static Map<String, String> readProperties(File propertiesFile) {
         if (!propertiesFile.exists()) {

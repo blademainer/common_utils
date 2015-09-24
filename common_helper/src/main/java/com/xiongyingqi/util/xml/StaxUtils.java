@@ -28,7 +28,6 @@ import javax.xml.transform.stax.StAXSource;
 /**
  * Convenience methods for working with the StAX API. Partly historic due to JAXP 1.3 compatibility;
  * as of Spring 4.0, relying on JAXP 1.4 as included in JDK 1.6 and higher.
- * <p/>
  * <p>In particular, methods for using StAX ({@code javax.xml.stream}) in combination with the TrAX API
  * ({@code javax.xml.transform}), and converting StAX readers/writers into SAX readers/handlers and vice-versa.
  *

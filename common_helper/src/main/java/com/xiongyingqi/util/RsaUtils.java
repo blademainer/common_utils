@@ -139,7 +139,6 @@ public class RsaUtils {
     /**
      * 生成密钥对
      *
-     * @throws Exception
      */
     public KeyPair generatorKeyPair() throws NoSuchAlgorithmException {
         return generatorKeyPair(ALGORITHM, KEYSIZE);

@@ -1,7 +1,6 @@
 package com.xiongyingqi.jackson.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xiongyingqi.util.EntityHelper;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -19,7 +18,7 @@ public class ThreadJacksonMixInHolder {
 
     /**
      * 根据当前MixIn集合生成objectMapper<p>
-     * <p/>
+     * <p>
      * <b>注意：该方法在返回mapper对象之后调用clear方法，如果再次调用builderMapper()肯定会保存</b>
      *
      * @return

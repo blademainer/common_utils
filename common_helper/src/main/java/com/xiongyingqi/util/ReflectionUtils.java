@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 /**
  * Simple utility class for working with the reflection API and handling
  * reflection exceptions.
- * <p/>
  * <p>Only intended for internal use.
  *
  * @author Juergen Hoeller
@@ -397,7 +396,6 @@ public abstract class ReflectionUtils {
      * the pattern "CGLIB$methodName$0".
      *
      * @param renamedMethod the method to check
-     * @see org.springframework.cglib.proxy.Enhancer#rename
      */
     public static boolean isCglibRenamedMethod(Method renamedMethod) {
         return CGLIB_RENAMED_METHOD_PATTERN.matcher(renamedMethod.getName()).matches();

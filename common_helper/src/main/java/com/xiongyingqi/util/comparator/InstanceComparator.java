@@ -20,32 +20,13 @@ import com.xiongyingqi.util.Assert;
 
 import java.util.Comparator;
 
-/**
- * Compares objects based on an arbitrary class order. Allows objects to be sorted based
- * on the types of class that they inherit, for example: this comparator can be used to
- * sort a list {@code Number}s such that {@code Long}s occur before {@code Integer}s.
- * <p/>
- * <p>Only the specified {@code instanceOrder} classes are considered during comparison.
- * If two objects are both instances of the ordered type this comparator will return a
- * {@code 0}. Consider combining with a {@link org.springframework.util.comparator.CompoundComparator} if additional sorting
- * is required.
- *
- * @param <T> The type of objects being compared
- * @author Phillip Webb
- * @see org.springframework.util.comparator.CompoundComparator
- * @since 3.2
- */
+
 public class InstanceComparator<T> implements Comparator<T> {
 
     private Class<?>[] instanceOrder;
 
 
-    /**
-     * Create a new {@link com.xiongyingqi.util.comparator.InstanceComparator} instance.
-     *
-     * @param instanceOrder the ordered list of classes that should be used when comparing
-     *                      objects. Classes earlier in the list will be be given a higher priority.
-     */
+    
     public InstanceComparator(Class<?>... instanceOrder) {
         Assert.notNull(instanceOrder, "InstanceOrder must not be null");
         this.instanceOrder = instanceOrder;

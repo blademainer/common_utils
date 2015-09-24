@@ -21,15 +21,7 @@ import com.xiongyingqi.util.Assert;
 import java.io.Serializable;
 import java.util.Comparator;
 
-/**
- * A decorator for a comparator, with an "ascending" flag denoting
- * whether comparison results should be treated in forward (standard
- * ascending) order or flipped for reverse (descending) order.
- *
- * @author Keith Donald
- * @author Juergen Hoeller
- * @since 1.2.2
- */
+
 @SuppressWarnings("serial")
 public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 
@@ -38,24 +30,13 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
     private boolean ascending = true;
 
 
-    /**
-     * Create an InvertibleComparator that sorts ascending by default.
-     * For the actual comparison, the specified Comparator will be used.
-     *
-     * @param comparator the comparator to decorate
-     */
+    
     public InvertibleComparator(Comparator<T> comparator) {
         Assert.notNull(comparator, "Comparator must not be null");
         this.comparator = comparator;
     }
 
-    /**
-     * Create an InvertibleComparator that sorts based on the provided order.
-     * For the actual comparison, the specified Comparator will be used.
-     *
-     * @param comparator the comparator to decorate
-     * @param ascending  the sort order: ascending (true) or descending (false)
-     */
+    
     public InvertibleComparator(Comparator<T> comparator, boolean ascending) {
         Assert.notNull(comparator, "Comparator must not be null");
         this.comparator = comparator;
@@ -63,24 +44,17 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
     }
 
 
-    /**
-     * Specify the sort order: ascending (true) or descending (false).
-     */
+    
     public void setAscending(boolean ascending) {
         this.ascending = ascending;
     }
 
-    /**
-     * Return the sort order: ascending (true) or descending (false).
-     */
+    
     public boolean isAscending() {
         return this.ascending;
     }
 
-    /**
-     * Invert the sort order: ascending -> descending or
-     * descending -> ascending.
-     */
+    
     public void invertOrder() {
         this.ascending = !this.ascending;
     }

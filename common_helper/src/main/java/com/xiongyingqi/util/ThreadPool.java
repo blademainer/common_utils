@@ -19,7 +19,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * Object... parameters) <br>
  * 初始化时默认使用大小为5的线程池，如果要设置大小，请一定要在使用任何调用方法之前或当线程任务全部执行完之后再执行 public static void
  * setPoolSize(int) 方法<br>
- * <p/>
  * <pre>
  * public static void callBack(Object object, Throwable throwable, Object... parameters) {
  * 	System.out.println(object);
@@ -100,11 +99,9 @@ public class ThreadPool {
      * <br>
      * <br>
      * 回调方法的获取方法<br>
-     * <p/>
      * <pre>
      * Class.getDeclaredMethod(&quot;callBack&quot;, Object.class, Throwable.class, Object[].class);
      * </pre>
-     * <p/>
      * 2013-9-16 下午9:30:29
      *
      * @param callBackInstance 接收代理线程执行完成之后调用方法所在对象，如果为静态方法则该参数可为null
