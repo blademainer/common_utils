@@ -83,7 +83,7 @@ public class HttpBuilder {
      */
     public HttpBuilder param(String name, String value, boolean urlEncoding) {
         String encodedValue = null;
-        if(urlEncoding){
+        if(urlEncoding && value != null){
             try {
                 encodedValue = URLEncoder.encode(value, charset.name());
             } catch (UnsupportedEncodingException e) {
