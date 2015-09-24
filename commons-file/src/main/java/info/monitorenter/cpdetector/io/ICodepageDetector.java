@@ -86,15 +86,15 @@ public interface ICodepageDetector extends Serializable, Comparable {
    * Low-level method that detects the codepage (charset) of the document
    * specified by the given URL.
    * </p>
-   * 
+   *
    * @exception java.io.IOException
    *              thrown to indicate that it is was not possible to open the
    *              document specified by the given URL.
-   *              
+   *
    * @return null, if the codepage of the document specified by the given URL
-   *         was not detected or the {@link java.io.Charset}that represents the
+   *         was not detected or the {@link java.nio.charset.Charset}that represents the
    *         document's codepage.
-   * 
+   *
    */
   public Charset detectCodepage(URL url) throws IOException;
 

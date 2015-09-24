@@ -60,10 +60,6 @@ import java.util.StringTokenizer;
  */
 public final class FileFilterExtensions implements FileFilter {
 	private String[] m_extensions;
-	/**
-	 * 
-	 * @param extensionsWithoutDot A String[] containing extension strings without the dot like: <nobr><code>new String[]{"bat","txt","dict"}</code></nobr>. 
-	 */
 	public FileFilterExtensions(String[] extensionsWithoutDot) throws IllegalArgumentException {
 		this.verify(extensionsWithoutDot);
 		this.m_extensions = extensionsWithoutDot;

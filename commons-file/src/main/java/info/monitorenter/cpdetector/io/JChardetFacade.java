@@ -213,8 +213,7 @@ public final class JChardetFacade
    * ASCII, as all Charsets support ASCII. The possibility of ASCII is detected,
    * when no Charset has been excluded: The amount of possible Charsets is equal
    * to the amount of all detectable Charsets.
-   * </p>
-   * 
+   *
    * @param guessing
    *          The guessing to set.
    */

@@ -109,7 +109,6 @@ public class ClassFileFilterIsA implements IClassFileFilter, FileFilter {
    * (a instanceof c)
    * </pre>
    * 
-   * </p>
    * <p>
    * This method may be called several times. The accept method will return true
    * if the given Class is derived from any of the internal super classes.

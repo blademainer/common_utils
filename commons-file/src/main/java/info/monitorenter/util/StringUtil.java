@@ -304,52 +304,6 @@ public final class StringUtil {
     return result;
   }
  
-  /**
-   * This may be useful for comparison of canonical paths. For two strings a,b the prefix
-   * intersection of a and b is returned on the key side and the tail of b that did not match on the
-   * value side. <br>
-   * Example:
-   * <table border="1">
-   * <tr>
-   * <th>a</th>
-   * <th>b</th>
-   * <th>.getKey()</th>
-   * <th>.getValue()</th>
-   * </tr>
-   * <tr>
-   * <td>computer</td>
-   * <td>compare</td>
-   * <td>comp</td>
-   * <td>are</td>
-   * </tr>
-   * <tr>
-   * <td>compare</td>
-   * <td>computer</td>
-   * <td>comp</td>
-   * <td>uter</td>
-   * </tr>
-   * <tr>
-   * <td>computer</td>
-   * <td>put</td>
-   * <td>""</td>
-   * <td>""</td>
-   * </tr>
-   * <tr>
-   * <td>c:/work/myproject/bin/</td>
-   * <td>c:/work/myproject/bin/cpdetector/io/ClassFileFilter.class</td>
-   * <td>c:/work/myproject/bin/</td>
-   * <td>cpdetector/io/ClassFileFilter.class</td>
-   * </tr>
-   * <tr>
-   * <td>c:/work/myproject/bin/cpdetector/io/ClassFileFilter.class</td>
-   * <td>c:/work/myproject/bin/</td>
-   * <td>c:/work/myproject/bin/</td>
-   * <td>""</td>
-   * </tr>
-   * </table>
-   * Note that the prefix is not searched within the strings. Both strings have to have a common
-   * prefix (no skipping until identical parts are found).
-   */
   public static Map.Entry<String, String> prefixIntersection(String a, String b) {
     Map.Entry<String,String> ret = null;
     String key;

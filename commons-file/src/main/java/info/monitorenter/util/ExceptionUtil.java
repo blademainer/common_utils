@@ -53,7 +53,7 @@ public final class ExceptionUtil {
    * Returns an input stream that contains what will written in this Application to
    * {@link System#err}.
    * <p>
-   * <b>Caution</b><br/>
+   * <b>Caution</b>
    * If you do not consume the bytes to read from the result you may block the whole application. Do
    * only use this for debugging purposes or end to end test code!
    * <p>
@@ -92,7 +92,7 @@ public final class ExceptionUtil {
    * Returns an input stream that contains what will written in this Application to
    * {@link System#out}.
    * <p>
-   * <b>Caution</b><br/>
+   * <b>Caution</b>
    * If you do not consume the bytes to read from the result you may block the whole application. Do
    * only use this for debugging purposes or end to end test code!
    * <p>

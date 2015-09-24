@@ -53,36 +53,19 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * An {@link java.io.InputStream} wrapper that limits the bytes to read from the wrapped
- * stream.
- * <p>
- */
+
 public class LimitedInputStream extends FilterInputStream {
 
-  /** The amount of remaining bytes to allow reading. */
+  
   protected int m_amountOfBytesReadable;
 
-  /**
-   * Construct an instance that wraps the given input stream and decorates it
-   * with the the functionality to limit the amounts of bytes readable to the
-   * given limit.
-   * <p>
-   * 
-   * @param in
-   *          the input stream to limit.
-   * 
-   * @param limit
-   *          the amount of bytes that may be read from the given input stream.
-   */
+  
   public LimitedInputStream(final InputStream in, final int limit) {
     super(in);
     this.m_amountOfBytesReadable = limit;
   }
 
-  /**
-   * @see java.io.FilterInputStream#available()
-   */
+  
   @Override
   public int available() throws IOException {
     int result;
@@ -98,14 +81,7 @@ public class LimitedInputStream extends FilterInputStream {
     return result;
   }
 
-  /**
-   * Read a byte.
-   * <p>
-   * 
-   * @return -1 if the wrapped stream is at EOF or the limit has been reached.
-   * 
-   * @see java.io.FilterInputStream#read()
-   */
+  
   @Override
   public int read() throws IOException {
 
@@ -121,19 +97,7 @@ public class LimitedInputStream extends FilterInputStream {
     return result;
   }
 
-  /**
-   * Reads up to <code>len</code> bytes of data from this input stream into an
-   * array of bytes. This method blocks until some input is available.
-   * <p>
-   * This method simply performs <code>in.read(b, off, len)</code> and returns
-   * the result. 
-   * <p>
-   * Additionally not only an EOF will limit the amount of bytes to read but also reaching 
-   * the limit of this instance.
-   * <p>
-   * 
-   * @see java.io.FilterInputStream#read(byte[], int, int)
-   */
+  
   @Override
   public int read(final byte b[], final int off, final int len) throws IOException {
 

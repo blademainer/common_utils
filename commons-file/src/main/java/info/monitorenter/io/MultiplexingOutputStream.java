@@ -54,65 +54,30 @@ import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * An <code>{@link java.io.OutputStream}</code> that allows to multiplex everything that
- * is written to it to all contained output streams (multiplexing).
- * <p>
- * This is not optimized for performance (by supporting batch writes) but just
- * minimal code by now.
- * <p>
- * 
- * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann</a>
- * @version $Revision: 1.3 $
- */
+
 public class MultiplexingOutputStream extends OutputStream {
-  /** The multiplex sources. */
+  
   private List<OutputStream> m_delegates;
 
-  /**
-   * Constructor ensuring that at least two targets are needed (thus use of this
-   * class makes sense).
-   * <p>
-   * 
-   * @param streamOne
-   *          the 1st stream to delegate writes to.
-   * @param streamTwo
-   *          the 2nd stream to delegate writes to.
-   */
+  
   public MultiplexingOutputStream(final OutputStream streamOne, final OutputStream streamTwo) {
     this.m_delegates = new LinkedList<OutputStream>();
     this.m_delegates.add(streamOne);
     this.m_delegates.add(streamTwo);
   }
 
-  /**
-   * Adds the given output stream to the list of delegates multiplexed to.
-   * 
-   * @param delegate
-   *          another stream that will receive any write that is done on this
-   *          instance.
-   */
+  
   public void addOutputStream(final OutputStream delegate) {
     this.m_delegates.add(delegate);
   }
 
-  /**
-   * Removes the given output stream from the list of delegates multiplexed to.
-   * 
-   * @param delegate
-   *          a stream that should not receive any write that is done on this
-   *          instance any more.
-   * @return true if remove was successful, false if remove failed or - more
-   *         likely - the given stream was not on the list of delegates before.
-   */
+  
   public boolean removeOutputStream(final OutputStream delegate) {
     boolean result = this.m_delegates.remove(delegate);
     return result;
   }
 
-  /**
-   * @see java.io.OutputStream#write(int)
-   */
+  
   @Override
   public void write(int b) throws IOException {
     for (OutputStream delegate : this.m_delegates) {

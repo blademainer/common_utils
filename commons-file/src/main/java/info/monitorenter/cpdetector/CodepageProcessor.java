@@ -99,93 +99,45 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.StringTokenizer;
 
-/**
- * An executable command line interface for batch processing files with cpdetector.
- * <p>
- * It works on a <code>{@link info.monitorenter.cpdetector.io.CodepageDetectorProxy}</code> to
- * detect the charset encoding of documents and uses that information to sort the given documents in
- * a taxonomy tree that contains the codepage name at the root folders. Optionally the codepages may
- * be tried to transform to a specified target codepage.
- * <p>
- * <h3>Usage</h3> Two alternatives:
- * <ol>
- * <li>Deflated classfiles (not contained in a jar): <br>
- * <ul>
- * <li>Put the folder above top - level package <code>cpdetector</code> to the classpath.
- * <li>Invoke: <br>
- * <code> java -cp &lt;topfolder&gt; cpdetector.CodpageProcessor</code>
- * </ul>
- * <li>jarfile:
- * <ul>
- * <li>Invoke: <br>
- * <code> java -jar cpdetector.jar </code>
- * </ul>
- * <li>You will see a usage - text that informs about the parameters and their effect.
- * </ol>
- * <p>
- * 
- * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann </a>
- */
+
 public class CodepageProcessor
     extends ACmdLineArgsInheritor {
 
-  /**
-   * The root folder (directory) under which all files for the collection are found.
-   */
+  
   protected File collectionRoot = null;
 
-  /**
-   * The codepage detection proxy that will be used. Is optionally configured by argument \"-c\".
-   */
+  
   protected CodepageDetectorProxy detector;
 
-  /**
-   * A list of all Charset implementations of this java version. Used for debug output.
-   */
+  
   private Charset[] parseCodepages;
 
   private static String fileseparator = System.getProperty("file.separator");
 
-  /**
-   * Needed for searching the collection root directory recursively for extensions.
-   */
+  
   private FileFilter extensionFilter;
 
-  /**
-   * Where does it go to. Has to be a directory.
-   */
+  
   private File outputDir;
 
-  /**
-   * Move unrecognized codepages to "unknown"?
-   */
+  
   private boolean moveUnknown = false;
 
-  /** Flag to detect the -c option: only print an return. * */
+  
   private boolean printCharsets = false;
 
   private boolean verbose = false;
 
-  /**
-   * Wait between processing documents. Default is zero.
-   */
+  
   private long wait = 0;
 
-  /**
-   * If set to a {@link java.nio.charset.Charset}, the documents won't be sorted by their codepage but tried to be
-   * transformed. This may not be possible, if the detected charset is not supported by the current
-   * VM. In that case it will be sorted to a subdir with the codepage name (as normal).
-   */
+  
   private Charset targetCodepage = null;
 
-  /**
-   * Internal buffer for codepage transformation (argument -t).
-   */
+  
   private static char[] transcodeBuffer = new char[1024];
 
-  /**
-   * Internal buffer for document transport.
-   */
+  
   private static byte[] rawtransportBuffer = new byte[1024];
 
   public CodepageProcessor() {
@@ -336,21 +288,7 @@ public class CodepageProcessor
     return (String[]) tmpList.toArray(new String[tmpList.size()]);
   }
 
-  /**
-   * <p>
-   * Recursive depth first search for all documents with .txt - ending (case-insensitive).
-   * </p>
-   * <p>
-   * The given list is filled with all files with a ".txt" extension that were found in the
-   * directory subtree of the argument f.
-   * </p>
-   * <p>
-   * No check for null or existence of f is made here, so keep it private.
-   * </p>
-   * 
-   * @param f
-   *          The current directory or file (if we visit a leaf).
-   */
+  
   private void processRecursive(File f) throws Exception {
     if (f == null) {
       throw new IllegalArgumentException("File argument is null!");
@@ -379,12 +317,7 @@ public class CodepageProcessor
     System.out.println("No exceptional program flow occured!");
   }
 
-  /**
-   * All three Files are validated if null, existant and the right type (directory vs. file).
-   * 
-   * @throws Exception
-   *           Sth. does not seem to be valid.
-   */
+  
   protected void verifyFiles() throws IllegalArgumentException {
     StringBuffer msg = new StringBuffer();
     /*
@@ -417,9 +350,7 @@ public class CodepageProcessor
     }
   }
 
-  /**
-   * @param files
-   */
+  
   private void process(File document) throws Exception {
     Charset charset = null;
     try {
@@ -579,10 +510,7 @@ public class CodepageProcessor
     System.out.println(msg.toString());
   }
 
-  /**
-   * Prints out the usage of the command line interface.
-   * <p>
-   */
+  
   protected void usage() {
     StringBuffer tmp = new StringBuffer();
 
@@ -646,14 +574,7 @@ public class CodepageProcessor
     }
   }
 
-  /**
-   * Main hook. 
-   * <p> 
-   * 
-   * @param args see {@link #usage()}
-   * 
-   * @throws Exception if program terminated unsuccessful.
-   */
+  
   public static void main(String[] args) throws Exception {
     CodepageProcessor sorter = new CodepageProcessor();
       sorter.parseArgs(args);

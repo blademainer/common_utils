@@ -47,41 +47,21 @@ import jargs.gnu.CmdLineParser;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Base class for inheritance of command line arguments.<p>
- * 
- * @author <a href="mailto:awester@de.ibm.com">Achim Westermann </a>
- * 
- */
+
 public abstract class ACmdLineArgsInheritor {
 
     private CmdLineParser cmdLineParser;
 
-    /**
-     * All {@link jargs.gnu.CmdLineParser.Option}s.
-     * <p>
-     * Subclasses may specify more options in their constructor by invoking the protected method
-     * #addOption(String,CmdLineParser.Option).
-     * <p>
-     */
+    
     private Map<String,CmdLineParser.Option> cmdLineOptions;
 
-    /**
-     * 
-     */
+    
     public ACmdLineArgsInheritor() {
         this.cmdLineOptions = new HashMap<String,CmdLineParser.Option>();
         this.cmdLineParser = new CmdLineParser();
     }
 
-    /**
-     * Subclasses have to call from their constructor and implant their desired options. Later on they can retrieve
-     * those options by using method <tt>getParsedCmdLineOption(String key)</tt> and do whatever they desire with the
-     * value then contained within the option.
-     * 
-     * @param key
-     *            The same key as used for <tt>getParsedCmdLineOption(String key)</tt>
-     */
+    
     protected final void addCmdLineOption(String key, CmdLineParser.Option option) {
         if (option == null) {
             throw new IllegalArgumentException(
@@ -95,9 +75,7 @@ public abstract class ACmdLineArgsInheritor {
         this.cmdLineParser.addOption(option);
     }
 
-    /**
-     * Returns the option <b>value </b> of a parsed command line option.
-     */
+    
     protected final Object getParsedCmdLineOption(String key) throws IllegalArgumentException {
         Object ret = this.cmdLineOptions.get(key);
         if (key == null) {
@@ -107,17 +85,7 @@ public abstract class ACmdLineArgsInheritor {
         return this.cmdLineParser.getOptionValue((CmdLineParser.Option)ret);
     }
 
-    /**
-     * <p>
-     * This method has to be called initially by the code using this instance in order to configure.
-     * </p>
-     * <p>
-     * Every subclass has to call <code>super.parseArgs(cmdLineArgs)</code> and then retrieve the options needed from
-     * the returned CmdLineParser!
-     * </p>
-     * 
-     * @param cmdLineArgs
-     */
+    
     public void parseArgs(String[] cmdLineArgs) throws Exception {
       
         this.cmdLineParser.parse(cmdLineArgs);

@@ -174,9 +174,7 @@ public final class CodepageDetectorProxy extends AbstractCodepageDetector {
    *          InputStream but should be as long as possible to give the fallback
    *          detection (chardet) more hints to guess.
    * 
-   * @see cpdetector.io.ICodepageDetector#detectCodepage(java.io.InputStream,
-   *      int length)
-   * 
+   *
    * @throws IllegalArgumentException
    *           if more bytes had to be read from the input stream than param
    *           length or the given input stream does not support marking.

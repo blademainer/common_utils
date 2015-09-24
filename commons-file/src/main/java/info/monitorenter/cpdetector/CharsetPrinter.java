@@ -55,11 +55,7 @@ import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 
 
-/**
- * @author demian reachable (at)\@ rootring.com
- * 
- * Simple class that tries to detect the encoding of files given on the command-line.
- */
+
 public class CharsetPrinter {
     private final CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
 

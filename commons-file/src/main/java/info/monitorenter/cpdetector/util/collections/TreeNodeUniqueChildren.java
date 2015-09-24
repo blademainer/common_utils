@@ -49,59 +49,31 @@ package info.monitorenter.cpdetector.util.collections;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * An {@link ITreeNode} implementation, that does
- * not allow equal m_children of one common parent node. Common elements in the
- * path from an arbitrary node (seen as the root) to different leaves will share
- * the same <tt>ITreeNode</tt> instances at runtime.
- * <p>
- * This behaviour may be used to create the smallest possible tree containing
- * all given serialized paths.
- * <p>
- * 
- * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann </a>
- */
+
 public class TreeNodeUniqueChildren
     extends ITreeNode.DefaultTreeNode {
 
-  /**
-   * 
-   */
+  
   public TreeNodeUniqueChildren() {
     super();
   }
 
-  /**
-   * @param userObject
-   */
+  
   public TreeNodeUniqueChildren(final Object userObject) {
     super(userObject);
   }
 
-  /**
-   * @param userObject
-   * @param child
-   */
+  
   public TreeNodeUniqueChildren(final Object userObject, final ITreeNode child) {
     super(userObject, child);
   }
 
-  /**
-   * @param userObject
-   * @param children
-   */
+  
   public TreeNodeUniqueChildren(final Object userObject,final  ITreeNode[] children) {
     super(userObject, children);
   }
 
-  /**
-   * If the given argument is already a child node of this one (by the means of
-   * the equals method), it will replace the old node but gets the childs of the
-   * old node.
-   * <p>
-   * 
-   * @see info.monitorenter.cpdetector.util.collections.ITreeNode#addChildNode(info.monitorenter.cpdetector.util.collections.ITreeNode)
-   */
+  
   public boolean addChildNode(final ITreeNode node) {
     boolean ret = true;
     if (node == null) {
@@ -129,49 +101,7 @@ public class TreeNodeUniqueChildren
     return ret;
   }
 
-  /**
-   * 
-   * <p>
-   * Construction of a tree with the user Objects (java.lang.Integer) and use
-   * the toString() method.
-   * 
-   * <pre>
-   * 
-   * 
-   *              0
-   *             /|\
-   *            / | \
-   *           1  2  1
-   *          / \    |\
-   *         /   \   | \
-   *        4     5  6  7
-   *                /|\
-   *               / | \
-   *              8  9  10
-   * 
-   *  </pre>
-   *  As only unique nodes are supported, the paths have to be flattended to:
-   *  <pre>
-   * 
-   *              0
-   *             / \
-   *            /   \
-   *           1     2
-   *          /|\
-   *         / | \
-   *        /  | |\
-   *       /   | | \
-   *      4    5 6  7
-   *            /|\
-   *           / | \
-   *          8  9  10
-   * 
-   *  </pre>
-   * 
-   * 
-   * 
-   *
-   */
+  
   public static void main(String[] args) throws Exception {
     StringBuffer prettyPrint = new StringBuffer();
     prettyPrint.append("             0\n");

@@ -37,65 +37,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 
-/**
- * <p>
- * This detector identifies byte order marks of the following codepages to give a 100 %
- * deterministic result in case of detection.
- * </p>
- * <p>
- * <table border="1">
- * <tr>
- * <td>00 00 FE FF</td>
- * <td>UCS-4, big-endian machine (1234 order)</td>
- * </tr>
- * <tr>
- * <td>FF FE 00 00</td>
- * <td>UCS-4,little-endian machine (4321 order)</td>
- * </tr>
- * <tr>
- * <td>00 00 FF FE</td>
- * <td>UCS-4, unusual octet order (2143)</td>
- * </tr>
- * <tr>
- * <td>FE FF 00 00</td>
- * <td>UCS-4, unusual octet order (3412)</td>
- * </tr>
- * <tr>
- * <td>FE FF ## ##</td>
- * <td>UTF-16, big-endian</td>
- * </tr>
- * <tr>
- * <td>FF FE ## ##</td>
- * <td>UTF-16, little-endian</td>
- * </tr>
- * <tr>
- * <td>EF BB BF</td>
- * <td>UTF-8</td>
- * </tr>
- * </table>
- * </p>
- * <p>
- * Note that this detector is very fast as it only has to read a maximum of 8 bytes to provide a
- * result. Nevertheless it is senseless to add it to the configuration if the documents to detect
- * will have a low rate of documents in the codepages that will be detected. If added to the
- * configuration of {@link info.monitorenter.cpdetector.io.CodepageDetectorProxy} it should be at
- * front position to save computations of the following detection processses.
- * <p>
- * <p>
- * This implementation is based on: <br>
- * <a target="_blank" title="http://www.w3.org/TR/2004/REC-xml-20040204/#sec-guessing-no-ext-info"
- * href="http://www.w3.org/TR/2004/REC-xml-20040204/#sec-guessing-no-ext-info">W3C XML Specification
- * 1.0 3rd Edition, F.1 Detection Without External Encoding Information </a>.
- * </p>
- * This implementation does the same as <code>{@link info.monitorenter.cpdetector.io.UnicodeDetector}</code> but with a different
- * read strategy (read each byte separately) and a switch case tree (-> bytecode tableswitch). Would
- * be great to have a performance comparison. Maybe the read of 4 bytes in a row combined with the
- * switch could make this implementation the winner.
- * <p>
- * 
- * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann </a>
- * @version $Revision: 1.3 $
- */
 public class ByteOrderMarkDetector
     extends AbstractCodepageDetector implements ICodepageDetector {
 

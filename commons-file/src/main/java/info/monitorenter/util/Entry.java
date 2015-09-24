@@ -30,7 +30,6 @@ package info.monitorenter.util;
  * <li>Non-public classes.</li>
  * <li>Anonymous classes.</li>
  * </ul>
- * </p>
  * <p>
  * Almost all implementations were plainforward and not hiding any complexity.
  * One could not downcast them to get more methods, and they were replaceable. <br>
@@ -46,8 +45,7 @@ package info.monitorenter.util;
  * </pre>
  * 
  * Try sticking to the interface <tt>java.util.Map.Entry</tt>.
- * </p>
- * 
+ *
  * @see java.util.Map.Entry
  * 
  * @param <V>
