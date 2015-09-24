@@ -48,19 +48,9 @@
 import info.monitorenter.cpdetector.io.ClassFileFilterIsA;
 import info.monitorenter.cpdetector.test.ui.ClassFileChooser.URLFileSystemView;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class FitAuthoringClient extends JFrame implements ActionListener{
 
@@ -102,10 +92,6 @@ public class FitAuthoringClient extends JFrame implements ActionListener{
    * <p>
    * This action opens a filechooser an requests a Fixture classfile that is 
    * instantiated and assigned to the client.
-   * </p>
-   * <p>
-   * The given classfile has to be in the classpath, the filechooser will 
-   * filter out every classfile that is a subclass of {@link fit.ColumnFixture}.
    * </p>
    * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann</a>
    *
