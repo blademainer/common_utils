@@ -49,7 +49,6 @@ public class Profile implements Serializable {
     /**
      * 是否中间贴图
      *
-     * @return
      */
     private boolean logoFlag;
 
