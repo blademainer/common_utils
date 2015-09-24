@@ -1828,8 +1828,10 @@
                         </execution>
                     </executions>
                     <configuration>
+                        <aggregate>true</aggregate>
                         <encoding>UTF-8</encoding>
                         <outputEncoding>UTF-8</outputEncoding>
+                        <charset>UTF-8</charset>
                     </configuration>
                 </plugin>
             </plugins>
