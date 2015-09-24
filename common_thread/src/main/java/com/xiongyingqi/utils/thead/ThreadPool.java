@@ -104,7 +104,7 @@ public class ThreadPool {
      * <br>
      * <br>
      * 回调方法的获取方法<br>
-     * <p/>
+     * <p>
      * <pre>
      * Class.getDeclaredMethod(&quot;callBack&quot;, Object.class, Throwable.class, Object[].class);
      * </pre>
