@@ -38,23 +38,29 @@ public class IpAddress {
 
     /**
      * sn = MD5(urlencode(basicString + sk))
-     * <p/>
+     * <p>
      * 其中 basicString 的算法如下：
-     * <p/>
+     * <p>
      * (1) get 请求
+     * <p>
      * url 中 http://域名{uri}
+     * <p>
      * basicString = uri
+     * <p>
      * (2) post 请求
+     * <p>
      * url 中 http://域名{uri} POST 参数按照key进行从小大到字母排序
-     * 然后拼装成：k1= v1&k2= v2&k3=v3&...&kn=vn的格式=> {params}
+     * <p>
+     * 然后拼装成：k1=v1&amp;k2=v2&amp;k3=v3&amp;...&amp;kn=vn的格式=&gt; {params}
+     * <p>
      * basicString = uri +?+ params
      *
      * @param ak             access key
      * @param sk             secret key
      * @param url            url值，例如: /geosearch/nearby 不能带hostname和querstring，也不能带？
-     * @param nameValuePairs $querystring_arrays 参数数组，key=>value形式。在计算签名后不能重新排序，也不能添加或者删除数据元素
+     * @param nameValuePairs $querystring_arrays 参数数组，key=&gt;value形式。在计算签名后不能重新排序，也不能添加或者删除数据元素
      * @param method         method 只能为'POST'或者'GET'
-     * @brief 计算SN签名算法
+     * @return 计算SN签名算法
      */
     public String calculateAKSN(String ak, String sk, String url, List<NameValuePair> nameValuePairs, String method) {
         String params = "";
