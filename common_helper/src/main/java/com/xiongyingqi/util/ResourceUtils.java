@@ -25,7 +25,7 @@ import java.net.*;
  * file system. Mainly for internal use within the framework.
  * <p>Consider using Spring's Resource abstraction in the core package
  * for handling all kinds of file resources in a uniform manner.
- * method can resolve any location to a {@link org.springframework.core.io.Resource}
+ * method can resolve any location to a Resource
  * object, which in turn allows one to obtain a {@code java.io.File} in the
  * file system through its {@code getFile()} method.
  * <p>The main reason for these utility methods for resource location handling

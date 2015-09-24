@@ -23,7 +23,7 @@ import java.util.Queue;
 
 /**
  * Registry for {@link ListenableFutureCallback} instances.
- * <p/>
+ * <p>
  * <p>Inspired by {@code com.google.common.util.concurrent.ExecutionList}.
  *
  * @author Arjen Poutsma
