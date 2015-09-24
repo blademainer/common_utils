@@ -28,7 +28,6 @@ public class EmailVo  {
     /**
      * 发件人<br>
      * 如果不设置即为service.properties中配置的email.systemEmail属性值
-     * @return
      */
     public void setFrom(String from) {
         this.from = from;
@@ -126,7 +125,7 @@ public class EmailVo  {
      *     &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;hello!!spring image html mail&lt;/h1&gt;&lt;img src="${ 0 }" /&gt;&lt;img src="${ 1 }"&gt;&lt;img src="${ 1 }"&gt;&lt;/body&gt;&lt;/html&gt;
      * </pre>
      * 此种方法contentId必须为空，系统会自动读取参数${0}并将inlineImageVos中的第一个图片设置给该参数，${1}并将inlineImageVos中的第二个图片<br></br>
-     * 或者：<br></br>
+     * 或者：<br>
      * <pre>
      *     &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;hello!!spring image html mail&lt;/h1&gt;&lt;img src="${image_first}" /&gt;&lt;img src="${image_second}"&gt;&lt;img src="${image_first}"&gt;&lt;/body&gt;&lt;/html&gt;
      * </pre>

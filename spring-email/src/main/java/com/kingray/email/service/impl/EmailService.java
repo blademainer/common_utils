@@ -51,8 +51,7 @@ public class EmailService implements IEmailService {
 
 
     /**
-     * 查找html内<img src="${1}">的内容
-     * <(img|image)\s+src\s*=\s*(\'.*?\'|\".*?\"){1}?>
+     * 查找html内img的内容
      */
     public static final Pattern PATTERN_FIND_TAG_AND_INDEX = Pattern.compile("<\\w+\\s+\\w+\\s*=\\s*(\\'\\s*\\$\\s*\\{\\s*\\d+\\s*\\}\\s*\\'\\s*|\\\"\\s*\\$\\s*\\{\\s*\\w+\\s*\\}\\s*\\\"\\s*){1}?\\s*/{0,1}>");
     /**
@@ -62,7 +61,7 @@ public class EmailService implements IEmailService {
 
 
     /**
-     * 查找html内<img src="${a}">的内容
+     * 查找html内img的内容
      */
     public static final Pattern PATTERN_FIND_TAG = Pattern.compile("<\\w+\\s+src\\s*=\\s*(\\'\\s*\\$\\{\\s*\\w+\\s*\\}\\s*\\'\\s*|\\\"\\s*\\$*\\{\\s*\\w+\\s*\\}\\s*\\\"\\s*){1}?\\s*/{0,1}>");
     /**
