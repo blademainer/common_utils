@@ -127,7 +127,7 @@ public class MessageEncryptionHelper {
     /**
      * 加密方法
      * <pre>
-     * // 1.1 >>> 首先要创建一个密匙
+     * // 1.1  首先要创建一个密匙
      * // DES算法要求有一个可信任的随机数源
      * SecureRandom sr = new SecureRandom();
      * // 为我们选择的DES算法生成一个KeyGenerator对象
@@ -138,20 +138,19 @@ public class MessageEncryptionHelper {
      * // 获取密匙数据
      * byte rawKeyData[] = key.getEncoded();
      * //        byte rawKeyData[] = "sucretsa".getBytes();
-     * System.out.println("密匙长度===>" + rawKeyData.length);
-     * System.out.println("密匙Base64===>" + Base64.encodeBytes(rawKeyData));
+     * System.out.println("密匙长度===" + rawKeyData.length);
+     * System.out.println("密匙Base64===" + Base64.encodeBytes(rawKeyData));
      *
      * String str = "hi.baidu.com/beijingalana"; // 待加密数据
-     * // 2.1 >>> 调用加密方法
+     * // 2.1  调用加密方法
      * byte[] encryptedData = desEncrypt(rawKeyData, str.getBytes());
-     * // 3.1 >>> 调用解密方法
+     * // 3.1  调用解密方法
      * byte[] decrypt = desDecrypt(rawKeyData, encryptedData);
-     * System.out.println("解密===>" + new String(decrypt));
+     * System.out.println("解密===" + new String(decrypt));
      * </pre>
      *
      * @param rawKeyData 密钥
      * @param data       要加密的数据
-     * @return
      * @throws java.security.InvalidKeyException
      * @throws NoSuchAlgorithmException
      * @throws javax.crypto.IllegalBlockSizeException

@@ -20,66 +20,33 @@ import java.io.Serializable;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-/**
- * Simple {@link java.util.List} wrapper class that allows for elements to be
- * automatically populated as they are requested. This is particularly
- * useful for data binding to {@link java.util.List Lists}, allowing for elements
- * to be created and added to the {@link java.util.List} in a "just in time" fashion.
- * <p/>
- * <p>Note: This class is not thread-safe. To create a thread-safe version,
- * use the {@link java.util.Collections#synchronizedList} utility methods.
- * <p/>
- * <p>Inspired by {@code LazyList} from Commons Collections.
- *
- * @author Rob Harrop
- * @author Juergen Hoeller
- * @since 2.0
- */
+
 @SuppressWarnings("serial")
 public class AutoPopulatingList<E> implements List<E>, Serializable {
 
-    /**
-     * The {@link java.util.List} that all operations are eventually delegated to.
-     */
+    
     private final List<E> backingList;
 
-    /**
-     * The {@link com.xiongyingqi.util.AutoPopulatingList.ElementFactory} to use to create new {@link java.util.List} elements
-     * on demand.
-     */
+    
     private final ElementFactory<E> elementFactory;
 
 
-    /**
-     * Creates a new {@code AutoPopulatingList} that is backed by a standard
-     * {@link java.util.ArrayList} and adds new instances of the supplied {@link Class element Class}
-     * to the backing {@link java.util.List} on demand.
-     */
+    
     public AutoPopulatingList(Class<? extends E> elementClass) {
         this(new ArrayList<E>(), elementClass);
     }
 
-    /**
-     * Creates a new {@code AutoPopulatingList} that is backed by the supplied {@link java.util.List}
-     * and adds new instances of the supplied {@link Class element Class} to the backing
-     * {@link java.util.List} on demand.
-     */
+    
     public AutoPopulatingList(List<E> backingList, Class<? extends E> elementClass) {
         this(backingList, new ReflectiveElementFactory<E>(elementClass));
     }
 
-    /**
-     * Creates a new {@code AutoPopulatingList} that is backed by a standard
-     * {@link java.util.ArrayList} and creates new elements on demand using the supplied {@link com.xiongyingqi.util.AutoPopulatingList.ElementFactory}.
-     */
+    
     public AutoPopulatingList(ElementFactory<E> elementFactory) {
         this(new ArrayList<E>(), elementFactory);
     }
 
-    /**
-     * Creates a new {@code AutoPopulatingList} that is backed by the supplied {@link java.util.List}
-     * and creates new elements on demand using the supplied {@link com.xiongyingqi.util.AutoPopulatingList.ElementFactory}.
-     */
+    
     public AutoPopulatingList(List<E> backingList, ElementFactory<E> elementFactory) {
         Assert.notNull(backingList, "Backing List must not be null");
         Assert.notNull(elementFactory, "Element factory must not be null");
@@ -123,10 +90,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
         return this.backingList.containsAll(c);
     }
 
-    /**
-     * Get the element at the supplied index, creating it if there is
-     * no element at that index.
-     */
+    
     @Override
     public E get(int index) {
         int backingListSize = this.backingList.size();
@@ -234,26 +198,15 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
     }
 
 
-    /**
-     * Factory interface for creating elements for an index-based access
-     * data structure such as a {@link java.util.List}.
-     */
+    
     public interface ElementFactory<E> {
 
-        /**
-         * Create the element for the supplied index.
-         *
-         * @return the element object
-         * @throws com.xiongyingqi.util.AutoPopulatingList.ElementInstantiationException if the instantiation process failed
-         *                                                                               (any exception thrown by a target constructor should be propagated as-is)
-         */
+        
         E createElement(int index) throws ElementInstantiationException;
     }
 
 
-    /**
-     * Exception to be thrown from ElementFactory.
-     */
+    
     public static class ElementInstantiationException extends RuntimeException {
 
         public ElementInstantiationException(String msg) {
@@ -262,12 +215,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
     }
 
 
-    /**
-     * Reflective implementation of the ElementFactory interface,
-     * using {@code Class.newInstance()} on a given element class.
-     *
-     * @see Class#newInstance()
-     */
+    
     private static class ReflectiveElementFactory<E> implements ElementFactory<E>, Serializable {
 
         private final Class<? extends E> elementClass;

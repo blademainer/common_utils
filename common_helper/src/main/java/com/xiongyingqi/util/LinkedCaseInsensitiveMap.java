@@ -24,10 +24,10 @@ import java.util.Map;
 /**
  * {@link java.util.LinkedHashMap} variant that stores String keys in a case-insensitive
  * manner, for example for key-based access in a results table.
- * <p/>
+ * 
  * <p>Preserves the original order as well as the original casing of keys,
  * while allowing for contains, get and remove calls with any case of key.
- * <p/>
+ * 
  * <p>Does <i>not</i> support {@code null} keys.
  *
  * @author Juergen Hoeller

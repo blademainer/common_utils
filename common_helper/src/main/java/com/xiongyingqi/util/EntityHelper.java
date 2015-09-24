@@ -47,7 +47,7 @@ public class EntityHelper {
     /**
      * 获取该class所表示的父类的泛型数组 <br>
      * 例如如下定义中：
-     * <p/>
+     * 
      * <pre>
      * class GenericSuperClass&lt;T&gt; {
      * }

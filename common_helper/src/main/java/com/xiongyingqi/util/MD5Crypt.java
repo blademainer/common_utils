@@ -91,7 +91,6 @@ public class MD5Crypt {
      * @param salt     8 byte permutation string
      * @param password user password
      * @return The encrypted password as an MD5 hash
-     * @throws Exception
      */
     static public final String crypt(String password, String salt, String magic) {
 

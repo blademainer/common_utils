@@ -649,7 +649,6 @@ public class FileHelper {
      * 2013-6-24 下午10:52:54
      *
      * @param file
-     * @return
      * @throws Exception
      */
     public static void fileNotFullAndExists(File file) throws Exception {

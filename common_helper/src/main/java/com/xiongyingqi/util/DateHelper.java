@@ -57,7 +57,7 @@ public class DateHelper {
     /**
      * 获取现在时间
      *
-     * @return返回短时间格式 yyyy-MM-dd
+     * @return 返回短时间格式 yyyy-MM-dd
      */
     public static Date getNowDateShort() {
         Date currentTime = new Date();
@@ -70,7 +70,7 @@ public class DateHelper {
     /**
      * 获取现在时间
      *
-     * @return返回字符串格式 yyyy-MM-dd HH:mm:ss
+     * @return 返回字符串格式 yyyy-MM-dd HH:mm:ss
      */
     public static String getStringDate() {
         Date currentTime = new Date();

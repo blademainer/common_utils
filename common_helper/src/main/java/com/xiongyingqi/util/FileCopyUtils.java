@@ -22,7 +22,7 @@ import java.io.*;
  * Simple utility methods for file and stream copying. All copy methods use a block size
  * of 4096 bytes, and close all affected streams when done. A variation of the copy
  * methods from this class that leave streams open can be found in {@link StreamUtils}.
- * <p/>
+ * 
  * <p>Mainly for use within the framework, but also useful for application code.
  *
  * @author Juergen Hoeller

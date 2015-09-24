@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * Simple implementation of {@link MultiValueMap} that wraps a {@link java.util.LinkedHashMap},
  * storing multiple values in a {@link java.util.LinkedList}.
- * <p/>
+ * 
  * <p>This Map implementation is generally not thread-safe. It is primarily designed
  * for data structures exposed from request objects, for use in a single thread only.
  *

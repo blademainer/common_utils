@@ -11,9 +11,9 @@ import java.io.*;
  * 3. 将相加后的和除以11并得到余数。
  * 4. 余数可能为0 1 2 3 4 5 6 7 8 9 10这些个数字，其对应的身份证最后一位校验码为1 0 X 9 8 7 6 5 4 3 2。
  * 身份证号码解密|身份证尾数校验码算法|ID card information
- * <p/>
+ * <p>
  * 身份证地址码对照表见id_address.txt
- * <p/>
+ * <p>
  * Created by 瑛琪<a href="http://xiongyingqi.com">xiongyingqi.com</a> on 2014/4/15 0015.
  */
 public class IdentityCardHelper {

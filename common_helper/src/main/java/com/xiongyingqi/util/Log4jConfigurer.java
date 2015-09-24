@@ -26,12 +26,12 @@ import java.net.URL;
 
 /**
  * Convenience class that features simple methods for custom log4j configuration.
- * <p/>
+ * 
  * <p>Only needed for non-default log4j initialization, for example with a custom
  * config location or a refresh interval. By default, log4j will simply read its
  * configuration from a "log4j.properties" or "log4j.xml" file in the root of
  * the classpath.
- * <p/>
+ * 
  * <p>For web environments, the analogous Log4jWebConfigurer class can be found
  * in the web package, reading in its configuration from context-params in
  * {@code web.xml}. In a J2EE web application, log4j is usually set up
@@ -39,8 +39,6 @@ import java.net.URL;
  * Log4jWebConfigurer underneath.
  *
  * @author Juergen Hoeller
- * @see org.springframework.web.util.Log4jWebConfigurer
- * @see org.springframework.web.util.Log4jConfigListener
  * @since 13.03.2003
  */
 public abstract class Log4jConfigurer {

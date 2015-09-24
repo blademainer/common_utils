@@ -85,7 +85,7 @@ public class PhoneNumberAddress {
      * Test the phone number from which the city is using Taobao API
      *
      * @return
-     * @ param mobileNumber phone number
+     * @param mobileNumber phone number
      */
     public static String calcMobileCity(String mobileNumber) throws MalformedURLException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -280,9 +280,8 @@ public class PhoneNumberAddress {
     /**
      * Calculate multiple numbers of attribution
      *
-     * @return
      * @throws java.net.MalformedURLException
-     * @ param mobileNumbers number list
+     * @param mobileNumbers number list
      */
 //    public static JSONObject calcMobilesCities(List<String> mobileNumbers) throws MalformedURLException{
 //        JSONObject jsonNumberCity = new JSONObject();

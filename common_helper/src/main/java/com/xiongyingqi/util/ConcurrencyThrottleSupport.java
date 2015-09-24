@@ -25,12 +25,12 @@ import java.io.Serializable;
 
 /**
  * Support class for throttling concurrent access to a specific resource.
- * <p/>
+ * <p>
  * <p>Designed for use as a base class, with the subclass invoking
  * the {@link #beforeAccess()} and {@link #afterAccess()} methods at
  * appropriate points of its workflow. Note that {@code afterAccess}
  * should usually be called in a finally block!
- * <p/>
+ * <p>
  * <p>The default concurrency limit of this support class is -1
  * ("unbounded concurrency"). Subclasses may override this default;
  * check the javadoc of the concrete class that you're using.

@@ -25,7 +25,7 @@ import java.util.*;
  * other Internet protocols including HTTP. This class however does not contain support
  * the q-parameters used in HTTP content negotiation. Those can be found in the sub-class
  * {@code org.springframework.http.MediaType} in the {@code spring-web} module.
- * <p/>
+ * 
  * <p>Consists of a {@linkplain #getType() type} and a {@linkplain #getSubtype() subtype}.
  * Also has functionality to parse media types from a string using
  * {@link #valueOf(String)}. For more parsing options see {@link MimeTypeUtils}.
@@ -462,7 +462,6 @@ public class MimeType implements Comparable<MimeType>, Serializable {
     /**
      * Parse the given String value into a {@code MimeType} object,
      * with this method name following the 'valueOf' naming convention
-     * (as supported by {@link org.springframework.core.convert.ConversionService}.
      *
      * @see MimeTypeUtils#parseMimeType(String)
      */
