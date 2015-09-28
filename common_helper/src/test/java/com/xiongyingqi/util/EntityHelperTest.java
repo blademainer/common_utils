@@ -237,8 +237,8 @@ public class EntityHelperTest {
     @org.junit.Test
     public void testHashCode() throws Exception {
         TimerHelper.getTime();
-        HashSet<AEntity> aHashEntities = new HashSet<>();
-        HashSet<AEntity> aHashEntitiesToRemove = new HashSet<>();
+        HashSet<AEntity> aHashEntities = new HashSet<AEntity>();
+        HashSet<AEntity> aHashEntitiesToRemove = new HashSet<AEntity>();
         for (int i = 0; i < 100000; i++) {
             AEntity aEntity = new AEntity(i, i + "", i * 10);
             aHashEntities.add(aEntity);
@@ -253,8 +253,8 @@ public class EntityHelperTest {
         System.out.println("HashSet A ====== " + TimerHelper.getTime());
 
         TimerHelper.getTime();
-        HashSet<BEntity> bHashSetEntities = new HashSet<>();
-        HashSet<BEntity> bHashSetEntitiesToRemove = new HashSet<>();
+        HashSet<BEntity> bHashSetEntities = new HashSet<BEntity>();
+        HashSet<BEntity> bHashSetEntitiesToRemove = new HashSet<BEntity>();
         for (int i = 0; i < 100000; i++) {
             BEntity aEntity = new BEntity(i, i + "", i * 10);
             bHashSetEntities.add(aEntity);
