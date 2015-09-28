@@ -51,7 +51,7 @@ public class EmailServiceTest extends EmailBaseTest {
         inlineImageVo4.setFile(new File(getClass().getClassLoader().getResource("pic4.png").getFile()));
         inlineImageVo4.setContentId("b");
 
-        List<InlineImageVo> inlineImageVos = new ArrayList<>();
+        List<InlineImageVo> inlineImageVos = new ArrayList<InlineImageVo>();
         inlineImageVos.add(inlineImageVo);
         inlineImageVos.add(inlineImageVo2);
         inlineImageVos.add(inlineImageVo3);
