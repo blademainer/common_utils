@@ -11,7 +11,6 @@ import com.xiongyingqi.logic.condition.Or;
  */
 public class ConditionalOperation {
     Condition condition = new Condition() {
-        @Override
         public Condition condition(Condition condition) {
             return null;
         }

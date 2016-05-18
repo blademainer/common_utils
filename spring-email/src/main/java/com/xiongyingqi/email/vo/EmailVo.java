@@ -1,4 +1,4 @@
-package com.kingray.email.vo;
+package com.xiongyingqi.email.vo;
 
 import java.util.Collection;
 import java.util.Date;

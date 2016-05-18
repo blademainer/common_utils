@@ -1,6 +1,6 @@
-package com.kingray.email;
+package com.xiongyingqi.email;
 
-import com.kingray.email.vo.EmailAccount;
+import com.xiongyingqi.email.vo.EmailAccount;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;

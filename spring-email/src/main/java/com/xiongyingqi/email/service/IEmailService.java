@@ -1,7 +1,7 @@
-package com.kingray.email.service;
+package com.xiongyingqi.email.service;
 
-import com.kingray.email.vo.EmailAccount;
-import com.kingray.email.vo.EmailVo;
+import com.xiongyingqi.email.vo.EmailAccount;
+import com.xiongyingqi.email.vo.EmailVo;
 
 import javax.mail.MessagingException;
 

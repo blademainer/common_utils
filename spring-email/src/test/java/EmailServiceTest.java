@@ -1,7 +1,7 @@
-import com.kingray.email.service.IEmailService;
-import com.kingray.email.vo.EmailAccount;
-import com.kingray.email.vo.EmailVo;
-import com.kingray.email.vo.InlineImageVo;
+import com.xiongyingqi.email.service.IEmailService;
+import com.xiongyingqi.email.vo.EmailAccount;
+import com.xiongyingqi.email.vo.EmailVo;
+import com.xiongyingqi.email.vo.InlineImageVo;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

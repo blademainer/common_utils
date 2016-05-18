@@ -1,11 +1,11 @@
-package com.kingray.email.service.impl;
+package com.xiongyingqi.email.service.impl;
 
-import com.kingray.email.JavaMailSenderFactory;
-import com.kingray.email.service.IEmailService;
-import com.kingray.email.vo.AttachmentVo;
-import com.kingray.email.vo.EmailAccount;
-import com.kingray.email.vo.EmailVo;
-import com.kingray.email.vo.InlineImageVo;
+import com.xiongyingqi.email.JavaMailSenderFactory;
+import com.xiongyingqi.email.service.IEmailService;
+import com.xiongyingqi.email.vo.AttachmentVo;
+import com.xiongyingqi.email.vo.EmailAccount;
+import com.xiongyingqi.email.vo.EmailVo;
+import com.xiongyingqi.email.vo.InlineImageVo;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.MimeMessageHelper;
